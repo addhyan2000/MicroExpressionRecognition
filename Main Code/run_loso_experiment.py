@@ -30,7 +30,7 @@ def run_loso_experiment(
     save_dir: str = "./checkpoints",
     batch_size: int = 16,
     num_workers: int = 4
-) -> None:
+) -> dict:
     """Master routine traversing independent LOSO validation folds.
 
     Parameters
@@ -176,3 +176,4 @@ def run_loso_experiment(
     logger.info(f" Global Aggregate UAR       : {global_metrics['Global_UAR']:.4f}")
     logger.info(f" Topological Variance (\u03c3)    : {global_metrics['UAR_std']:.4f} \u03c3 (std deviation from {len(loso_validator.subjects)} independent topologies)")
     logger.info("=======================================================\n")
+    return global_metrics
