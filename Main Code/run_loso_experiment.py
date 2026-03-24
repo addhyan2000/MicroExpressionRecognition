@@ -8,6 +8,7 @@ import logging
 import os
 import torch
 from torch.optim import AdamW, SGD
+from typing import Dict
 
 # Note: Adjust relative namespace imports pointing equivalently based on layout.
 from src.evaluation.metrics import MERMetricTracker
@@ -29,8 +30,10 @@ def run_loso_experiment(
     device: torch.device,
     save_dir: str = "./checkpoints",
     batch_size: int = 16,
-    num_workers: int = 4
-) -> dict:
+    num_workers: int = 4,
+    max_folds: int = None,
+    strict_load: bool = True
+) -> Dict[str, float]:
     """Master routine traversing independent LOSO validation folds.
 
     Parameters
@@ -61,7 +64,7 @@ def run_loso_experiment(
     # === 1. Establish the Teacher Prior ===
     logger.info(f"Establishing formal MacroNet prior from {teacher_model_path}")
     teacher_model = copy.deepcopy(student_model)
-    teacher_model.load_state_dict(torch.load(teacher_model_path, map_location=device))
+    teacher_model.load_state_dict(torch.load(teacher_model_path, map_location=device), strict=strict_load)
     teacher_model.to(device)
     teacher_model.freeze_as_teacher()
     teacher_model.eval()
@@ -80,6 +83,10 @@ def run_loso_experiment(
 
     # === 3. Primary Fold Traversal ===
     for fold_idx, test_subject, train_loader, test_loader in loso_validator.get_folds(batch_size, num_workers):
+        if max_folds is not None and fold_idx >= max_folds:
+            logger.info(f"Fast mode enabled: Executed absolute subset boundary dynamically safely halting over {max_folds} Folds.")
+            break
+            
         logger.info(f"\n--- FOLD {fold_idx + 1}/{len(loso_validator.subjects)}: Segregating and leaving out Subject '{test_subject}' ---")
 
         # CRITICAL REINFORCEMENT: Synchronize completely back to clean zero states
