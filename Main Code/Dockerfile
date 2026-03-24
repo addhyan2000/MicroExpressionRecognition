@@ -1,24 +1,39 @@
 # syntax=docker/dockerfile:1
 
+# ==========================================================================
 # Master's Thesis: Micro-Expression Recognition
-# Base Image: NVIDIA PyTorch Container (Targeting High-End Compute clusters)
-# Note: For strict determinism and shape-matched library architectures.
+# Containerised Research Framework Targeting NVIDIA RTX 4080 (Ada Lovelace)
+#
+# Base Image  : NVIDIA PyTorch Container (NGC)
+# Target GPU  : RTX 4080 — 4th Gen Tensor Cores, Ada Lovelace, 16GB VRAM
+#
+# IMPORTANT: Run with shared memory for 5D tensor DataLoader workers:
+#
+#   docker run --gpus all --shm-size=2g \
+#       -v /host/data:/data \
+#       -v /host/outputs:/outputs \
+#       mer-thesis ablate --amp --compile
+#
+# ==========================================================================
 FROM nvcr.io/nvidia/pytorch:24.05-py3
 
-# MAINTAINER Addhyan Pant
-
-# Environment Variables mapping scientific bounds
+# Environment Variables — Scientific Bounds
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Set MPLBACKEND=Agg for completely headless t-SNE / Matplotlib generation 
-# This prevents backend crashes natively during deep execution bounds
+# Headless Matplotlib for t-SNE / visualisation generation
 ENV MPLBACKEND=Agg
+
+# Path-neutral volume mount points (consumed by main.py via os.environ.get)
+ENV DATASET_PATH=/data
+ENV OUTPUT_DIR=/outputs
 
 WORKDIR /app
 
-# Standard OS Dependencies
+# ---------------------------------------------------------------------------
+# OS Dependencies
+# ---------------------------------------------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     libsm6 \
@@ -29,21 +44,27 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nano \
     && rm -rf /var/lib/apt/lists/*
 
-# Thesis-Level Python Dependencies Native 
-# The base image already inherently mounts torch, torchvision, numpy, etc.
-# Scipy/Sklearn bounds strictly evaluated mathematically mapping.
+# ---------------------------------------------------------------------------
+# Python Dependencies
+# The NGC base image ships torch, torchvision, numpy, scipy.
+# We install the remaining thesis-level packages only.
+# ---------------------------------------------------------------------------
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# System Code Import
+# ---------------------------------------------------------------------------
+# Source Code
+# ---------------------------------------------------------------------------
 COPY . /app
 
-# IMPORTANT: SHARED MEMORY VRAM WARNING 
-# WARNING: When executing this container dynamically, you MUST pass `--shm-size=2g`
-# or larger natively. 5D Spatiotemporal video tensors require extensive shared memory.
-# Failure to expand `--shm-size` will result in catastrophic "Bus Errors" via PyTorch DataLoader workers.
+# ---------------------------------------------------------------------------
+# Volume Declarations for Docker Compose / Orchestrators
+# ---------------------------------------------------------------------------
+VOLUME ["/data", "/outputs"]
 
-# Default Orchestrator Command bounds natively evaluated
+# ---------------------------------------------------------------------------
+# Default Entry Point
+# ---------------------------------------------------------------------------
 ENTRYPOINT ["python", "main.py"]
 CMD ["--help"]

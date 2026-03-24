@@ -1,0 +1,23 @@
+# ==========================================================================
+# Micro-Expression Recognition — Thesis Dependencies
+#
+# The NGC base image (nvcr.io/nvidia/pytorch:24.05-py3) already includes:
+#   torch, torchvision, numpy, scipy, pillow, pyyaml
+#
+# Below are the additional packages required by the research framework.
+# ==========================================================================
+
+# Data & ML
+pandas>=2.0
+scikit-learn>=1.3
+
+# Visualisation
+matplotlib>=3.7
+seaborn>=0.12
+
+# Monitoring
+tensorboard>=2.14
+tqdm>=4.65
+
+# Video processing
+opencv-python-headless>=4.8
