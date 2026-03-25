@@ -1,3 +1,29 @@
-# Ignore all files and subdirectories in these folders
-Codebase/
-Datasets/
+# --- Python Environment ---
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+env/
+build/
+dist/
+
+# --- IDE & System ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- THE DATASETS (CRITICAL) ---
+# Never push the raw images or videos to Git due to size and licensing
+DATASETS/
+CODEBASE/
+
+# --- PIPELINE OUTPUTS ---
+# These are generated files (.npy tensors). They are too large for Git.
+NewCode/outputs/
+NewCode/logs/
+NewCode/checkpoints/*.json
+
+# --- SECRETS ---
+# If you ever add API keys or database strings
+.env

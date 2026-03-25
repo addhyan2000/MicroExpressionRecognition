@@ -1,0 +1,4 @@
+2026-03-25 19:32:22 │ DEBUG    │ rotation_check │ test_logger.py:14 │ <module> │ This is a test message to fill up the log file and force a rotation.
+2026-03-25 19:32:22 │ DEBUG    │ rotation_check │ test_logger.py:14 │ <module> │ This is a test message to fill up the log file and force a rotation.
+2026-03-25 19:32:22 │ DEBUG    │ rotation_check │ test_logger.py:14 │ <module> │ This is a test message to fill up the log file and force a rotation.
+2026-03-25 19:32:22 │ DEBUG    │ rotation_check │ test_logger.py:14 │ <module> │ This is a test message to fill up the log file and force a rotation.
