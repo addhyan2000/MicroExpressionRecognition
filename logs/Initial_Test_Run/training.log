@@ -1,0 +1,240 @@
+2026-03-26 19:47:15 | INFO     | MER | Logging to file: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run\training.log
+2026-03-26 19:47:15 | INFO     | MER | ============================================================
+2026-03-26 19:47:15 | INFO     | MER |   MER Training Pipeline — Stage 2
+2026-03-26 19:47:15 | INFO     | MER | ============================================================
+2026-03-26 19:47:16 | INFO     | MER | Global seed set to 42 (deterministic mode ON)
+2026-03-26 19:47:16 | INFO     | MER | CUDA not available — using CPU.
+2026-03-26 19:47:16 | INFO     | MER | Preparing dataset from 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\outputs\CASME_II' ...
+2026-03-26 19:47:16 | INFO     | src.stage2_training.dataset | Loaded 255 labels from CSV.
+2026-03-26 19:47:16 | INFO     | src.stage2_training.dataset | MERDataset initialized — 257 samples from 'CASME_II'
+2026-03-26 19:47:16 | INFO     | src.stage2_training.dataset | Class distribution: Neg:99 | Pos:32 | Sur:25 | Oth:101
+2026-03-26 19:47:16 | INFO     | MER | Splitting dataset: 257 total → 205 train + 52 val (80/20)
+2026-03-26 19:47:16 | INFO     | MER | Computing Normalization Stats strictly from train_dataset...
+2026-03-26 19:47:27 | INFO     | MER | Train Stats -> Mean: [0.00104471374849818, 0.0007731058127371277, 0.016725781488210436], Std: [0.2200139328262402, 0.2495312579925978, 0.03522464217327534]
+2026-03-26 19:47:27 | INFO     | MER | DataLoaders ready — batch_size=8, num_workers=0
+2026-03-26 19:47:27 | INFO     | MER |   run_name       : Initial_Test_Run
+2026-03-26 19:47:27 | INFO     | MER |   data_dir       : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\outputs\CASME_II
+2026-03-26 19:47:27 | INFO     | MER |   label_csv      : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\src\stage2_training\casme2_labels.csv
+2026-03-26 19:47:27 | INFO     | MER |   checkpoint_dir : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run
+2026-03-26 19:47:27 | INFO     | MER |   log_dir        : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run
+2026-03-26 19:47:27 | INFO     | MER |   epochs         : 5
+2026-03-26 19:47:27 | INFO     | MER |   batch_size     : 8
+2026-03-26 19:47:27 | INFO     | MER |   lr             : 0.000100
+2026-03-26 19:47:27 | INFO     | MER |   weight_decay   : 0.000100
+2026-03-26 19:47:27 | INFO     | MER |   dropout        : 0.50
+2026-03-26 19:47:27 | INFO     | MER |   grad_clip      : 1.00
+2026-03-26 19:47:27 | INFO     | MER |   seed           : 42
+2026-03-26 19:47:27 | INFO     | MER |   num_classes    : 4
+2026-03-26 19:47:27 | INFO     | MER |   num_workers    : 0
+2026-03-26 19:47:27 | INFO     | MER |   resume         : True
+2026-03-26 19:47:27 | INFO     | MER |   use_scheduler  : False
+2026-03-26 19:47:27 | INFO     | MER |   sch_step       : 50
+2026-03-26 19:47:27 | INFO     | MER |   sch_gamma      : 0.50
+2026-03-26 19:47:27 | INFO     | MER |   patience       : 3
+2026-03-26 19:47:27 | INFO     | MER |   class_weights  : [0.649 , 2.0078, 2.57  , 0.6361]
+2026-03-26 19:47:27 | INFO     | MER | ============================================================
+2026-03-26 19:47:27 | INFO     | MER | Model moved to device: cpu
+2026-03-26 19:47:27 | INFO     | MER | Optimiser: Adam (lr=0.000100, weight_decay=0.000100)
+2026-03-26 19:47:27 | INFO     | src.stage2_training.trainer | Checkpoint directory: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run
+2026-03-26 19:47:27 | INFO     | src.stage2_training.trainer | Gradient clipping enabled: max_norm=1.00
+2026-03-26 19:47:27 | INFO     | src.stage2_training.trainer | Early stopping enabled with patience: 3
+2026-03-26 19:47:27 | INFO     | MER | Starting training from scratch (epoch 1).
+2026-03-26 19:47:27 | INFO     | MER | Performing pipeline guardrail dry-run...
+2026-03-26 19:47:27 | INFO     | src.stage2_training.dataset | Initiating Dry Run (batch_size=8)...
+2026-03-26 19:47:27 | INFO     | src.stage2_training.dataset | ✅ Dry Run Successful! Input shape: torch.Size([8, 3, 32, 224, 224]), Label shape: torch.Size([8])
+2026-03-26 19:47:27 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 19:47:27 | INFO     | src.stage2_training.trainer |   Training started — epochs 1 → 5  |  device: cpu
+2026-03-26 19:47:27 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 19:47:27 | INFO     | src.stage2_training.trainer | ── Epoch 1/5 ──
+2026-03-26 19:47:28 | DEBUG    | src.stage2_training.model | Latent Feature Dimension after Global Pool: (8, 16, 1, 1, 1)
+2026-03-26 19:48:08 | WARNING  | MER | Training interrupted by user. Saving emergency checkpoint...
+2026-03-26 19:48:08 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 1)
+2026-03-26 20:00:51 | INFO     | MER | Logging to file: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run\training.log
+2026-03-26 20:00:51 | INFO     | MER | ============================================================
+2026-03-26 20:00:51 | INFO     | MER |   MER Training Pipeline — Stage 2
+2026-03-26 20:00:51 | INFO     | MER | ============================================================
+2026-03-26 20:00:52 | INFO     | MER | Global seed set to 42 (deterministic mode ON)
+2026-03-26 20:00:52 | INFO     | MER | CUDA available — using GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-03-26 20:00:52 | INFO     | MER | Preparing dataset from 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\outputs\CASME_II' ...
+2026-03-26 20:00:52 | INFO     | src.stage2_training.dataset | Loaded 255 labels from CSV.
+2026-03-26 20:00:52 | INFO     | src.stage2_training.dataset | MERDataset initialized — 257 samples from 'CASME_II'
+2026-03-26 20:00:52 | INFO     | src.stage2_training.dataset | Class distribution: Neg:99 | Pos:32 | Sur:25 | Oth:101
+2026-03-26 20:00:52 | INFO     | MER | Splitting dataset: 257 total → 205 train + 52 val (80/20)
+2026-03-26 20:00:52 | INFO     | MER | Computing Normalization Stats strictly from train_dataset...
+2026-03-26 20:01:03 | INFO     | MER | Train Stats -> Mean: [0.00104471374849818, 0.0007731058127371277, 0.016725781488210436], Std: [0.2200139328262402, 0.2495312579925978, 0.03522464217327534]
+2026-03-26 20:01:03 | INFO     | MER | DataLoaders ready — batch_size=8, num_workers=0
+2026-03-26 20:01:03 | INFO     | MER |   run_name       : Initial_Test_Run
+2026-03-26 20:01:03 | INFO     | MER |   data_dir       : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\outputs\CASME_II
+2026-03-26 20:01:03 | INFO     | MER |   label_csv      : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\src\stage2_training\casme2_labels.csv
+2026-03-26 20:01:03 | INFO     | MER |   checkpoint_dir : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run
+2026-03-26 20:01:03 | INFO     | MER |   log_dir        : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run
+2026-03-26 20:01:03 | INFO     | MER |   epochs         : 5
+2026-03-26 20:01:03 | INFO     | MER |   batch_size     : 8
+2026-03-26 20:01:03 | INFO     | MER |   lr             : 0.000100
+2026-03-26 20:01:03 | INFO     | MER |   weight_decay   : 0.000100
+2026-03-26 20:01:03 | INFO     | MER |   dropout        : 0.50
+2026-03-26 20:01:03 | INFO     | MER |   grad_clip      : 1.00
+2026-03-26 20:01:03 | INFO     | MER |   seed           : 42
+2026-03-26 20:01:03 | INFO     | MER |   num_classes    : 4
+2026-03-26 20:01:03 | INFO     | MER |   num_workers    : 0
+2026-03-26 20:01:03 | INFO     | MER |   resume         : True
+2026-03-26 20:01:03 | INFO     | MER |   use_scheduler  : False
+2026-03-26 20:01:03 | INFO     | MER |   sch_step       : 50
+2026-03-26 20:01:03 | INFO     | MER |   sch_gamma      : 0.50
+2026-03-26 20:01:03 | INFO     | MER |   patience       : 3
+2026-03-26 20:01:03 | INFO     | MER |   class_weights  : [0.649 , 2.0078, 2.57  , 0.6361]
+2026-03-26 20:01:03 | INFO     | MER | ============================================================
+2026-03-26 20:01:03 | INFO     | MER | Model moved to device: cuda
+2026-03-26 20:01:03 | INFO     | MER | Optimiser: Adam (lr=0.000100, weight_decay=0.000100)
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | Checkpoint directory: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | Gradient clipping enabled: max_norm=1.00
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | Early stopping enabled with patience: 3
+2026-03-26 20:01:03 | INFO     | MER | Existing checkpoint detected: 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run\last_checkpoint.pth' — will resume.
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | Loading checkpoint from 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run\last_checkpoint.pth' ...
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | Checkpoint loaded — resuming from epoch 2 (best_val_acc=0.0000)
+2026-03-26 20:01:03 | INFO     | MER | Performing pipeline guardrail dry-run...
+2026-03-26 20:01:03 | INFO     | src.stage2_training.dataset | Initiating Dry Run (batch_size=8)...
+2026-03-26 20:01:03 | INFO     | src.stage2_training.dataset | ✅ Dry Run Successful! Input shape: torch.Size([8, 3, 32, 224, 224]), Label shape: torch.Size([8])
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer |   Training started — epochs 2 → 5  |  device: cuda
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:01:03 | INFO     | src.stage2_training.trainer | ── Epoch 2/5 ──
+2026-03-26 20:01:04 | DEBUG    | src.stage2_training.model | Latent Feature Dimension after Global Pool: (8, 16, 1, 1, 1)
+2026-03-26 20:09:10 | INFO     | MER | Logging to file: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run\training.log
+2026-03-26 20:09:10 | INFO     | MER | ============================================================
+2026-03-26 20:09:10 | INFO     | MER |   MER Training Pipeline — Stage 2
+2026-03-26 20:09:10 | INFO     | MER | ============================================================
+2026-03-26 20:09:12 | INFO     | MER | Global seed set to 42 (deterministic mode ON)
+2026-03-26 20:09:12 | INFO     | MER | CUDA available — using GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-03-26 20:09:12 | INFO     | MER | Preparing dataset from 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\outputs\CASME_II' ...
+2026-03-26 20:09:12 | INFO     | src.stage2_training.dataset | Loaded 255 labels from CSV.
+2026-03-26 20:09:12 | INFO     | src.stage2_training.dataset | MERDataset initialized — 257 samples from 'CASME_II'
+2026-03-26 20:09:12 | INFO     | src.stage2_training.dataset | Class distribution: Neg:99 | Pos:32 | Sur:25 | Oth:101
+2026-03-26 20:09:12 | INFO     | MER | Splitting dataset: 257 total → 205 train + 52 val (80/20)
+2026-03-26 20:09:12 | INFO     | MER | Computing Normalization Stats strictly from train_dataset...
+2026-03-26 20:09:22 | INFO     | MER | Train Stats -> Mean: [0.00104471374849818, 0.0007731058127371277, 0.016725781488210436], Std: [0.2200139328262402, 0.2495312579925978, 0.03522464217327534]
+2026-03-26 20:09:22 | INFO     | MER | DataLoaders ready — batch_size=8, num_workers=0
+2026-03-26 20:09:22 | INFO     | MER |   run_name       : Initial_Test_Run
+2026-03-26 20:09:22 | INFO     | MER |   data_dir       : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\outputs\CASME_II
+2026-03-26 20:09:22 | INFO     | MER |   label_csv      : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\NewCode\src\stage2_training\casme2_labels.csv
+2026-03-26 20:09:22 | INFO     | MER |   checkpoint_dir : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run
+2026-03-26 20:09:22 | INFO     | MER |   log_dir        : C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run
+2026-03-26 20:09:22 | INFO     | MER |   epochs         : 5
+2026-03-26 20:09:22 | INFO     | MER |   batch_size     : 8
+2026-03-26 20:09:22 | INFO     | MER |   lr             : 0.000100
+2026-03-26 20:09:22 | INFO     | MER |   weight_decay   : 0.000100
+2026-03-26 20:09:22 | INFO     | MER |   dropout        : 0.50
+2026-03-26 20:09:22 | INFO     | MER |   grad_clip      : 1.00
+2026-03-26 20:09:22 | INFO     | MER |   seed           : 42
+2026-03-26 20:09:22 | INFO     | MER |   num_classes    : 4
+2026-03-26 20:09:22 | INFO     | MER |   num_workers    : 0
+2026-03-26 20:09:22 | INFO     | MER |   resume         : True
+2026-03-26 20:09:22 | INFO     | MER |   use_scheduler  : False
+2026-03-26 20:09:22 | INFO     | MER |   sch_step       : 50
+2026-03-26 20:09:22 | INFO     | MER |   sch_gamma      : 0.50
+2026-03-26 20:09:22 | INFO     | MER |   patience       : 3
+2026-03-26 20:09:22 | INFO     | MER |   class_weights  : [0.649 , 2.0078, 2.57  , 0.6361]
+2026-03-26 20:09:22 | INFO     | MER | ============================================================
+2026-03-26 20:09:22 | INFO     | MER | Model moved to device: cuda
+2026-03-26 20:09:22 | INFO     | MER | Optimiser: Adam (lr=0.000100, weight_decay=0.000100)
+2026-03-26 20:09:22 | INFO     | src.stage2_training.trainer | Checkpoint directory: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run
+2026-03-26 20:09:22 | INFO     | src.stage2_training.trainer | Gradient clipping enabled: max_norm=1.00
+2026-03-26 20:09:22 | INFO     | src.stage2_training.trainer | Early stopping enabled with patience: 3
+2026-03-26 20:09:22 | INFO     | MER | Existing checkpoint detected: 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run\last_checkpoint.pth' — will resume.
+2026-03-26 20:09:22 | INFO     | src.stage2_training.trainer | Loading checkpoint from 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run\last_checkpoint.pth' ...
+2026-03-26 20:09:22 | INFO     | src.stage2_training.trainer | Checkpoint loaded — resuming from epoch 2 (best_val_acc=0.0000)
+2026-03-26 20:09:22 | INFO     | MER | Performing pipeline guardrail dry-run...
+2026-03-26 20:09:22 | INFO     | src.stage2_training.dataset | Initiating Dry Run (batch_size=8)...
+2026-03-26 20:09:23 | INFO     | src.stage2_training.dataset | ✅ Dry Run Successful! Input shape: torch.Size([8, 3, 32, 224, 224]), Label shape: torch.Size([8])
+2026-03-26 20:09:23 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:09:23 | INFO     | src.stage2_training.trainer |   Training started — epochs 2 → 5  |  device: cuda
+2026-03-26 20:09:23 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:09:23 | INFO     | src.stage2_training.trainer | ── Epoch 2/5 ──
+2026-03-26 20:09:23 | DEBUG    | src.stage2_training.model | Latent Feature Dimension after Global Pool: (8, 16, 1, 1, 1)
+2026-03-26 20:16:17 | INFO     | MER | Logging to file: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run\training.log
+2026-03-26 20:16:17 | INFO     | MER | ============================================================
+2026-03-26 20:16:17 | INFO     | MER |   MER Training Pipeline — Stage 2
+2026-03-26 20:16:17 | INFO     | MER | ============================================================
+2026-03-26 20:17:45 | INFO     | MER | Logging to file: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run\training.log
+2026-03-26 20:17:45 | INFO     | MER | ============================================================
+2026-03-26 20:17:45 | INFO     | MER |   MER Training Pipeline — Stage 2
+2026-03-26 20:17:45 | INFO     | MER | ============================================================
+2026-03-26 20:19:40 | INFO     | MER | Logging to file: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\Initial_Test_Run\training.log
+2026-03-26 20:19:40 | INFO     | MER | ============================================================
+2026-03-26 20:19:40 | INFO     | MER |   MER Training Pipeline — Stage 2
+2026-03-26 20:19:40 | INFO     | MER | ============================================================
+2026-03-26 20:19:41 | INFO     | MER | Global seed set to 42 (Performance Mode: ON)
+2026-03-26 20:19:41 | INFO     | MER | CUDA available — using GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-03-26 20:19:41 | INFO     | src.stage2_training.dataset | Loaded 255 labels from CSV.
+2026-03-26 20:19:41 | INFO     | src.stage2_training.dataset | MERDataset initialized — 257 samples from 'CASME_II'
+2026-03-26 20:19:41 | INFO     | src.stage2_training.dataset | Class distribution: Neg:99 | Pos:32 | Sur:25 | Oth:101
+2026-03-26 20:19:41 | INFO     | MER | Computing Normalization Stats strictly from train_dataset...
+2026-03-26 20:19:56 | INFO     | MER |   run_name       : Initial_Test_Run
+2026-03-26 20:19:56 | INFO     | MER |   epochs         : 5
+2026-03-26 20:19:56 | INFO     | MER |   batch_size     : 16
+2026-03-26 20:19:56 | INFO     | MER |   lr             : 0.000100
+2026-03-26 20:19:56 | INFO     | MER |   patience       : 10
+2026-03-26 20:19:56 | INFO     | MER |   class_weights  : [0.649 , 2.0078, 2.57  , 0.6361]
+2026-03-26 20:19:56 | INFO     | MER | ============================================================
+2026-03-26 20:19:56 | INFO     | MER | Model moved to device: cuda
+2026-03-26 20:19:56 | INFO     | src.stage2_training.trainer | Checkpoint directory: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run
+2026-03-26 20:19:56 | INFO     | src.stage2_training.trainer | Gradient clipping enabled: max_norm=1.00
+2026-03-26 20:19:56 | INFO     | src.stage2_training.trainer | Early stopping enabled with patience: 10
+2026-03-26 20:19:56 | INFO     | MER | Existing checkpoint detected: 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run\last_checkpoint.pth'
+2026-03-26 20:19:56 | INFO     | src.stage2_training.trainer | Loading checkpoint from 'C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\Initial_Test_Run\last_checkpoint.pth' ...
+2026-03-26 20:19:57 | INFO     | src.stage2_training.trainer | Checkpoint loaded — resuming from epoch 2 (best_val_acc=0.0000)
+2026-03-26 20:19:57 | INFO     | MER | Performing pipeline guardrail dry-run...
+2026-03-26 20:19:57 | INFO     | src.stage2_training.dataset | Initiating Dry Run (batch_size=16)...
+2026-03-26 20:19:57 | INFO     | src.stage2_training.dataset | ✅ Dry Run Successful! Input shape: torch.Size([16, 3, 32, 224, 224]), Label shape: torch.Size([16])
+2026-03-26 20:19:57 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:19:57 | INFO     | src.stage2_training.trainer |   Training started — epochs 2 → 2  |  device: cuda
+2026-03-26 20:19:57 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:19:57 | INFO     | src.stage2_training.trainer | ── Epoch 2/2 ──
+2026-03-26 20:20:10 | DEBUG    | src.stage2_training.model | Latent Feature Dimension after Global Pool: (16, 16, 1, 1, 1)
+2026-03-26 20:20:54 | INFO     | src.stage2_training.trainer | [Epoch 2] TRAIN — loss: 1.7293 | acc: 0.2878 (59/205)
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | [Epoch 2] VAL   — loss: 1.2932 | acc: 0.2692 (14/52)
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | [Epoch 2] VAL per-class → negative: 12/19 (63.2%) | positive: 2/7 (28.6%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:20:59 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 2)
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | ★ New best model saved (epoch 2, val_acc=0.2692)
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer |   Epoch 2 complete in 61.8s | train_loss=1.7293, val_loss=1.2932, val_acc=0.2692 ★
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer |   Training complete — 1 epochs in 61.8s | Best val_acc: 0.2692
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer |   Training started — epochs 3 → 3  |  device: cuda
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:20:59 | INFO     | src.stage2_training.trainer | ── Epoch 3/3 ──
+2026-03-26 20:21:12 | INFO     | src.stage2_training.trainer | [Epoch 3] TRAIN — loss: 1.6789 | acc: 0.2927 (60/205)
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | [Epoch 3] VAL   — loss: 1.2899 | acc: 0.3077 (16/52)
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | [Epoch 3] VAL per-class → negative: 16/19 (84.2%) | positive: 0/7 (0.0%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:21:15 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 3)
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | ★ New best model saved (epoch 3, val_acc=0.3077)
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer |   Epoch 3 complete in 15.8s | train_loss=1.6789, val_loss=1.2899, val_acc=0.3077 ★
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer |   Training complete — 1 epochs in 15.8s | Best val_acc: 0.3077
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer |   Training started — epochs 4 → 4  |  device: cuda
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:15 | INFO     | src.stage2_training.trainer | ── Epoch 4/4 ──
+2026-03-26 20:21:28 | INFO     | src.stage2_training.trainer | [Epoch 4] TRAIN — loss: 1.7556 | acc: 0.2780 (57/205)
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer | [Epoch 4] VAL   — loss: 1.2880 | acc: 0.3077 (16/52)
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer | [Epoch 4] VAL per-class → negative: 16/19 (84.2%) | positive: 0/7 (0.0%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:21:31 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 4)
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer |   Epoch 4 complete in 15.8s | train_loss=1.7556, val_loss=1.2880, val_acc=0.3077
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer |   Training complete — 1 epochs in 15.8s | Best val_acc: 0.3077
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer |   Training started — epochs 5 → 5  |  device: cuda
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:31 | INFO     | src.stage2_training.trainer | ── Epoch 5/5 ──
+2026-03-26 20:21:44 | INFO     | src.stage2_training.trainer | [Epoch 5] TRAIN — loss: 1.7400 | acc: 0.2780 (57/205)
+2026-03-26 20:21:47 | INFO     | src.stage2_training.trainer | [Epoch 5] VAL   — loss: 1.2895 | acc: 0.3077 (16/52)
+2026-03-26 20:21:47 | INFO     | src.stage2_training.trainer | [Epoch 5] VAL per-class → negative: 16/19 (84.2%) | positive: 0/7 (0.0%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:21:47 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 5)
+2026-03-26 20:21:47 | INFO     | src.stage2_training.trainer |   Epoch 5 complete in 15.7s | train_loss=1.7400, val_loss=1.2895, val_acc=0.3077
+2026-03-26 20:21:47 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:47 | INFO     | src.stage2_training.trainer |   Training complete — 1 epochs in 15.7s | Best val_acc: 0.3077
+2026-03-26 20:21:47 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:21:47 | INFO     | MER | Pipeline finished successfully.

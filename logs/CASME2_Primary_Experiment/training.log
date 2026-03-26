@@ -1,0 +1,66 @@
+2026-03-26 20:53:14 | INFO     | MER | Logging to file: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\logs\CASME2_Primary_Experiment\training.log
+2026-03-26 20:53:14 | INFO     | MER | ============================================================
+2026-03-26 20:53:14 | INFO     | MER |   MER Pipeline Stage 2 — TRAINING
+2026-03-26 20:53:14 | INFO     | MER | ============================================================
+2026-03-26 20:53:16 | INFO     | MER | Global seed set to 42 (Performance Mode: ON)
+2026-03-26 20:53:16 | INFO     | MER | CUDA available — using GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-03-26 20:53:16 | INFO     | src.stage2_training.dataset | Loaded 255 labels from CSV.
+2026-03-26 20:53:16 | INFO     | src.stage2_training.dataset | MERDataset initialized — 257 samples from 'CASME_II'
+2026-03-26 20:53:16 | INFO     | src.stage2_training.dataset | Class distribution: Neg:99 | Pos:32 | Sur:25 | Oth:101
+2026-03-26 20:53:16 | INFO     | MER | Computing Normalization Stats from train_dataset...
+2026-03-26 20:53:28 | INFO     | MER |   run_name       : CASME2_Primary_Experiment
+2026-03-26 20:53:28 | INFO     | MER |   epochs         : 100
+2026-03-26 20:53:28 | INFO     | MER |   batch_size     : 16
+2026-03-26 20:53:28 | INFO     | MER |   class_weights  : [0.649 , 2.0078, 2.57  , 0.6361]
+2026-03-26 20:53:28 | INFO     | MER | ============================================================
+2026-03-26 20:53:28 | INFO     | src.stage2_training.trainer | Checkpoint directory: C:\Users\Addhyan\Desktop\Thesis\Thesis2\THESIS WORK new\checkpoints\CASME2_Primary_Experiment
+2026-03-26 20:53:28 | INFO     | src.stage2_training.trainer | Gradient clipping enabled: max_norm=1.00
+2026-03-26 20:53:28 | INFO     | src.stage2_training.trainer | Early stopping enabled with patience: 15
+2026-03-26 20:53:28 | INFO     | MER | Performing pipeline guardrail dry-run...
+2026-03-26 20:53:28 | INFO     | src.stage2_training.dataset | Initiating Dry Run (batch_size=16)...
+2026-03-26 20:53:28 | INFO     | src.stage2_training.dataset | ✅ Dry Run Successful! Input shape: torch.Size([16, 3, 32, 224, 224]), Label shape: torch.Size([16])
+2026-03-26 20:53:28 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:53:28 | INFO     | src.stage2_training.trainer |   Training started — epochs 1 → 100  |  device: cuda
+2026-03-26 20:53:28 | INFO     | src.stage2_training.trainer | ═══════════════════════════════════════════════════════════
+2026-03-26 20:53:28 | INFO     | src.stage2_training.trainer | ── Epoch 1/100 ──
+2026-03-26 20:53:38 | DEBUG    | src.stage2_training.model | Latent Feature Dimension after Global Pool: (16, 16, 1, 1, 1)
+2026-03-26 20:54:22 | INFO     | src.stage2_training.trainer | [Epoch 1] TRAIN — loss: 1.7317 | acc: 0.2878 (59/205)
+2026-03-26 20:54:28 | INFO     | src.stage2_training.trainer | [Epoch 1] VAL   — loss: 1.2969 | acc: 0.2115 (11/52)
+2026-03-26 20:54:28 | INFO     | src.stage2_training.trainer | [Epoch 1] VAL per-class → negative: 8/19 (42.1%) | positive: 3/7 (42.9%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:54:28 | INFO     | src.stage2_training.trainer |   LR adjusted to 0.000100
+2026-03-26 20:54:28 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 1)
+2026-03-26 20:54:28 | INFO     | src.stage2_training.trainer | ★ New best model saved (epoch 1, val_acc=0.2115)
+2026-03-26 20:54:28 | INFO     | src.stage2_training.trainer |   Epoch 1 complete in 59.7s | train_loss=1.7317, val_loss=1.2969, val_acc=0.2115 ★
+2026-03-26 20:54:28 | INFO     | src.stage2_training.trainer | ── Epoch 2/100 ──
+2026-03-26 20:54:45 | INFO     | src.stage2_training.trainer | [Epoch 2] TRAIN — loss: 1.6912 | acc: 0.2634 (54/205)
+2026-03-26 20:54:49 | INFO     | src.stage2_training.trainer | [Epoch 2] VAL   — loss: 1.2937 | acc: 0.2692 (14/52)
+2026-03-26 20:54:49 | INFO     | src.stage2_training.trainer | [Epoch 2] VAL per-class → negative: 12/19 (63.2%) | positive: 2/7 (28.6%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:54:49 | INFO     | src.stage2_training.trainer |   LR adjusted to 0.000100
+2026-03-26 20:54:49 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 2)
+2026-03-26 20:54:49 | INFO     | src.stage2_training.trainer | ★ New best model saved (epoch 2, val_acc=0.2692)
+2026-03-26 20:54:49 | INFO     | src.stage2_training.trainer |   Epoch 2 complete in 21.1s | train_loss=1.6912, val_loss=1.2937, val_acc=0.2692 ★
+2026-03-26 20:54:49 | INFO     | src.stage2_training.trainer | ── Epoch 3/100 ──
+2026-03-26 20:55:06 | INFO     | src.stage2_training.trainer | [Epoch 3] TRAIN — loss: 1.6278 | acc: 0.2927 (60/205)
+2026-03-26 20:55:09 | INFO     | src.stage2_training.trainer | [Epoch 3] VAL   — loss: 1.2942 | acc: 0.2885 (15/52)
+2026-03-26 20:55:09 | INFO     | src.stage2_training.trainer | [Epoch 3] VAL per-class → negative: 15/19 (78.9%) | positive: 0/7 (0.0%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:55:09 | INFO     | src.stage2_training.trainer |   LR adjusted to 0.000100
+2026-03-26 20:55:09 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 3)
+2026-03-26 20:55:09 | INFO     | src.stage2_training.trainer | ★ New best model saved (epoch 3, val_acc=0.2885)
+2026-03-26 20:55:09 | INFO     | src.stage2_training.trainer |   Epoch 3 complete in 20.2s | train_loss=1.6278, val_loss=1.2942, val_acc=0.2885 ★
+2026-03-26 20:55:09 | INFO     | src.stage2_training.trainer | ── Epoch 4/100 ──
+2026-03-26 20:55:25 | INFO     | src.stage2_training.trainer | [Epoch 4] TRAIN — loss: 1.4971 | acc: 0.3073 (63/205)
+2026-03-26 20:55:29 | INFO     | src.stage2_training.trainer | [Epoch 4] VAL   — loss: 1.2950 | acc: 0.3077 (16/52)
+2026-03-26 20:55:29 | INFO     | src.stage2_training.trainer | [Epoch 4] VAL per-class → negative: 16/19 (84.2%) | positive: 0/7 (0.0%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:55:29 | INFO     | src.stage2_training.trainer |   LR adjusted to 0.000100
+2026-03-26 20:55:29 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 4)
+2026-03-26 20:55:29 | INFO     | src.stage2_training.trainer | ★ New best model saved (epoch 4, val_acc=0.3077)
+2026-03-26 20:55:29 | INFO     | src.stage2_training.trainer |   Epoch 4 complete in 19.7s | train_loss=1.4971, val_loss=1.2950, val_acc=0.3077 ★
+2026-03-26 20:55:29 | INFO     | src.stage2_training.trainer | ── Epoch 5/100 ──
+2026-03-26 20:55:46 | INFO     | src.stage2_training.trainer | [Epoch 5] TRAIN — loss: 1.6632 | acc: 0.3317 (68/205)
+2026-03-26 20:55:50 | INFO     | src.stage2_training.trainer | [Epoch 5] VAL   — loss: 1.2952 | acc: 0.3077 (16/52)
+2026-03-26 20:55:50 | INFO     | src.stage2_training.trainer | [Epoch 5] VAL per-class → negative: 16/19 (84.2%) | positive: 0/7 (0.0%) | surprise: 0/2 (0.0%) | others: 0/24 (0.0%)
+2026-03-26 20:55:50 | INFO     | src.stage2_training.trainer |   LR adjusted to 0.000100
+2026-03-26 20:55:50 | DEBUG    | src.stage2_training.trainer | Saved last_checkpoint.pth (epoch 5)
+2026-03-26 20:55:50 | INFO     | src.stage2_training.trainer |   Epoch 5 complete in 21.2s | train_loss=1.6632, val_loss=1.2952, val_acc=0.3077
+2026-03-26 20:55:50 | INFO     | src.stage2_training.trainer | ── Epoch 6/100 ──
+2026-03-26 20:56:03 | WARNING  | MER | Training interrupted.
