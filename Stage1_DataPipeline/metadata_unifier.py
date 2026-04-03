@@ -527,8 +527,19 @@ class CASME2SquaredUnifier(BaseMetadataUnifier):
                 raw_emotion, unified_emotion, emotion_category,
             )
 
-            # ── Frame directory ─────────────────────────────────────
-            frames_dir = cfg.frames_root / str(subject_id) / video_id
+            # ── Frame directory (DYNAMIC RESOLUTION) ────────────────
+            # The Excel uses Subject 1, 2, 3, but the disk uses 15, 16, 17.
+            # We dynamically hunt down the correct folder using the Video_ID.
+            frames_dir = cfg.frames_root / str(subject_id) / video_id # Fallback
+            
+            if cfg.frames_root.exists():
+                for folder in cfg.frames_root.iterdir():
+                    if folder.is_dir():
+                        target_path = folder / video_id
+                        if target_path.exists():
+                            frames_dir = target_path
+                            break
+                            
             frames_exist = self._check_frames_directory(frames_dir)
 
             rows.append({
