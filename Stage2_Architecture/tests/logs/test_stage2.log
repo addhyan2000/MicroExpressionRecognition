@@ -1,0 +1,318 @@
+2026-04-03 18:42:33 │ DEBUG    │ test_stage2                    │ Logger 'test_stage2' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\logs\test_stage2.log
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ ╔═══════════════════════════════════════════════════════════════╗
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ ║   STAGE 2 — DEFENSE-GRADE QA SUITE                            ║
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ ║   HybridMERModel Architecture Validation                      ║
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ ╚═══════════════════════════════════════════════════════════════╝
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ SECTION 1: Dimensionality & Tensor Routing Tests
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:42:33 │ INFO     │ test_stage2                    │ TEST 1.3: Backbone intermediate shape verification
+2026-04-03 18:42:36 │ INFO     │ test_stage2                    │   ✓ PASS — Backbone output: [2, 96, 32, 112, 112]
+2026-04-03 18:42:36 │ INFO     │ test_stage2                    │ TEST 1.2: Batch size 1 edge case
+2026-04-03 18:42:37 │ INFO     │ test_stage2                    │   ✓ PASS — B=1 survived. Shape: [1, 3], no NaNs.
+2026-04-03 18:42:37 │ INFO     │ test_stage2                    │ TEST 1.5: CLS pooling strategy end-to-end
+2026-04-03 18:42:39 │ INFO     │ test_stage2                    │   ✓ PASS — CLS pooling output: [2, 3]
+2026-04-03 18:42:39 │ INFO     │ test_stage2                    │ TEST 1.1: Standard forward pass [B=2, C=3, L=32, H=224, W=224]
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │   ✓ PASS — Output shape: [2, 3]
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ TEST 1.4: Transformer intermediate shape verification
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │   ✓ PASS — Transformer output: [2, 96]
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ SECTION 2: Mathematical Integrity & SimAM Tests
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ TEST 2.2: SimAM constant-input (all ones) stability
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │   ✓ PASS — Constant input: output ≈ sigmoid(0.5) = 0.622459
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ TEST 2.3: SimAM parameter-free assertion
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │   ✓ PASS — SimAM3D has 0 learnable parameters.
+2026-04-03 18:42:41 │ INFO     │ test_stage2                    │ TEST 2.4: SimAM shape preservation
+2026-04-03 18:42:42 │ INFO     │ test_stage2                    │   ✓ PASS — Shape preserved for 3 test cases.
+2026-04-03 18:42:42 │ INFO     │ test_stage2                    │ TEST 2.1: SimAM zero-input NaN safety check
+2026-04-03 18:42:42 │ INFO     │ test_stage2                    │   ✓ PASS — Zero input: no NaN, no Inf, output is all zeros.
+2026-04-03 18:42:42 │ INFO     │ test_stage2                    │ TEST 2.5: Unshared weight verification across 3 CNN streams
+2026-04-03 18:42:42 │ INFO     │ test_stage2                    │   ✓ PASS — Weight pointers are distinct:
+           stream_u.conv1: 0x00000438e4011c80
+           stream_v.conv1: 0x00000438e4011a00
+           stream_os.conv1: 0x00000438e4011780
+2026-04-03 18:42:42 │ INFO     │ test_stage2                    │ TEST 2.6: Weight divergence after one gradient step
+2026-04-03 18:42:45 │ INFO     │ test_stage2                    │   ✓ PASS — Weights diverged after one gradient step.
+2026-04-03 18:42:45 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:42:45 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:42:45 │ INFO     │ test_stage2                    │ SECTION 3: Autograd & Backward Pass Tests
+2026-04-03 18:42:45 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:42:45 │ INFO     │ test_stage2                    │ TEST 3.2: Gradient flow to all trainable parameters
+2026-04-03 18:42:56 │ INFO     │ test_stage2                    │   ✓ PASS — 48/48 trainable parameters received gradients.
+2026-04-03 18:42:56 │ INFO     │ test_stage2                    │ TEST 3.1: Full backward pass completion
+2026-04-03 18:43:03 │ INFO     │ test_stage2                    │   ✓ PASS — backward() completed without error.
+2026-04-03 18:43:03 │ INFO     │ test_stage2                    │ TEST 3.5: Realistic CrossEntropy loss backward
+2026-04-03 18:43:52 │ INFO     │ test_stage2                    │   ✓ PASS — CrossEntropy loss = 1.7552, backward OK.
+2026-04-03 18:43:52 │ INFO     │ test_stage2                    │ TEST 3.3: Gradient finiteness check (no NaN/Inf)
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │   ✓ PASS — All gradients are finite.
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │ TEST 3.4: SimAM gradient passthrough verification
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │   ✓ PASS — Gradients flow through SimAM. Input grad norm: 109.441635
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │ SECTION 4: Device Agnosticism Tests
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │   CUDA not available — GPU tests will be skipped.
+2026-04-03 18:44:05 │ INFO     │ test_stage2                    │ TEST 4.1: CPU forward pass
+2026-04-03 18:44:07 │ INFO     │ test_stage2                    │   ✓ PASS — CPU forward: [2, 3] on cpu
+2026-04-03 18:44:07 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:44:07 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:44:07 │ INFO     │ test_stage2                    │ SECTION 5: Checkpoint Compatibility Tests
+2026-04-03 18:44:07 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:44:07 │ INFO     │ test_stage2                    │ TEST 5.3: In-memory checkpoint via BytesIO
+2026-04-03 18:44:12 │ INFO     │ test_stage2                    │   ✓ PASS — In-memory save/load produces identical outputs.
+2026-04-03 18:44:12 │ INFO     │ test_stage2                    │ TEST 5.1: Save → Load → Identical output verification
+2026-04-03 18:44:14 │ INFO     │ test_stage2                    │   Saved checkpoint: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp\test_checkpoint.pth
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   ✓ PASS — Outputs are BITWISE IDENTICAL after save/load.
+           model_A: [[-1.5697355270385742, -1.3770745992660522, -1.8787015676498413], [-1.5676459074020386, -1.3767757415771484, -1.880083441734314]]
+           model_B: [[-1.5697355270385742, -1.3770745992660522, -1.8787015676498413], [-1.5676459074020386, -1.3767757415771484, -1.880083441734314]]
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   Cleaned up: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp\test_checkpoint.pth
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   Cleaned up: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ TEST 5.2: State dict key completeness check
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   ✓ PASS — State dict has 67 keys covering all 6 component prefixes.
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ SECTION 6: Positional Encoding Correctness Tests
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ TEST 6.3: PE parameter count
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   ✓ PASS — PE has 0 learnable parameters.
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ TEST 6.1: Positional encoding determinism
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   ✓ PASS — PE is deterministic across instances.
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ TEST 6.2: PE value bounds check
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   ✓ PASS — PE range: [-1.0000, 1.0000]
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ ╔═══════════════════════════════════════════════════════════════╗
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ ║   RESULTS: 23/26 PASSED  │  0 Failed  │  0 Errors  │  3 Skipped  ║
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │ ╚═══════════════════════════════════════════════════════════════╝
+2026-04-03 18:44:18 │ INFO     │ test_stage2                    │   ✓ ALL TESTS PASSED — Architecture validated for Stage 3.
+2026-04-03 18:48:16 │ DEBUG    │ test_stage2                    │ Logger 'test_stage2' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\logs\test_stage2.log
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ ╔═══════════════════════════════════════════════════════════════╗
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ ║   STAGE 2 — DEFENSE-GRADE QA SUITE                            ║
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ ║   HybridMERModel Architecture Validation                      ║
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ ╚═══════════════════════════════════════════════════════════════╝
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ SECTION 1: Dimensionality & Tensor Routing Tests
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:48:16 │ INFO     │ test_stage2                    │ TEST 1.3: Backbone intermediate shape verification
+2026-04-03 18:48:18 │ INFO     │ test_stage2                    │   ✓ PASS — Backbone output: [2, 96, 32, 112, 112]
+2026-04-03 18:48:18 │ INFO     │ test_stage2                    │ TEST 1.2: Batch size 1 edge case
+2026-04-03 18:48:19 │ INFO     │ test_stage2                    │   ✓ PASS — B=1 survived. Shape: [1, 3], no NaNs.
+2026-04-03 18:48:19 │ INFO     │ test_stage2                    │ TEST 1.5: CLS pooling strategy end-to-end
+2026-04-03 18:48:21 │ INFO     │ test_stage2                    │   ✓ PASS — CLS pooling output: [2, 3]
+2026-04-03 18:48:21 │ INFO     │ test_stage2                    │ TEST 1.1: Standard forward pass [B=2, C=3, L=32, H=224, W=224]
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │   ✓ PASS — Output shape: [2, 3]
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ TEST 1.4: Transformer intermediate shape verification
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │   ✓ PASS — Transformer output: [2, 96]
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ SECTION 2: Mathematical Integrity & SimAM Tests
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ TEST 2.2: SimAM constant-input (all ones) stability
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │   ✓ PASS — Constant input: output ≈ sigmoid(0.5) = 0.622459
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ TEST 2.3: SimAM parameter-free assertion
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │   ✓ PASS — SimAM3D has 0 learnable parameters.
+2026-04-03 18:48:23 │ INFO     │ test_stage2                    │ TEST 2.4: SimAM shape preservation
+2026-04-03 18:48:24 │ INFO     │ test_stage2                    │   ✓ PASS — Shape preserved for 3 test cases.
+2026-04-03 18:48:24 │ INFO     │ test_stage2                    │ TEST 2.1: SimAM zero-input NaN safety check
+2026-04-03 18:48:24 │ INFO     │ test_stage2                    │   ✓ PASS — Zero input: no NaN, no Inf, output is all zeros.
+2026-04-03 18:48:24 │ INFO     │ test_stage2                    │ TEST 2.5: Unshared weight verification across 3 CNN streams
+2026-04-03 18:48:24 │ INFO     │ test_stage2                    │   ✓ PASS — Weight pointers are distinct:
+           stream_u.conv1: 0x0000042242011b80
+           stream_v.conv1: 0x0000042242011900
+           stream_os.conv1: 0x0000042242011680
+2026-04-03 18:48:24 │ INFO     │ test_stage2                    │ TEST 2.6: Weight divergence after one gradient step
+2026-04-03 18:48:27 │ INFO     │ test_stage2                    │   ✓ PASS — Weights diverged after one gradient step.
+2026-04-03 18:48:27 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:48:27 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:48:27 │ INFO     │ test_stage2                    │ SECTION 3: Autograd & Backward Pass Tests
+2026-04-03 18:48:27 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:48:27 │ INFO     │ test_stage2                    │ TEST 3.2: Gradient flow to all trainable parameters
+2026-04-03 18:48:36 │ INFO     │ test_stage2                    │   ✓ PASS — 48/48 trainable parameters received gradients.
+2026-04-03 18:48:36 │ INFO     │ test_stage2                    │ TEST 3.1: Full backward pass completion
+2026-04-03 18:48:43 │ INFO     │ test_stage2                    │   ✓ PASS — backward() completed without error.
+2026-04-03 18:48:43 │ INFO     │ test_stage2                    │ TEST 3.5: Realistic CrossEntropy loss backward
+2026-04-03 18:52:26 │ DEBUG    │ test_stage2                    │ Logger 'test_stage2' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\logs\test_stage2.log
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ |   STAGE 2 -- DEFENSE-GRADE QA SUITE                            |
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ |   HybridMERModel Architecture Validation                       |
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ SECTION 1: Dimensionality & Tensor Routing Tests
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:52:26 │ INFO     │ test_stage2                    │ TEST 1.3: Backbone intermediate shape verification
+2026-04-03 18:52:28 │ INFO     │ test_stage2                    │   [PASS] Backbone output: [2, 96, 32, 112, 112]
+2026-04-03 18:52:28 │ INFO     │ test_stage2                    │ TEST 1.2: Batch size 1 edge case
+2026-04-03 18:52:30 │ INFO     │ test_stage2                    │   [PASS] B=1 survived. Shape: [1, 3], no NaNs.
+2026-04-03 18:52:30 │ INFO     │ test_stage2                    │ TEST 1.5: CLS pooling strategy end-to-end
+2026-04-03 18:52:32 │ INFO     │ test_stage2                    │   [PASS] CLS pooling output: [2, 3]
+2026-04-03 18:52:32 │ INFO     │ test_stage2                    │ TEST 1.1: Standard forward pass [B=2, C=3, L=32, H=224, W=224]
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │   [PASS] Output shape: [2, 3]
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ TEST 1.4: Transformer intermediate shape verification
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │   [PASS] Transformer output: [2, 96]
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ SECTION 2: Mathematical Integrity & SimAM Tests
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ TEST 2.2: SimAM constant-input (all ones) stability
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │   [PASS] Constant input: output ~ sigmoid(0.5) = 0.622459
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ TEST 2.3: SimAM parameter-free assertion
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │   [PASS] SimAM3D has 0 learnable parameters.
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ TEST 2.4: SimAM shape preservation
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │   [PASS] Shape preserved for 3 test cases.
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ TEST 2.1: SimAM zero-input NaN safety check
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │   [PASS] Zero input: no NaN, no Inf, output is all zeros.
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ TEST 2.5: Unshared weight verification across 3 CNN streams
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │   [PASS] Weight pointers are distinct:
+           stream_u.conv1:  0x000003e40c011c80
+           stream_v.conv1:  0x000003e40c011a00
+           stream_os.conv1: 0x000003e40c011780
+2026-04-03 18:52:34 │ INFO     │ test_stage2                    │ TEST 2.6: Weight divergence after one gradient step
+2026-04-03 18:52:36 │ INFO     │ test_stage2                    │   [PASS] Weights diverged after one gradient step.
+2026-04-03 18:52:36 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:52:36 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:52:36 │ INFO     │ test_stage2                    │ SECTION 3: Autograd & Backward Pass Tests
+2026-04-03 18:52:36 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:52:37 │ INFO     │ test_stage2                    │ TEST 3.2: Gradient flow to all trainable parameters
+2026-04-03 18:52:46 │ INFO     │ test_stage2                    │   [PASS] 48/48 trainable parameters received gradients.
+2026-04-03 18:52:46 │ INFO     │ test_stage2                    │ TEST 3.1: Full backward pass completion
+2026-04-03 18:52:52 │ INFO     │ test_stage2                    │   [PASS] backward() completed without error.
+2026-04-03 18:52:52 │ INFO     │ test_stage2                    │ TEST 3.5: Realistic CrossEntropy loss backward
+2026-04-03 18:53:29 │ INFO     │ test_stage2                    │   [PASS] CrossEntropy loss = 2.8222, backward OK.
+2026-04-03 18:53:29 │ INFO     │ test_stage2                    │ TEST 3.3: Gradient finiteness check (no NaN/Inf)
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │   [PASS] All gradients are finite.
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │ TEST 3.4: SimAM gradient passthrough verification
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │   [PASS] Gradients flow through SimAM. Input grad norm: 109.463318
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │ SECTION 4: Device Agnosticism Tests
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │   CUDA not available -- GPU tests will be skipped.
+2026-04-03 18:53:40 │ INFO     │ test_stage2                    │ TEST 4.1: CPU forward pass
+2026-04-03 18:53:42 │ INFO     │ test_stage2                    │   [PASS] CPU forward: [2, 3] on cpu
+2026-04-03 18:53:42 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:53:42 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:53:42 │ INFO     │ test_stage2                    │ SECTION 5: Checkpoint Compatibility Tests
+2026-04-03 18:53:42 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:53:42 │ INFO     │ test_stage2                    │ TEST 5.3: In-memory checkpoint via BytesIO
+2026-04-03 18:53:46 │ INFO     │ test_stage2                    │   [PASS] In-memory save/load produces identical outputs.
+2026-04-03 18:53:46 │ INFO     │ test_stage2                    │ TEST 5.1: Save -> Load -> Identical output verification
+2026-04-03 18:53:48 │ INFO     │ test_stage2                    │   Saved checkpoint: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp\test_checkpoint.pth
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   [PASS] Outputs are BITWISE IDENTICAL after save/load.
+           model_A: [[-1.5697355270385742, -1.3770745992660522, -1.8787015676498413], [-1.5676459074020386, -1.3767757415771484, -1.880083441734314]]
+           model_B: [[-1.5697355270385742, -1.3770745992660522, -1.8787015676498413], [-1.5676459074020386, -1.3767757415771484, -1.880083441734314]]
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   Cleaned up: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp\test_checkpoint.pth
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   Cleaned up: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ TEST 5.2: State dict key completeness check
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   [PASS] State dict has 67 keys covering all 6 component prefixes.
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ SECTION 6: Positional Encoding Correctness Tests
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ TEST 6.3: PE parameter count
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   [PASS] PE has 0 learnable parameters.
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ TEST 6.1: Positional encoding determinism
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   [PASS] PE is deterministic across instances.
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ TEST 6.2: PE value bounds check
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   [PASS] PE range: [-1.0000, 1.0000]
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ |   RESULTS: 23/26 PASSED  |  0 Failed  |  0 Errors  |  3 Skipped   |
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:53:50 │ INFO     │ test_stage2                    │   [PASS] ALL TESTS PASSED -- Architecture validated for Stage 3.
+2026-04-03 18:54:59 │ DEBUG    │ test_stage2                    │ Logger 'test_stage2' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\logs\test_stage2.log
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ |   STAGE 2 -- DEFENSE-GRADE QA SUITE                            |
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ |   HybridMERModel Architecture Validation                       |
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ SECTION 1: Dimensionality & Tensor Routing Tests
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:54:59 │ INFO     │ test_stage2                    │ TEST 1.3: Backbone intermediate shape verification
+2026-04-03 18:55:01 │ INFO     │ test_stage2                    │   [PASS] Backbone output: [2, 96, 32, 112, 112]
+2026-04-03 18:55:01 │ INFO     │ test_stage2                    │ TEST 1.2: Batch size 1 edge case
+2026-04-03 18:55:02 │ INFO     │ test_stage2                    │   [PASS] B=1 survived. Shape: [1, 3], no NaNs.
+2026-04-03 18:55:02 │ INFO     │ test_stage2                    │ TEST 1.5: CLS pooling strategy end-to-end
+2026-04-03 18:55:04 │ INFO     │ test_stage2                    │   [PASS] CLS pooling output: [2, 3]
+2026-04-03 18:55:04 │ INFO     │ test_stage2                    │ TEST 1.1: Standard forward pass [B=2, C=3, L=32, H=224, W=224]
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │   [PASS] Output shape: [2, 3]
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ TEST 1.4: Transformer intermediate shape verification
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │   [PASS] Transformer output: [2, 96]
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ SECTION 2: Mathematical Integrity & SimAM Tests
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ TEST 2.2: SimAM constant-input (all ones) stability
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │   [PASS] Constant input: output ~ sigmoid(0.5) = 0.622459
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ TEST 2.3: SimAM parameter-free assertion
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │   [PASS] SimAM3D has 0 learnable parameters.
+2026-04-03 18:55:06 │ INFO     │ test_stage2                    │ TEST 2.4: SimAM shape preservation
+2026-04-03 18:55:07 │ INFO     │ test_stage2                    │   [PASS] Shape preserved for 3 test cases.
+2026-04-03 18:55:07 │ INFO     │ test_stage2                    │ TEST 2.1: SimAM zero-input NaN safety check
+2026-04-03 18:55:07 │ INFO     │ test_stage2                    │   [PASS] Zero input: no NaN, no Inf, output is all zeros.
+2026-04-03 18:55:07 │ INFO     │ test_stage2                    │ TEST 2.5: Unshared weight verification across 3 CNN streams
+2026-04-03 18:55:07 │ INFO     │ test_stage2                    │   [PASS] Weight pointers are distinct:
+           stream_u.conv1:  0x0000048fc0011b80
+           stream_v.conv1:  0x0000048fc0011900
+           stream_os.conv1: 0x0000048fc0011680
+2026-04-03 18:55:07 │ INFO     │ test_stage2                    │ TEST 2.6: Weight divergence after one gradient step
+2026-04-03 18:55:09 │ INFO     │ test_stage2                    │   [PASS] Weights diverged after one gradient step.
+2026-04-03 18:55:09 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:55:09 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:55:09 │ INFO     │ test_stage2                    │ SECTION 3: Autograd & Backward Pass Tests
+2026-04-03 18:55:09 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:55:09 │ INFO     │ test_stage2                    │ TEST 3.2: Gradient flow to all trainable parameters
+2026-04-03 18:55:22 │ INFO     │ test_stage2                    │   [PASS] 48/48 trainable parameters received gradients.
+2026-04-03 18:55:22 │ INFO     │ test_stage2                    │ TEST 3.1: Full backward pass completion
+2026-04-03 18:55:28 │ INFO     │ test_stage2                    │   [PASS] backward() completed without error.
+2026-04-03 18:55:28 │ INFO     │ test_stage2                    │ TEST 3.5: Realistic CrossEntropy loss backward
+2026-04-03 18:56:10 │ INFO     │ test_stage2                    │   [PASS] CrossEntropy loss = 1.1390, backward OK.
+2026-04-03 18:56:10 │ INFO     │ test_stage2                    │ TEST 3.3: Gradient finiteness check (no NaN/Inf)
+2026-04-03 18:56:22 │ INFO     │ test_stage2                    │   [PASS] All gradients are finite.
+2026-04-03 18:56:22 │ INFO     │ test_stage2                    │ TEST 3.4: SimAM gradient passthrough verification
+2026-04-03 18:56:23 │ INFO     │ test_stage2                    │   [PASS] Gradients flow through SimAM. Input grad norm: 109.436447
+2026-04-03 18:56:23 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:56:23 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:56:23 │ INFO     │ test_stage2                    │ SECTION 4: Device Agnosticism Tests
+2026-04-03 18:56:23 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:56:23 │ INFO     │ test_stage2                    │   CUDA not available -- GPU tests will be skipped.
+2026-04-03 18:56:23 │ INFO     │ test_stage2                    │ TEST 4.1: CPU forward pass
+2026-04-03 18:56:25 │ INFO     │ test_stage2                    │   [PASS] CPU forward: [2, 3] on cpu
+2026-04-03 18:56:25 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:56:25 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:56:25 │ INFO     │ test_stage2                    │ SECTION 5: Checkpoint Compatibility Tests
+2026-04-03 18:56:25 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:56:25 │ INFO     │ test_stage2                    │ TEST 5.3: In-memory checkpoint via BytesIO
+2026-04-03 18:56:29 │ INFO     │ test_stage2                    │   [PASS] In-memory save/load produces identical outputs.
+2026-04-03 18:56:29 │ INFO     │ test_stage2                    │ TEST 5.1: Save -> Load -> Identical output verification
+2026-04-03 18:56:31 │ INFO     │ test_stage2                    │   Saved checkpoint: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp\test_checkpoint.pth
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   [PASS] Outputs are BITWISE IDENTICAL after save/load.
+           model_A: [[-1.5697355270385742, -1.3770745992660522, -1.8787015676498413], [-1.5676459074020386, -1.3767757415771484, -1.880083441734314]]
+           model_B: [[-1.5697355270385742, -1.3770745992660522, -1.8787015676498413], [-1.5676459074020386, -1.3767757415771484, -1.880083441734314]]
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   Cleaned up: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp\test_checkpoint.pth
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   Cleaned up: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\tests\_tmp
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ TEST 5.2: State dict key completeness check
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   [PASS] State dict has 67 keys covering all 6 component prefixes.
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ SECTION 6: Positional Encoding Correctness Tests
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ =================================================================
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ TEST 6.3: PE parameter count
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   [PASS] PE has 0 learnable parameters.
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ TEST 6.1: Positional encoding determinism
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   [PASS] PE is deterministic across instances.
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ TEST 6.2: PE value bounds check
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   [PASS] PE range: [-1.0000, 1.0000]
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ 
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ |   RESULTS: 23/26 PASSED  |  0 Failed  |  0 Errors  |  3 Skipped   |
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │ +===============================================================+
+2026-04-03 18:56:33 │ INFO     │ test_stage2                    │   [PASS] ALL TESTS PASSED -- Architecture validated for Stage 3.

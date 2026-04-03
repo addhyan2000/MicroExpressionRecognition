@@ -1,0 +1,58 @@
+2026-04-03 19:22:06 │ DEBUG    │ main_stage2                    │ Logger 'main_stage2' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\logs\main_stage2.log
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │ ======================================================================
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │   STAGE 2: HYBRID ARCHITECTURE INITIALIZATION
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │ ======================================================================
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │ RNG seeds fixed to 42 (Deterministic mode).
+2026-04-03 19:22:06 │ WARNING  │ main_stage2                    │ Hardware: No GPU found. Falling back to CPU (Not recommended for 3D-CNNs).
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │ Building HybridMERModel architecture...
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │   [SUCCESS] Model constructed and moved to device.
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │ =====================================================================================
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │ Component/Layer                          │ Output Shape              │ Params    
+2026-04-03 19:22:06 │ INFO     │ main_stage2                    │ -------------------------------------------------------------------------------------
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ Backbone (STSTNet-SimAM)                 │ [1, 96, 32, 112, 112]     │     14,544
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ Adaptive Spatial Pool                    │ [1, 96, 32, 1, 1]         │          0
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ SLSTT Transformer                        │ [1, 96]                   │    348,736
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ Classification Head                      │ [1, 3]                    │        483
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ -------------------------------------------------------------------------------------
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ Total Trainable Parameters               │                           │    363,763
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ =====================================================================================
+2026-04-03 19:22:07 │ INFO     │ main_stage2                    │ 
+Starting Architecture Verification (Dry Run)...
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │   Forward pass completed in 851.56ms.
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │   Input Shape  : [1, 3, 32, 224, 224]
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │   Output Shape : [1, 3]
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │   Logits Peak  : 2.8835
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │   [PASS] Numerical stability verified.
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │ 
+======================================================================
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │   ✓ STAGE 2 INITIALIZATION COMPLETE
+2026-04-03 19:22:08 │ INFO     │ main_stage2                    │ ======================================================================
+2026-04-03 19:23:02 │ DEBUG    │ main_stage2                    │ Logger 'main_stage2' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage2_Architecture\logs\main_stage2.log
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │ ======================================================================
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │   STAGE 2: HYBRID ARCHITECTURE INITIALIZATION
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │ ======================================================================
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │ RNG seeds fixed to 42 (Deterministic mode).
+2026-04-03 19:23:02 │ WARNING  │ main_stage2                    │ Hardware: No GPU found. Falling back to CPU (Not recommended for 3D-CNNs).
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │ Building HybridMERModel architecture...
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │   [SUCCESS] Model constructed and moved to device.
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │ =====================================================================================
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │ Component/Layer                          │ Output Shape              │ Params    
+2026-04-03 19:23:02 │ INFO     │ main_stage2                    │ -------------------------------------------------------------------------------------
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ Backbone (STSTNet-SimAM)                 │ [1, 96, 32, 112, 112]     │     14,544
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ Adaptive Spatial Pool                    │ [1, 96, 32, 1, 1]         │          0
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ SLSTT Transformer                        │ [1, 96]                   │    348,736
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ Classification Head                      │ [1, 3]                    │        483
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ -------------------------------------------------------------------------------------
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ Total Trainable Parameters               │                           │    363,763
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ =====================================================================================
+2026-04-03 19:23:03 │ INFO     │ main_stage2                    │ 
+Starting Architecture Verification (Dry Run)...
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │   Forward pass completed in 844.57ms.
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │   Input Shape  : [1, 3, 32, 224, 224]
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │   Output Shape : [1, 3]
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │   Logits Peak  : 2.8835
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │   [PASS] Numerical stability verified.
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │ 
+======================================================================
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │   ✓ STAGE 2 INITIALIZATION COMPLETE
+2026-04-03 19:23:04 │ INFO     │ main_stage2                    │ ======================================================================
