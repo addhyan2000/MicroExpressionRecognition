@@ -1,0 +1,301 @@
+2026-04-03 20:29:03 │ DEBUG    │ test_stage3                    │ Logger 'test_stage3' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\tests\logs\test_stage3.log
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │   STAGE 3 — COMPREHENSIVE TEST SUITE
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │   Adversarial Domain Adaptation QA
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │ SECTION 6: Adversarial Gradient Flow Tests
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:03 │ INFO     │ test_stage3                    │ TEST 6.2: All params receive gradients
+2026-04-03 20:29:32 │ DEBUG    │ test_stage3                    │ Logger 'test_stage3' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\tests\logs\test_stage3.log
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │   STAGE 3 — COMPREHENSIVE TEST SUITE
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │   Adversarial Domain Adaptation QA
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │ SECTION 6: Adversarial Gradient Flow Tests
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:32 │ INFO     │ test_stage3                    │ TEST 6.2: All params receive gradients
+2026-04-03 20:29:38 │ INFO     │ test_stage3                    │ TEST 6.1: Backward completion
+2026-04-03 20:29:44 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:29:44 │ INFO     │ test_stage3                    │ TEST 6.4: Dual-loss training step
+2026-04-03 20:29:51 │ INFO     │ test_stage3                    │   [PASS] total_loss=2.5770
+2026-04-03 20:29:51 │ INFO     │ test_stage3                    │ TEST 6.3: Gradient finiteness
+2026-04-03 20:29:56 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:29:56 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:29:56 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:56 │ INFO     │ test_stage3                    │ SECTION 5: AdversarialMERWrapper Tests
+2026-04-03 20:29:56 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:29:56 │ INFO     │ test_stage3                    │ TEST 5.2: Batch size 1
+2026-04-03 20:29:57 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:29:57 │ INFO     │ test_stage3                    │ TEST 5.1: Output shapes
+2026-04-03 20:30:01 │ INFO     │ test_stage3                    │   [PASS] emo=torch.Size([2, 4]), id=torch.Size([2, 10])
+2026-04-03 20:30:01 │ INFO     │ test_stage3                    │ TEST 5.5: GRL scheduling via wrapper
+2026-04-03 20:30:01 │ INFO     │ test_stage3                    │   [PASS] λ(0.5)=0.9866
+2026-04-03 20:30:01 │ INFO     │ test_stage3                    │ TEST 5.3: NaN check
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │ TEST 5.4: Parameter count
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │   [PASS] total=365602
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │ SECTION 7: Checkpointing & Resume Tests
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │ TEST 7.2: Checkpoint key completeness
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:03 │ INFO     │ test_stage3                    │ TEST 7.1: Save/load bitwise equality
+2026-04-03 20:30:05 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:05 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:30:05 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:05 │ INFO     │ test_stage3                    │ SECTION 8: Edge Cases & Numerical Stability
+2026-04-03 20:30:05 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:05 │ INFO     │ test_stage3                    │ TEST 8.7: Single-subject dataset
+2026-04-03 20:30:06 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:06 │ INFO     │ test_stage3                    │ TEST 8.8: Empty dataset
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │ TEST 8.2: All same class
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │ TEST 8.9: Alpha device consistency
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │ TEST 8.1: Extreme logits
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │   [PASS] loss=0.000000
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │ TEST 8.4: Large lambda (100)
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │ TEST 8.3: GRL with zero input
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:07 │ INFO     │ test_stage3                    │ TEST 8.6: Single emotion
+2026-04-03 20:30:08 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:08 │ INFO     │ test_stage3                    │ TEST 8.5: Single subject
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ SECTION 2: Focal Loss Tests
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.4: Alpha weights effect
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.1: γ=0 matches CE
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.5: Gradient flow
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.3: Gamma scaling on confident predictions
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS] γ=0: 0.000136 ≥ γ=2: 0.000000 ≥ γ=5: 0.000000
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.8: Label smoothing
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.2: Loss positivity
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.6: Reduction none
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.7: Reduction sum
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.9: Batch size 1
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 2.10: Binary classification
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ SECTION 1: Gradient Reversal Layer Tests
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.3: Fractional lambda (0.5)
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.2: Backward gradient reversal
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.1: Forward pass identity
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.7: Shape preservation
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.4: Lambda=0 zeroes gradients
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.9: Negative lambda (gradient reinforcement)
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.8: set_lambda
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.6: Schedule boundary values
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS] λ(0)=0.000000, λ(1)=0.999909
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ TEST 1.5: Sigmoid schedule monotonicity
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │   [PASS] Schedule: ['0.0000', '0.8483', '0.9866', '0.9989', '0.9999']
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ SECTION 3: MERDataset Tests
+2026-04-03 20:30:10 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:13 │ INFO     │ test_stage3                    │ TEST 3.7: Class weights
+2026-04-03 20:30:13 │ INFO     │ test_stage3                    │   [PASS] weights=[1.0, 1.0, 1.0, 1.0]
+2026-04-03 20:30:13 │ INFO     │ test_stage3                    │ TEST 3.1: Sample count
+2026-04-03 20:30:13 │ INFO     │ test_stage3                    │   [PASS] 20 samples
+2026-04-03 20:30:13 │ INFO     │ test_stage3                    │ TEST 3.9: Custom emotion map
+2026-04-03 20:30:13 │ INFO     │ test_stage3                    │   [PASS] 10 samples with 2-class map
+2026-04-03 20:30:13 │ INFO     │ test_stage3                    │ TEST 3.3: Emotion label range
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ TEST 3.5: Expression filter
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │   [PASS] micro=20, macro=0
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ TEST 3.2: __getitem__ returns triple
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │   [PASS] shape=torch.Size([3, 32, 224, 224]), emotion=0, subject=0
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ TEST 3.6: Missing CSV error
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ TEST 3.8: Missing tensor handling
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │   [PASS] 1 of 2 samples loaded (1 tensor missing)
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ TEST 3.4: Contiguous subject IDs
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │   [PASS] subjects: [0, 1, 2, 3, 4]
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ SECTION 4: Subject-Disjoint Split (Data Leakage Prevention)
+2026-04-03 20:30:14 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │ TEST 4.2: Full coverage
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │   [PASS] 42 + 18 = 60
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │ TEST 4.7: Val sample provenance
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │ TEST 4.3: Determinism
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │ TEST 4.4: Different seeds
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │ TEST 4.6: Minimum 1 val subject
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │   [PASS] 1 val subjects with 1% fraction
+2026-04-03 20:30:21 │ INFO     │ test_stage3                    │ TEST 4.5: Val fraction
+2026-04-03 20:30:22 │ INFO     │ test_stage3                    │   [PASS] 3 val subjects (expected ~3)
+2026-04-03 20:30:22 │ INFO     │ test_stage3                    │ TEST 4.1: Zero subject overlap
+2026-04-03 20:30:22 │ INFO     │ test_stage3                    │   [PASS] Train subjects: [1, 2, 3, 5, 6, 7, 9, 10] | Val subjects: [4, 8]
+2026-04-03 20:36:33 │ DEBUG    │ test_stage3                    │ Logger 'test_stage3' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\tests\logs\test_stage3.log
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │   STAGE 3 — COMPREHENSIVE TEST SUITE
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │   Adversarial Domain Adaptation QA
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │ SECTION 6: Adversarial Gradient Flow Tests
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:36:33 │ INFO     │ test_stage3                    │ TEST 6.2: All params receive gradients
+2026-04-03 20:36:42 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:36:42 │ INFO     │ test_stage3                    │ TEST 6.1: Backward completion
+2026-04-03 20:36:52 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:36:52 │ INFO     │ test_stage3                    │ TEST 6.4: Dual-loss training step
+2026-04-03 20:37:06 │ INFO     │ test_stage3                    │   [PASS] total_loss=4.1854
+2026-04-03 20:37:06 │ INFO     │ test_stage3                    │ TEST 6.3: Gradient finiteness
+2026-04-03 20:37:11 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:11 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:37:11 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:11 │ INFO     │ test_stage3                    │ SECTION 5: AdversarialMERWrapper Tests
+2026-04-03 20:37:11 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:11 │ INFO     │ test_stage3                    │ TEST 5.2: Batch size 1
+2026-04-03 20:37:14 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:14 │ INFO     │ test_stage3                    │ TEST 5.1: Output shapes
+2026-04-03 20:37:17 │ INFO     │ test_stage3                    │   [PASS] emo=torch.Size([2, 4]), id=torch.Size([2, 10])
+2026-04-03 20:37:17 │ INFO     │ test_stage3                    │ TEST 5.5: GRL scheduling via wrapper
+2026-04-03 20:37:17 │ INFO     │ test_stage3                    │   [PASS] λ(0.5)=0.9866
+2026-04-03 20:37:17 │ INFO     │ test_stage3                    │ TEST 5.3: NaN check
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │ TEST 5.4: Parameter count
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │   [PASS] total=365022
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │ SECTION 7: Checkpointing & Resume Tests
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │ TEST 7.2: Checkpoint key completeness
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:19 │ INFO     │ test_stage3                    │ TEST 7.1: Save/load bitwise equality
+2026-04-03 20:37:21 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:21 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:37:21 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:21 │ INFO     │ test_stage3                    │ SECTION 8: Edge Cases & Numerical Stability
+2026-04-03 20:37:21 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:21 │ INFO     │ test_stage3                    │ TEST 8.7: Single-subject dataset
+2026-04-03 20:37:22 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:22 │ INFO     │ test_stage3                    │ TEST 8.8: Empty dataset
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │ TEST 8.2: All same class
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │ TEST 8.9: Alpha device consistency
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │ TEST 8.1: Extreme logits
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │   [PASS] loss=0.000000
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │ TEST 8.4: Large lambda (100)
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │ TEST 8.3: GRL with zero input
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:23 │ INFO     │ test_stage3                    │ TEST 8.6: Single emotion
+2026-04-03 20:37:25 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:25 │ INFO     │ test_stage3                    │ TEST 8.5: Single subject
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ SECTION 2: Focal Loss Tests
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.4: Alpha weights effect
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.1: γ=0 matches CE
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.5: Gradient flow
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.3: Gamma scaling on confident predictions
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS] γ=0: 0.000136 ≥ γ=2: 0.000000 ≥ γ=5: 0.000000
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.8: Label smoothing
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.2: Loss positivity
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.6: Reduction none
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.7: Reduction sum
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.9: Batch size 1
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 2.10: Binary classification
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ SECTION 1: Gradient Reversal Layer Tests
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.3: Fractional lambda (0.5)
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.2: Backward gradient reversal
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.1: Forward pass identity
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.7: Shape preservation
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.4: Lambda=0 zeroes gradients
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.9: Negative lambda (gradient reinforcement)
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.8: set_lambda
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.6: Schedule boundary values
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS] λ(0)=0.000000, λ(1)=0.999909
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ TEST 1.5: Sigmoid schedule monotonicity
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │   [PASS] Schedule: ['0.0000', '0.8483', '0.9866', '0.9989', '0.9999']
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ SECTION 3: MERDataset Tests
+2026-04-03 20:37:27 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:30 │ INFO     │ test_stage3                    │ TEST 3.7: Class weights
+2026-04-03 20:37:30 │ INFO     │ test_stage3                    │   [PASS] weights=[1.0, 1.0, 1.0, 1.0]
+2026-04-03 20:37:30 │ INFO     │ test_stage3                    │ TEST 3.1: Sample count
+2026-04-03 20:37:30 │ INFO     │ test_stage3                    │   [PASS] 20 samples
+2026-04-03 20:37:30 │ INFO     │ test_stage3                    │ TEST 3.9: Custom emotion map
+2026-04-03 20:37:30 │ INFO     │ test_stage3                    │   [PASS] 10 samples with 2-class map
+2026-04-03 20:37:30 │ INFO     │ test_stage3                    │ TEST 3.3: Emotion label range
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ TEST 3.5: Expression filter
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │   [PASS] micro=20, macro=0
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ TEST 3.2: __getitem__ returns triple
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │   [PASS] shape=torch.Size([3, 32, 224, 224]), emotion=0, subject=0
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ TEST 3.6: Missing CSV error
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ TEST 3.8: Missing tensor handling
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │   [PASS] 1 of 2 samples loaded (1 tensor missing)
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ TEST 3.4: Contiguous subject IDs
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │   [PASS] subjects: [0, 1, 2, 3, 4]
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ 
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ SECTION 4: Subject-Disjoint Split (Data Leakage Prevention)
+2026-04-03 20:37:31 │ INFO     │ test_stage3                    │ =================================================================
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │ TEST 4.2: Full coverage
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │   [PASS] 42 + 18 = 60
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │ TEST 4.7: Val sample provenance
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │ TEST 4.3: Determinism
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │ TEST 4.4: Different seeds
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │   [PASS]
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │ TEST 4.6: Minimum 1 val subject
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │   [PASS] 1 val subjects with 1% fraction
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │ TEST 4.5: Val fraction
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │   [PASS] 3 val subjects (expected ~3)
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │ TEST 4.1: Zero subject overlap
+2026-04-03 20:37:39 │ INFO     │ test_stage3                    │   [PASS] Train subjects: [1, 2, 3, 5, 6, 7, 9, 10] | Val subjects: [4, 8]

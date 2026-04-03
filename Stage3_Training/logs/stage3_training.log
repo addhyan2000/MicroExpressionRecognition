@@ -1,0 +1,282 @@
+2026-04-03 19:48:00 │ DEBUG    │ MERDataset                     │ Logger 'MERDataset' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   MERDataset Initialization
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ CSV path        : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\master_thesis_labels.csv
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Tensor dir      : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Expression filter: micro-expression
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Emotion mapping : {'Negative': 0, 'Positive': 1, 'Surprise': 2, 'Others': 3}
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Loaded CSV: 612 rows × 15 columns
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Expression filter 'micro-expression': 612 → 312 rows (dropped 300)
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Subject ID mapping: 26 unique subjects → [0, 25]
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Tensor matching results:
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Matched  : 306
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Missing  : 6 (no .npy file on disk)
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Unknown  : 0 (emotion not in map)
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Emotion class distribution:
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Negative     (label=0) : 125 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Others       (label=3) : 102 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Positive     (label=1) : 45 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Surprise     (label=2) : 34 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Subject distribution (top 10):
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject  17 → mapped_id=16 : 36 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject   2 → mapped_id=1 : 21 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject  11 → mapped_id=10 : 20 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject   5 → mapped_id=4 : 19 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject   9 → mapped_id=8 : 18 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject  26 → mapped_id=25 : 17 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject  19 → mapped_id=18 : 16 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject  10 → mapped_id=9 : 14 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject  12 → mapped_id=11 : 13 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Subject  20 → mapped_id=19 : 13 samples
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │   Dataset Ready: 306 samples | 4 classes | 26 subjects
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 19:48:00 │ INFO     │ MERDataset                     │ Class weights (inverse freq): {'Negative': '0.6120', 'Positive': '1.7000', 'Surprise': '2.2500', 'Others': '0.7500'}
+2026-04-03 19:48:17 │ DEBUG    │ MERDataset                     │ Logger 'MERDataset' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   MERDataset Initialization
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ CSV path        : Processed_Data\master_thesis_labels.csv
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Tensor dir      : Processed_Data\tensors
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Expression filter: micro-expression
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Emotion mapping : {'Negative': 0, 'Positive': 1, 'Surprise': 2, 'Others': 3}
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Loaded CSV: 612 rows × 15 columns
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Expression filter 'micro-expression': 612 → 312 rows (dropped 300)
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Subject ID mapping: 26 unique subjects → [0, 25]
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Tensor matching results:
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Matched  : 306
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Missing  : 6 (no .npy file on disk)
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Unknown  : 0 (emotion not in map)
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Emotion class distribution:
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Negative     (label=0) : 125 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Others       (label=3) : 102 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Positive     (label=1) : 45 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Surprise     (label=2) : 34 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Subject distribution (top 10):
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject  17 → mapped_id=16 : 36 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject   2 → mapped_id=1 : 21 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject  11 → mapped_id=10 : 20 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject   5 → mapped_id=4 : 19 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject   9 → mapped_id=8 : 18 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject  26 → mapped_id=25 : 17 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject  19 → mapped_id=18 : 16 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject  10 → mapped_id=9 : 14 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject  12 → mapped_id=11 : 13 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Subject  20 → mapped_id=19 : 13 samples
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │   Dataset Ready: 306 samples | 4 classes | 26 subjects
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 19:48:17 │ INFO     │ MERDataset                     │ Class weights (inverse freq): {'Negative': '0.6120', 'Positive': '1.7000', 'Surprise': '2.2500', 'Others': '0.7500'}
+2026-04-03 19:48:31 │ DEBUG    │ MERDataset                     │ Logger 'MERDataset' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   MERDataset Initialization
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ CSV path        : Processed_Data\master_thesis_labels.csv
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Tensor dir      : Processed_Data\tensors
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Expression filter: micro-expression
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Emotion mapping : {'Negative': 0, 'Positive': 1, 'Surprise': 2, 'Others': 3}
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Loaded CSV: 612 rows × 15 columns
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Expression filter 'micro-expression': 612 → 312 rows (dropped 300)
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Subject ID mapping: 26 unique subjects → [0, 25]
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Tensor matching results:
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Matched  : 306
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Missing  : 6 (no .npy file on disk)
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Unknown  : 0 (emotion not in map)
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Emotion class distribution:
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Negative     (label=0) : 125 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Others       (label=3) : 102 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Positive     (label=1) : 45 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Surprise     (label=2) : 34 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ Subject distribution (top 10):
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject  17 → mapped_id=16 : 36 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject   2 → mapped_id=1 : 21 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject  11 → mapped_id=10 : 20 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject   5 → mapped_id=4 : 19 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject   9 → mapped_id=8 : 18 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject  26 → mapped_id=25 : 17 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject  19 → mapped_id=18 : 16 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject  10 → mapped_id=9 : 14 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject  12 → mapped_id=11 : 13 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Subject  20 → mapped_id=19 : 13 samples
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │   Dataset Ready: 306 samples | 4 classes | 26 subjects
+2026-04-03 19:48:31 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 19:49:43 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 19:49:43 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 19:49:43 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 19:49:43 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-04-03 19:49:43 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 19:49:43 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
+2026-04-03 19:49:43 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:20:10 │ DEBUG    │ MERDataset                     │ Logger 'MERDataset' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   MERDataset Initialization
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ CSV path        : Processed_Data\master_thesis_labels.csv
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Tensor dir      : Processed_Data\tensors
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Expression filter: micro-expression
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Emotion mapping : {'Negative': 0, 'Positive': 1, 'Surprise': 2, 'Others': 3}
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Loaded CSV: 612 rows × 15 columns
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Expression filter 'micro-expression': 612 → 312 rows (dropped 300)
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Subject ID mapping: 26 unique subjects → [0, 25]
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Tensor matching results:
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Matched  : 306
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Missing  : 6 (no .npy file on disk)
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Unknown  : 0 (emotion not in map)
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Emotion class distribution:
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Negative     (label=0) : 125 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Others       (label=3) : 102 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Positive     (label=1) : 45 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Surprise     (label=2) : 34 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ Subject distribution (top 10):
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject  17 → mapped_id=16 : 36 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject   2 → mapped_id=1 : 21 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject  11 → mapped_id=10 : 20 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject   5 → mapped_id=4 : 19 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject   9 → mapped_id=8 : 18 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject  26 → mapped_id=25 : 17 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject  19 → mapped_id=18 : 16 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject  10 → mapped_id=9 : 14 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject  12 → mapped_id=11 : 13 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject  20 → mapped_id=19 : 13 samples
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Dataset Ready: 306 samples | 4 classes | 26 subjects
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Subject-Disjoint Split (seed=42)
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Total subjects: 26 → Train: 21 subjects (216 samples) | Val: 5 subjects (90 samples)
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Val subjects  : [10, 13, 17, 20, 26]
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   Train subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │   ✓ Zero subject overlap verified.
+2026-04-03 20:20:10 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-03 20:29:03 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 20:29:03 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:29:03 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:29:03 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:29:03 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:29:03 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:29:03 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:29:32 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 20:29:32 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:29:32 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:29:32 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:29:32 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:29:32 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:29:32 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:29:38 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:29:38 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:29:38 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:29:38 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:29:38 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:29:38 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:29:44 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:29:44 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:29:44 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:29:44 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:29:44 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:29:44 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:29:51 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:29:51 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:29:51 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:29:51 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:29:51 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:29:51 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:29:56 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:29:56 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:29:56 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:29:56 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:29:56 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:29:56 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 10)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:30:03 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:30:04 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:30:04 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:30:04 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:30:04 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:30:04 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:30:04 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:30:07 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:30:07 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:30:07 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 1)
+2026-04-03 20:30:07 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:30:07 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:30:07 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:30:08 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed)
+2026-04-03 20:30:08 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:30:08 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:30:08 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:30:08 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 1)
+2026-04-03 20:30:08 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:36:33 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-03 20:36:33 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:36:33 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:36:33 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:36:33 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:36:33 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:36:33 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:36:42 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:36:42 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:36:42 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:36:42 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:36:42 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:36:42 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:36:52 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:36:52 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:36:52 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:36:52 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:36:52 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:36:52 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:37:06 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:37:06 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:37:06 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:37:06 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:37:06 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:37:06 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:37:11 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:37:11 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:37:11 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:37:11 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:37:11 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:37:11 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 10)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:37:19 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:37:20 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:37:20 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:37:20 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:37:20 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:37:20 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:37:20 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:37:23 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:37:23 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:37:23 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 1)
+2026-04-03 20:37:23 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:37:23 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 10)
+2026-04-03 20:37:23 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-03 20:37:25 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-03 20:37:25 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-03 20:37:25 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.00) → Linear(96, 4)
+2026-04-03 20:37:25 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
+2026-04-03 20:37:25 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.00) → Linear(96, 1)
+2026-04-03 20:37:25 │ INFO     │ AdversarialMERWrapper          │ Head weights initialized (Xavier uniform + LayerNorm defaults)
