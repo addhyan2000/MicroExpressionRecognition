@@ -228,7 +228,7 @@ def main() -> None:
     log.info("Device: %s", device)
     if device.type == "cuda":
         log.info("  GPU: %s", torch.cuda.get_device_name(0))
-        log.info("  VRAM: %.1f GB", torch.cuda.get_device_properties(0).total_mem / 1e9)
+        log.info("  VRAM: %.1f GB", torch.cuda.get_device_properties(0).total_memory / 1e9)
 
     # ─────────────────────────────────────────────────────────────────
     # 1. Dataset
