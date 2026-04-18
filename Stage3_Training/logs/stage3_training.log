@@ -3362,3 +3362,385 @@ Checkpoints saved to: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\ch
 2026-04-18 16:27:41 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
 2026-04-18 16:27:41 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=1.0000
 2026-04-18 16:27:41 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-18 16:39:47 │ DEBUG    │ main_stage3                    │ Logger 'main_stage3' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ ======================================================================
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   STAGE 3: Adversarial Domain Adaptation + SupCon Training
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   Micro-Expression Recognition — Master's Thesis
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ ======================================================================
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Random seed: 42
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Device: cuda
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   VRAM: 8.6 GB
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ 
+[1/7] Initializing Dataset...
+2026-04-18 16:39:47 │ DEBUG    │ MERDataset                     │ Logger 'MERDataset' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   MERDataset Initialization
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ CSV path        : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\master_thesis_labels.csv
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Tensor dir      : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Expression filter: None (all)
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Emotion mapping : {'Negative': 0, 'Positive': 1, 'Surprise': 2, 'Others': 3}
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Loaded CSV: 612 rows × 15 columns
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Subject ID mapping: 26 unique subjects → [0, 25]
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Tensor matching results:
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Matched  : 558
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Missing  : 54 (no .npy file on disk)
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Unknown  : 0 (emotion not in map)
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Emotion class distribution:
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Negative     (label=0) : 237 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Others       (label=3) : 112 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Positive     (label=1) : 151 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Surprise     (label=2) : 58 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Subject distribution (top 10):
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject   2 → mapped_id=1 : 62 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject  15 → mapped_id=14 : 50 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject  11 → mapped_id=10 : 47 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject  17 → mapped_id=16 : 38 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject  14 → mapped_id=13 : 33 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject  20 → mapped_id=19 : 29 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject  13 → mapped_id=12 : 26 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject   8 → mapped_id=7 : 25 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject   1 → mapped_id=0 : 24 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject   5 → mapped_id=4 : 21 samples
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Dataset Ready: 558 samples | 4 classes | 26 subjects
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Full dataset: 558 samples, 4 classes, 26 subjects
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ 
+[2/7] Subject-Disjoint Split (20% val subjects)...
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Subject-Disjoint Split (seed=42)
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Total subjects: 26 → Train: 21 subjects (428 samples) | Val: 5 subjects (130 samples)
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Val subjects  : [10, 13, 17, 20, 26]
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   Train subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │   ✓ Zero subject overlap verified.
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Train split: 428 samples
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Val split  : 130 samples
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ ✓ Subject-disjoint split verified: 0 subject overlap.
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   Train subjects (21): [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   Val subjects   (5): [10, 13, 17, 20, 26]
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Train batches: 214 (batch_size=2)
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Val batches  : 65
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ 
+[3/7] Instantiating AdversarialMERWrapper (with Projection Head)...
+2026-04-18 16:39:47 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │   Projection dimension: 64
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │ Projection Head: Linear(96, 96) → ReLU → Linear(96, 64) → L2Norm
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=0.0000
+2026-04-18 16:39:47 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Model parameters:
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   Backbone (Stage 2):     363,280 trainable
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   Projection Head:         15,520 trainable
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   Emotion Head:               580 trainable
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   Identity Head:            2,714 trainable
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │   TOTAL:                  382,094 trainable
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ 
+[4/7] Configuring Loss Functions...
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ SupCon Loss: SupConLoss(τ=0.10, weight=1.00)
+2026-04-18 16:39:47 │ INFO     │ MERDataset                     │ Class weights (inverse freq): {'Negative': '0.5886', 'Positive': '0.9238', 'Surprise': '2.4052', 'Others': '1.2455'}
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Emotion Loss: FocalLoss(γ=2.0, α=['0.589', '0.924', '2.405', '1.246'], smoothing=0.05)
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Identity Loss: CrossEntropyLoss (unweighted)
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ Total Loss = (1.00 × SupCon) + Emotion + (0.40 × Identity)
+2026-04-18 16:39:47 │ INFO     │ main_stage3                    │ 
+[5/7] Configuring Optimizer & Scheduler...
+2026-04-18 16:39:49 │ INFO     │ main_stage3                    │ Optimizer: AdamW(lr=0.000050, weight_decay=0.000100)
+2026-04-18 16:39:49 │ INFO     │ main_stage3                    │ Scheduler: CosineAnnealingLR(T_max=130, eta_min=1e-7)
+2026-04-18 16:39:49 │ INFO     │ main_stage3                    │ 
+[6/7] Creating AdversarialTrainer...
+2026-04-18 16:39:49 │ DEBUG    │ AdversarialTrainer             │ Logger 'AdversarialTrainer' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │   AdversarialTrainer Configuration (SupCon)
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Device              : cuda
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Epochs              : 130
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Identity loss weight: 0.4000
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ SupCon loss weight  : 1.0000
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ GRL gamma           : 10.00
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Accumulation steps  : 4
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ AMP enabled         : True
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Gradient clip norm  : 1.0
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Checkpoint dir      : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\checkpoints
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Train batches       : 214
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ Val batches         : 65
+2026-04-18 16:39:49 │ INFO     │ main_stage3                    │ 
+[7/7] Launching Training...
+2026-04-18 16:39:49 │ INFO     │ main_stage3                    │ 
+══════════════════════════════════════════════════════════════════════
+2026-04-18 16:39:49 │ INFO     │ main_stage3                    │   LAUNCHING ADVERSARIAL + SUPCON TRAINING
+2026-04-18 16:39:49 │ INFO     │ main_stage3                    │ ══════════════════════════════════════════════════════════════════════
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ No checkpoint found — starting fresh training.
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │   Training Start — Epoch 1/130
+2026-04-18 16:39:49 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:40:05 │ DEBUG    │ AdversarialTrainer             │   Epoch 1 | Batch 42/214 | Loss: 5.6077 (SC: 0.0000, Emo: 3.3671, ID: 5.6016)
+2026-04-18 16:40:19 │ DEBUG    │ AdversarialTrainer             │   Epoch 1 | Batch 84/214 | Loss: 2.8613 (SC: 0.0000, Emo: 1.2609, ID: 4.0010)
+2026-04-18 16:40:33 │ DEBUG    │ AdversarialTrainer             │   Epoch 1 | Batch 126/214 | Loss: 3.5007 (SC: 0.0000, Emo: 1.7686, ID: 4.3301)
+2026-04-18 16:40:46 │ DEBUG    │ AdversarialTrainer             │   Epoch 1 | Batch 168/214 | Loss: 1.3407 (SC: -0.0000, Emo: 0.1130, ID: 3.0693)
+2026-04-18 16:41:00 │ DEBUG    │ AdversarialTrainer             │   Epoch 1 | Batch 210/214 | Loss: 3.2338 (SC: -0.0000, Emo: 1.5533, ID: 4.2012)
+2026-04-18 16:41:10 │ INFO     │ AdversarialTrainer             │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:41:10 │ INFO     │ AdversarialTrainer             │ Epoch 1/130  [81.6s]  │  LR=0.000050  │  λ_GRL=0.0000
+2026-04-18 16:41:10 │ INFO     │ AdversarialTrainer             │   Train │ Loss: 3.0235  (SC: -0.0000 × 1.0 + Emo: 1.5216 + 0.40 × ID: 3.7548)
+2026-04-18 16:41:10 │ INFO     │ AdversarialTrainer             │   Train │ EmoAcc: 0.2640  │ IDAcc: 0.0841
+2026-04-18 16:41:10 │ INFO     │ AdversarialTrainer             │   Val   │ Loss: 2.4611  (SC: 0.0000)  │ EmoAcc: 0.1538  │ IDAcc: 0.0000
+2026-04-18 16:41:10 │ INFO     │ AdversarialTrainer             │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:41:10 │ DEBUG    │ AdversarialTrainer             │ Checkpoint saved: epoch=1 → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\checkpoints\latest_checkpoint.pth
+2026-04-18 16:41:10 │ INFO     │ AdversarialTrainer             │ ★ New best model saved: epoch=1, val_acc=0.1538 → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\checkpoints\best_model.pth
+2026-04-18 16:41:23 │ DEBUG    │ AdversarialTrainer             │   Epoch 2 | Batch 42/214 | Loss: 2.6186 (SC: -0.0000, Emo: 1.1400, ID: 3.6963)
+2026-04-18 16:41:36 │ DEBUG    │ AdversarialTrainer             │   Epoch 2 | Batch 84/214 | Loss: 1.9125 (SC: 0.0000, Emo: 0.6879, ID: 3.0615)
+2026-04-18 16:41:49 │ DEBUG    │ AdversarialTrainer             │   Epoch 2 | Batch 126/214 | Loss: 2.5550 (SC: 0.0000, Emo: 0.5257, ID: 5.0732)
+2026-04-18 16:42:02 │ DEBUG    │ AdversarialTrainer             │   Epoch 2 | Batch 168/214 | Loss: 5.3731 (SC: 0.0000, Emo: 4.6085, ID: 1.9116)
+2026-04-18 16:42:15 │ DEBUG    │ AdversarialTrainer             │   Epoch 2 | Batch 210/214 | Loss: 2.2259 (SC: 0.0000, Emo: 0.4087, ID: 4.5430)
+2026-04-18 16:42:25 │ INFO     │ AdversarialTrainer             │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:42:25 │ INFO     │ AdversarialTrainer             │ Epoch 2/130  [74.9s]  │  LR=0.000050  │  λ_GRL=0.0387
+2026-04-18 16:42:25 │ INFO     │ AdversarialTrainer             │   Train │ Loss: 2.8171  (SC: 0.0000 × 1.0 + Emo: 1.2980 + 0.40 × ID: 3.7976)
+2026-04-18 16:42:25 │ INFO     │ AdversarialTrainer             │   Train │ EmoAcc: 0.2640  │ IDAcc: 0.1005
+2026-04-18 16:42:25 │ INFO     │ AdversarialTrainer             │   Val   │ Loss: 2.6186  (SC: 0.0000)  │ EmoAcc: 0.2462  │ IDAcc: 0.0000
+2026-04-18 16:42:25 │ INFO     │ AdversarialTrainer             │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:42:25 │ DEBUG    │ AdversarialTrainer             │ Checkpoint saved: epoch=2 → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\checkpoints\latest_checkpoint.pth
+2026-04-18 16:42:25 │ INFO     │ AdversarialTrainer             │ ★ New best model saved: epoch=2, val_acc=0.2462 → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\checkpoints\best_model.pth
+2026-04-18 16:42:41 │ DEBUG    │ AdversarialTrainer             │   Epoch 3 | Batch 42/214 | Loss: 1.6716 (SC: 0.0000, Emo: 0.3325, ID: 3.3479)
+2026-04-18 16:42:57 │ DEBUG    │ AdversarialTrainer             │   Epoch 3 | Batch 84/214 | Loss: 3.5116 (SC: 0.0000, Emo: 1.6225, ID: 4.7227)
+2026-04-18 16:43:12 │ DEBUG    │ AdversarialTrainer             │   Epoch 3 | Batch 126/214 | Loss: 3.9615 (SC: 0.0000, Emo: 1.7951, ID: 5.4160)
+2026-04-18 16:43:27 │ DEBUG    │ AdversarialTrainer             │   Epoch 3 | Batch 168/214 | Loss: 2.9271 (SC: -0.0000, Emo: 1.2634, ID: 4.1592)
+2026-04-18 16:44:14 │ DEBUG    │ main_stage3                    │ Logger 'main_stage3' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ ======================================================================
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   STAGE 3: Adversarial Domain Adaptation + SupCon Training
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   Micro-Expression Recognition — Master's Thesis
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ ======================================================================
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Random seed: 42
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Device: cuda
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   VRAM: 8.6 GB
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ 
+[1/7] Initializing Dataset...
+2026-04-18 16:44:14 │ DEBUG    │ MERDataset                     │ Logger 'MERDataset' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   MERDataset Initialization
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ CSV path        : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\master_thesis_labels.csv
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Tensor dir      : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Expression filter: None (all)
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Emotion mapping : {'Negative': 0, 'Positive': 1, 'Surprise': 2, 'Others': 3}
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Loaded CSV: 612 rows × 15 columns
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Subject ID mapping: 26 unique subjects → [0, 25]
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Tensor matching results:
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Matched  : 558
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Missing  : 54 (no .npy file on disk)
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Unknown  : 0 (emotion not in map)
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Emotion class distribution:
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Negative     (label=0) : 237 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Others       (label=3) : 112 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Positive     (label=1) : 151 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Surprise     (label=2) : 58 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Subject distribution (top 10):
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject   2 → mapped_id=1 : 62 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject  15 → mapped_id=14 : 50 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject  11 → mapped_id=10 : 47 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject  17 → mapped_id=16 : 38 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject  14 → mapped_id=13 : 33 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject  20 → mapped_id=19 : 29 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject  13 → mapped_id=12 : 26 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject   8 → mapped_id=7 : 25 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject   1 → mapped_id=0 : 24 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject   5 → mapped_id=4 : 21 samples
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Dataset Ready: 558 samples | 4 classes | 26 subjects
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Full dataset: 558 samples, 4 classes, 26 subjects
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ 
+[2/7] Subject-Disjoint Split (20% val subjects)...
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Subject-Disjoint Split (seed=42)
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Total subjects: 26 → Train: 21 subjects (428 samples) | Val: 5 subjects (130 samples)
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Val subjects  : [10, 13, 17, 20, 26]
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   Train subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │   ✓ Zero subject overlap verified.
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Train split: 428 samples
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Val split  : 130 samples
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ ✓ Subject-disjoint split verified: 0 subject overlap.
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   Train subjects (21): [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   Val subjects   (5): [10, 13, 17, 20, 26]
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Train batches: 54 (batch_size=8)
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Val batches  : 17
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ 
+[3/7] Instantiating AdversarialMERWrapper (with Projection Head)...
+2026-04-18 16:44:14 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │   Projection dimension: 64
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │ Projection Head: Linear(96, 96) → ReLU → Linear(96, 64) → L2Norm
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=0.0000
+2026-04-18 16:44:14 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Model parameters:
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   Backbone (Stage 2):     363,280 trainable
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   Projection Head:         15,520 trainable
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   Emotion Head:               580 trainable
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   Identity Head:            2,714 trainable
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │   TOTAL:                  382,094 trainable
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ 
+[4/7] Configuring Loss Functions...
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ SupCon Loss: SupConLoss(τ=0.10, weight=1.00)
+2026-04-18 16:44:14 │ INFO     │ MERDataset                     │ Class weights (inverse freq): {'Negative': '0.5886', 'Positive': '0.9238', 'Surprise': '2.4052', 'Others': '1.2455'}
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Emotion Loss: FocalLoss(γ=2.0, α=['0.589', '0.924', '2.405', '1.246'], smoothing=0.05)
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Identity Loss: CrossEntropyLoss (unweighted)
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ Total Loss = (1.00 × SupCon) + Emotion + (0.40 × Identity)
+2026-04-18 16:44:14 │ INFO     │ main_stage3                    │ 
+[5/7] Configuring Optimizer & Scheduler...
+2026-04-18 16:44:15 │ INFO     │ main_stage3                    │ Optimizer: AdamW(lr=0.000050, weight_decay=0.000100)
+2026-04-18 16:44:15 │ INFO     │ main_stage3                    │ Scheduler: CosineAnnealingLR(T_max=140, eta_min=1e-7)
+2026-04-18 16:44:15 │ INFO     │ main_stage3                    │ 
+[6/7] Creating AdversarialTrainer...
+2026-04-18 16:44:15 │ DEBUG    │ AdversarialTrainer             │ Logger 'AdversarialTrainer' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │   AdversarialTrainer Configuration (SupCon)
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Device              : cuda
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Epochs              : 140
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Identity loss weight: 0.4000
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ SupCon loss weight  : 1.0000
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ GRL gamma           : 10.00
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Accumulation steps  : 4
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ AMP enabled         : True
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Gradient clip norm  : 1.0
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Checkpoint dir      : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\checkpoints
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Train batches       : 54
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ Val batches         : 17
+2026-04-18 16:44:15 │ INFO     │ main_stage3                    │ 
+[7/7] Launching Training...
+2026-04-18 16:44:15 │ INFO     │ main_stage3                    │ 
+══════════════════════════════════════════════════════════════════════
+2026-04-18 16:44:15 │ INFO     │ main_stage3                    │   LAUNCHING ADVERSARIAL + SUPCON TRAINING
+2026-04-18 16:44:15 │ INFO     │ main_stage3                    │ ══════════════════════════════════════════════════════════════════════
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ No checkpoint found — starting fresh training.
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │   Training Start — Epoch 1/140
+2026-04-18 16:44:15 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:45:20 │ DEBUG    │ main_stage3                    │ Logger 'main_stage3' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ ======================================================================
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   STAGE 3: Adversarial Domain Adaptation + SupCon Training
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   Micro-Expression Recognition — Master's Thesis
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ ======================================================================
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Random seed: 42
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Device: cuda
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   VRAM: 8.6 GB
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ 
+[1/7] Initializing Dataset...
+2026-04-18 16:45:20 │ DEBUG    │ MERDataset                     │ Logger 'MERDataset' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   MERDataset Initialization
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ ======================================================================
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ CSV path        : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\master_thesis_labels.csv
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Tensor dir      : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Expression filter: None (all)
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Emotion mapping : {'Negative': 0, 'Positive': 1, 'Surprise': 2, 'Others': 3}
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Loaded CSV: 612 rows × 15 columns
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Subject ID mapping: 26 unique subjects → [0, 25]
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Tensor matching results:
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Matched  : 558
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Missing  : 54 (no .npy file on disk)
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Unknown  : 0 (emotion not in map)
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Emotion class distribution:
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Negative     (label=0) : 237 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Others       (label=3) : 112 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Positive     (label=1) : 151 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Surprise     (label=2) : 58 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Subject distribution (top 10):
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject   2 → mapped_id=1 : 62 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject  15 → mapped_id=14 : 50 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject  11 → mapped_id=10 : 47 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject  17 → mapped_id=16 : 38 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject  14 → mapped_id=13 : 33 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject  20 → mapped_id=19 : 29 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject  13 → mapped_id=12 : 26 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject   8 → mapped_id=7 : 25 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject   1 → mapped_id=0 : 24 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject   5 → mapped_id=4 : 21 samples
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Dataset Ready: 558 samples | 4 classes | 26 subjects
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Full dataset: 558 samples, 4 classes, 26 subjects
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ 
+[2/7] Subject-Disjoint Split (20% val subjects)...
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Subject-Disjoint Split (seed=42)
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Total subjects: 26 → Train: 21 subjects (428 samples) | Val: 5 subjects (130 samples)
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Val subjects  : [10, 13, 17, 20, 26]
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   Train subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │   ✓ Zero subject overlap verified.
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ ──────────────────────────────────────────────────────────────────────
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Train split: 428 samples
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Val split  : 130 samples
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ ✓ Subject-disjoint split verified: 0 subject overlap.
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   Train subjects (21): [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   Val subjects   (5): [10, 13, 17, 20, 26]
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Train batches: 107 (batch_size=4)
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Val batches  : 33
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ 
+[3/7] Instantiating AdversarialMERWrapper (with Projection Head)...
+2026-04-18 16:45:20 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │   Projection dimension: 64
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │ Projection Head: Linear(96, 96) → ReLU → Linear(96, 64) → L2Norm
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=0.0000
+2026-04-18 16:45:20 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Model parameters:
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   Backbone (Stage 2):     363,280 trainable
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   Projection Head:         15,520 trainable
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   Emotion Head:               580 trainable
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   Identity Head:            2,714 trainable
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │   TOTAL:                  382,094 trainable
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ 
+[4/7] Configuring Loss Functions...
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ SupCon Loss: SupConLoss(τ=0.10, weight=1.00)
+2026-04-18 16:45:20 │ INFO     │ MERDataset                     │ Class weights (inverse freq): {'Negative': '0.5886', 'Positive': '0.9238', 'Surprise': '2.4052', 'Others': '1.2455'}
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Emotion Loss: FocalLoss(γ=2.0, α=['0.589', '0.924', '2.405', '1.246'], smoothing=0.05)
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Identity Loss: CrossEntropyLoss (unweighted)
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ Total Loss = (1.00 × SupCon) + Emotion + (0.40 × Identity)
+2026-04-18 16:45:20 │ INFO     │ main_stage3                    │ 
+[5/7] Configuring Optimizer & Scheduler...
+2026-04-18 16:45:21 │ INFO     │ main_stage3                    │ Optimizer: AdamW(lr=0.000050, weight_decay=0.000100)
+2026-04-18 16:45:21 │ INFO     │ main_stage3                    │ Scheduler: CosineAnnealingLR(T_max=140, eta_min=1e-7)
+2026-04-18 16:45:21 │ INFO     │ main_stage3                    │ 
+[6/7] Creating AdversarialTrainer...
+2026-04-18 16:45:21 │ DEBUG    │ AdversarialTrainer             │ Logger 'AdversarialTrainer' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │   AdversarialTrainer Configuration (SupCon)
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Device              : cuda
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Epochs              : 140
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Identity loss weight: 0.4000
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ SupCon loss weight  : 1.0000
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ GRL gamma           : 10.00
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Accumulation steps  : 4
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ AMP enabled         : True
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Gradient clip norm  : 1.0
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Checkpoint dir      : C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\checkpoints
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Train batches       : 107
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ Val batches         : 33
+2026-04-18 16:45:21 │ INFO     │ main_stage3                    │ 
+[7/7] Launching Training...
+2026-04-18 16:45:21 │ INFO     │ main_stage3                    │ 
+══════════════════════════════════════════════════════════════════════
+2026-04-18 16:45:21 │ INFO     │ main_stage3                    │   LAUNCHING ADVERSARIAL + SUPCON TRAINING
+2026-04-18 16:45:21 │ INFO     │ main_stage3                    │ ══════════════════════════════════════════════════════════════════════
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ No checkpoint found — starting fresh training.
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │   Training Start — Epoch 1/140
+2026-04-18 16:45:21 │ INFO     │ AdversarialTrainer             │ ======================================================================
+2026-04-18 16:48:27 │ DEBUG    │ AdversarialTrainer             │   Epoch 1 | Batch 21/107 | Loss: 5.7497 (SC: 0.0000, Emo: 4.1335, ID: 4.0405)

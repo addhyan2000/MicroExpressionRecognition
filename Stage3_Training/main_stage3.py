@@ -148,6 +148,12 @@ def parse_args() -> argparse.Namespace:
         default=1.0,
         help="Scalar multiplier β for the SupCon loss term",
     )
+    parser.add_argument(
+        "--xbm_memory_size",
+        type=int,
+        default=64,
+        help="Cross-Batch Memory bank size for SupCon (FIFO queue of past embeddings)",
+    )
 
     # ── Training arguments ──────────────────────────────────────────
     parser.add_argument(
@@ -362,9 +368,14 @@ def main() -> None:
     log.info("\n[4/7] Configuring Loss Functions...")
 
     # ── Supervised Contrastive Loss (SupCon) ────────────────────────
-    supcon_criterion = SupConLoss(temperature=args.supcon_temperature)
-    log.info("SupCon Loss: SupConLoss(τ=%.2f, weight=%.2f)",
-             args.supcon_temperature, args.supcon_weight)
+    supcon_criterion = SupConLoss(
+        temperature=args.supcon_temperature,
+        memory_size=args.xbm_memory_size,
+        proj_dim=args.proj_dim,
+    )
+    log.info("SupCon Loss: SupConLoss(τ=%.2f, weight=%.2f, XBM=%d, proj_dim=%d)",
+             args.supcon_temperature, args.supcon_weight,
+             args.xbm_memory_size, args.proj_dim)
 
     # ── Focal Loss for emotions (with class weights) ────────────────
     class_weights = full_dataset.get_class_weights()
