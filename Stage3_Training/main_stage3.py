@@ -1,6 +1,6 @@
 """
-main_stage3.py — Stage 3 Orchestrator: Adversarial Domain Adaptation
-=====================================================================
+main_stage3.py — Stage 3 Orchestrator: Adversarial Domain Adaptation + SupCon
+===============================================================================
 
 This is the top-level entry point that ties together all Stage 3
 components:
@@ -9,18 +9,25 @@ components:
     2. Initialize MERDataset with expression filtering
     3. Subject-Disjoint Split (no identity leakage between train/val)
     4. Create DataLoaders
-    5. Instantiate AdversarialMERWrapper
-    6. Instantiate FocalLoss + CrossEntropyLoss
+    5. Instantiate AdversarialMERWrapper (with Projection Head)
+    6. Instantiate SupConLoss + FocalLoss + CrossEntropyLoss
     7. Configure optimizer (AdamW) and scheduler (CosineAnnealing)
     8. Create AdversarialTrainer and call trainer.train()
+
+Loss Function:
+    Total Loss = (β × SupCon Loss) + Emotion Loss + (α × Identity Loss)
+
+    where SupCon anchors the latent space against GRL-induced feature
+    collapse, Focal Loss handles class imbalance, and CE through GRL
+    forces identity-invariance.
 
 Usage::
 
     # Basic usage (micro-expression only, 100 epochs)
     python main_stage3.py
 
-    # Custom configuration
-    python main_stage3.py --epochs 200 --batch_size 4 --lr 1e-4 --expression_filter micro-expression
+    # Custom configuration with SupCon tuning
+    python main_stage3.py --epochs 200 --supcon_weight 1.0 --supcon_temperature 0.1
 
     # Resume from checkpoint
     python main_stage3.py  # (automatic — detects latest_checkpoint.pth)
@@ -52,13 +59,14 @@ from utils.logger import get_logger                         # noqa: E402
 from data.mer_dataset import MERDataset                     # noqa: E402
 from modules.adversarial_wrapper import AdversarialMERWrapper  # noqa: E402
 from losses.focal_loss import FocalLoss                     # noqa: E402
+from losses.supcon_loss import SupConLoss                   # noqa: E402
 from core.trainer import AdversarialTrainer                 # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments for Stage 3 training."""
     parser = argparse.ArgumentParser(
-        description="Stage 3: Adversarial Domain Adaptation Training",
+        description="Stage 3: Adversarial Domain Adaptation + SupCon Training",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -103,6 +111,12 @@ def parse_args() -> argparse.Namespace:
         help="Feature dimension from Transformer (d_model)",
     )
     parser.add_argument(
+        "--proj_dim",
+        type=int,
+        default=64,
+        help="Projection head output dimension for SupCon",
+    )
+    parser.add_argument(
         "--head_dropout",
         type=float,
         default=0.3,
@@ -119,6 +133,20 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=10.0,
         help="Gamma parameter for GRL sigmoid annealing schedule",
+    )
+
+    # ── SupCon arguments ────────────────────────────────────────────
+    parser.add_argument(
+        "--supcon_temperature",
+        type=float,
+        default=0.1,
+        help="Temperature τ for SupCon loss (lower = tighter clusters)",
+    )
+    parser.add_argument(
+        "--supcon_weight",
+        type=float,
+        default=1.0,
+        help="Scalar multiplier β for the SupCon loss term",
     )
 
     # ── Training arguments ──────────────────────────────────────────
@@ -213,7 +241,7 @@ def main() -> None:
     )
 
     log.info("=" * 70)
-    log.info("  STAGE 3: Adversarial Domain Adaptation & Training")
+    log.info("  STAGE 3: Adversarial Domain Adaptation + SupCon Training")
     log.info("  Micro-Expression Recognition — Master's Thesis")
     log.info("=" * 70)
 
@@ -233,7 +261,7 @@ def main() -> None:
     # ─────────────────────────────────────────────────────────────────
     # 1. Dataset
     # ─────────────────────────────────────────────────────────────────
-    log.info("\n[1/6] Initializing Dataset...")
+    log.info("\n[1/7] Initializing Dataset...")
 
     full_dataset = MERDataset(
         csv_path=Path(args.csv_path),
@@ -259,7 +287,7 @@ def main() -> None:
     #
     #  Subject-disjoint split guarantees zero identity overlap.
     # ─────────────────────────────────────────────────────────────────
-    log.info("\n[2/6] Subject-Disjoint Split (%.0f%% val subjects)...",
+    log.info("\n[2/7] Subject-Disjoint Split (%.0f%% val subjects)...",
              args.val_split * 100)
 
     train_indices, val_indices = MERDataset.subject_disjoint_split(
@@ -309,19 +337,21 @@ def main() -> None:
     # ─────────────────────────────────────────────────────────────────
     # 3. Model
     # ─────────────────────────────────────────────────────────────────
-    log.info("\n[3/6] Instantiating AdversarialMERWrapper...")
+    log.info("\n[3/7] Instantiating AdversarialMERWrapper (with Projection Head)...")
 
     model = AdversarialMERWrapper(
         num_emotions=args.num_emotions,
         num_subjects=full_dataset.num_subjects,
         grl_lambda=args.grl_lambda,
         feature_dim=args.feature_dim,
+        proj_dim=args.proj_dim,
         head_dropout=args.head_dropout,
     )
 
     params = model.count_parameters()
     log.info("Model parameters:")
     log.info("  Backbone (Stage 2):  %10s trainable", f"{params['backbone_trainable']:,}")
+    log.info("  Projection Head:     %10s trainable", f"{params['projection_head_trainable']:,}")
     log.info("  Emotion Head:        %10s trainable", f"{params['emotion_head_trainable']:,}")
     log.info("  Identity Head:       %10s trainable", f"{params['identity_head_trainable']:,}")
     log.info("  TOTAL:               %10s trainable", f"{params['model_trainable']:,}")
@@ -329,7 +359,12 @@ def main() -> None:
     # ─────────────────────────────────────────────────────────────────
     # 4. Loss Functions
     # ─────────────────────────────────────────────────────────────────
-    log.info("\n[4/6] Configuring Loss Functions...")
+    log.info("\n[4/7] Configuring Loss Functions...")
+
+    # ── Supervised Contrastive Loss (SupCon) ────────────────────────
+    supcon_criterion = SupConLoss(temperature=args.supcon_temperature)
+    log.info("SupCon Loss: SupConLoss(τ=%.2f, weight=%.2f)",
+             args.supcon_temperature, args.supcon_weight)
 
     # ── Focal Loss for emotions (with class weights) ────────────────
     class_weights = full_dataset.get_class_weights()
@@ -347,10 +382,13 @@ def main() -> None:
     identity_criterion = nn.CrossEntropyLoss()
     log.info("Identity Loss: CrossEntropyLoss (unweighted)")
 
+    log.info("Total Loss = (%.2f × SupCon) + Emotion + (%.2f × Identity)",
+             args.supcon_weight, args.identity_loss_weight)
+
     # ─────────────────────────────────────────────────────────────────
     # 5. Optimizer & Scheduler
     # ─────────────────────────────────────────────────────────────────
-    log.info("\n[5/6] Configuring Optimizer & Scheduler...")
+    log.info("\n[5/7] Configuring Optimizer & Scheduler...")
 
     optimizer = torch.optim.AdamW(
         model.parameters(),
@@ -369,7 +407,7 @@ def main() -> None:
     # ─────────────────────────────────────────────────────────────────
     # 6. Trainer
     # ─────────────────────────────────────────────────────────────────
-    log.info("\n[6/6] Creating AdversarialTrainer...")
+    log.info("\n[6/7] Creating AdversarialTrainer...")
 
     clip_norm = args.gradient_clip_norm if args.gradient_clip_norm > 0 else None
 
@@ -379,11 +417,13 @@ def main() -> None:
         val_loader=val_loader,
         emotion_criterion=emotion_criterion,
         identity_criterion=identity_criterion,
+        supcon_criterion=supcon_criterion,
         optimizer=optimizer,
         scheduler=scheduler,
         device=device,
         num_epochs=args.epochs,
         identity_loss_weight=args.identity_loss_weight,
+        supcon_loss_weight=args.supcon_weight,
         grl_gamma=args.grl_gamma,
         checkpoint_dir=Path(args.checkpoint_dir),
         log_dir=log_dir,
@@ -392,10 +432,11 @@ def main() -> None:
     )
 
     # ─────────────────────────────────────────────────────────────────
-    # Launch Training
+    # 7. Launch Training
     # ─────────────────────────────────────────────────────────────────
+    log.info("\n[7/7] Launching Training...")
     log.info("\n" + "═" * 70)
-    log.info("  LAUNCHING ADVERSARIAL TRAINING")
+    log.info("  LAUNCHING ADVERSARIAL + SUPCON TRAINING")
     log.info("═" * 70)
 
     history = trainer.train()
@@ -410,6 +451,7 @@ def main() -> None:
     if history["train_emotion_acc"]:
         log.info("Final Train Emotion Accuracy : %.4f", history["train_emotion_acc"][-1])
         log.info("Final Train Identity Accuracy: %.4f", history["train_identity_acc"][-1])
+        log.info("Final Train SupCon Loss      : %.4f", history["train_supcon_loss"][-1])
     if history.get("val_emotion_acc"):
         log.info("Final Val Emotion Accuracy   : %.4f", history["val_emotion_acc"][-1])
         log.info("Final Val Identity Accuracy  : %.4f", history["val_identity_acc"][-1])

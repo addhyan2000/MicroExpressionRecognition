@@ -1,24 +1,30 @@
 """
-trainer.py — Adversarial Training Loop with Checkpointing (Stage 3)
-====================================================================
+trainer.py — Adversarial Training Loop with SupCon + Checkpointing (Stage 3)
+==============================================================================
 
 Implements ``AdversarialTrainer``, a production-grade, fault-tolerant
-training loop that jointly optimizes:
+training loop that jointly optimizes three objectives:
 
-    Total Loss = Emotion Loss (Focal Loss) + α · Identity Loss (Cross-Entropy)
+    Total Loss = (SupCon Loss × β) + Emotion Loss + (Identity Loss × α)
 
-where the Identity Loss flows through the Gradient Reversal Layer (GRL),
-causing the Transformer encoder to unlearn subject-specific features.
+where:
+    - **SupCon Loss** anchors the latent space with emotion-aware clustering
+      (Khosla et al., 2020), preventing feature collapse at high GRL λ.
+    - **Emotion Loss** (Focal Loss) classifies micro-expressions.
+    - **Identity Loss** (Cross-Entropy through GRL) forces identity-invariance.
 
 Key Features:
-    • **Dual-loss optimization:** Focal Loss for emotions + CE for identity
+    • **Triple-loss optimization:** SupCon + Focal + CE via GRL
+    • **Gradient Accumulation:** Accumulates gradients over multiple
+      micro-batches before stepping, enabling effective larger batch sizes
+      on limited VRAM.
     • **GRL lambda scheduling:** Sigmoid annealing from 0 → 1 over training
     • **Fault-tolerant checkpointing:**
         - ``latest_checkpoint.pth`` — full state for crash recovery
         - ``best_model.pth``       — optimal weights by validation accuracy
     • **Resume capability:** Automatic detection and loading of checkpoints
-    • **Comprehensive logging:** Per-epoch metrics, class distributions,
-      learning rates, GRL lambda values
+    • **Comprehensive logging:** Per-epoch metrics, including separate
+      SupCon / Emotion / Identity loss curves
     • **Mixed-precision training:** Optional torch.cuda.amp support
 
 Author  : Addhyan
@@ -31,7 +37,7 @@ import os
 import sys
 import time
 from pathlib import Path
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 import torch
 import torch.nn as nn
@@ -47,13 +53,13 @@ from utils.logger import get_logger  # noqa: E402
 
 class AdversarialTrainer:
     """
-    Adversarial training loop for identity-invariant MER.
+    Adversarial training loop for identity-invariant MER with SupCon.
 
     This class encapsulates the full training lifecycle:
         1. Epoch iteration with GRL lambda annealing
-        2. Forward pass through AdversarialMERWrapper
-        3. Dual-loss computation (Focal + CE)
-        4. Backpropagation and optimizer step
+        2. Forward pass through AdversarialMERWrapper (3 outputs)
+        3. Triple-loss computation (SupCon + Focal + CE)
+        4. Gradient accumulation and optimizer step
         5. Validation evaluation
         6. Checkpoint save/resume logic
 
@@ -69,6 +75,8 @@ class AdversarialTrainer:
         Loss function for emotion classification (e.g., FocalLoss).
     identity_criterion : nn.Module
         Loss function for identity classification (e.g., CrossEntropyLoss).
+    supcon_criterion : nn.Module
+        Supervised Contrastive Loss for feature clustering (SupConLoss).
     optimizer : torch.optim.Optimizer
         The optimizer (e.g., AdamW).
     scheduler : torch.optim.lr_scheduler or None
@@ -79,10 +87,14 @@ class AdversarialTrainer:
         Total number of training epochs.
     identity_loss_weight : float
         Scalar multiplier α for the identity loss.
-        ``total_loss = emotion_loss + α * identity_loss``
+    supcon_loss_weight : float
+        Scalar multiplier β for the SupCon loss.
+        ``total_loss = β * supcon + emotion + α * identity``
     grl_gamma : float
         Gamma parameter for the GRL sigmoid schedule.
-    checkpoint_dir : Path
+    accumulation_steps : int
+        Number of micro-batches to accumulate before an optimizer step.
+    checkpoint_dir : Path or None
         Directory for saving checkpoints.
     log_dir : Path or None
         Directory for log files.
@@ -99,11 +111,13 @@ class AdversarialTrainer:
         val_loader: Optional[DataLoader],
         emotion_criterion: nn.Module,
         identity_criterion: nn.Module,
+        supcon_criterion: nn.Module,
         optimizer: torch.optim.Optimizer,
         scheduler=None,
         device: torch.device = torch.device("cpu"),
         num_epochs: int = 100,
         identity_loss_weight: float = 1.0,
+        supcon_loss_weight: float = 1.0,
         grl_gamma: float = 10.0,
         accumulation_steps: int = 4,
         checkpoint_dir: Optional[Path] = None,
@@ -127,6 +141,7 @@ class AdversarialTrainer:
         self.val_loader = val_loader
         self.emotion_criterion = emotion_criterion.to(device)
         self.identity_criterion = identity_criterion.to(device)
+        self.supcon_criterion = supcon_criterion.to(device)
         self.optimizer = optimizer
         self.scheduler = scheduler
         self.device = device
@@ -134,6 +149,7 @@ class AdversarialTrainer:
         # ── Training hyperparameters ────────────────────────────────
         self.num_epochs = num_epochs
         self.identity_loss_weight = identity_loss_weight
+        self.supcon_loss_weight = supcon_loss_weight
         self.grl_gamma = grl_gamma
         self.accumulation_steps = accumulation_steps
         self.use_amp = use_amp
@@ -153,11 +169,13 @@ class AdversarialTrainer:
         self._best_val_accuracy: float = 0.0
         self._history: Dict[str, list] = {
             "train_loss": [],
+            "train_supcon_loss": [],
             "train_emotion_loss": [],
             "train_identity_loss": [],
             "train_emotion_acc": [],
             "train_identity_acc": [],
             "val_loss": [],
+            "val_supcon_loss": [],
             "val_emotion_acc": [],
             "val_identity_acc": [],
             "grl_lambda": [],
@@ -171,12 +189,14 @@ class AdversarialTrainer:
 
         # ── Log configuration ──────────────────────────────────────
         self._log.info("=" * 70)
-        self._log.info("  AdversarialTrainer Configuration")
+        self._log.info("  AdversarialTrainer Configuration (SupCon)")
         self._log.info("=" * 70)
         self._log.info("Device              : %s", self.device)
         self._log.info("Epochs              : %d", self.num_epochs)
         self._log.info("Identity loss weight: %.4f", self.identity_loss_weight)
+        self._log.info("SupCon loss weight  : %.4f", self.supcon_loss_weight)
         self._log.info("GRL gamma           : %.2f", self.grl_gamma)
+        self._log.info("Accumulation steps  : %d", self.accumulation_steps)
         self._log.info("AMP enabled         : %s", self.use_amp)
         self._log.info("Gradient clip norm  : %s", self.gradient_clip_norm)
         self._log.info("Checkpoint dir      : %s", self.checkpoint_dir)
@@ -229,18 +249,7 @@ class AdversarialTrainer:
                 self.scheduler.step()
 
             # ── Record history ──────────────────────────────────────
-            self._history["train_loss"].append(train_metrics["total_loss"])
-            self._history["train_emotion_loss"].append(train_metrics["emotion_loss"])
-            self._history["train_identity_loss"].append(train_metrics["identity_loss"])
-            self._history["train_emotion_acc"].append(train_metrics["emotion_acc"])
-            self._history["train_identity_acc"].append(train_metrics["identity_acc"])
-            self._history["grl_lambda"].append(grl_lambda)
-            self._history["lr"].append(current_lr)
-
-            if val_metrics:
-                self._history["val_loss"].append(val_metrics.get("total_loss", 0))
-                self._history["val_emotion_acc"].append(val_metrics.get("emotion_acc", 0))
-                self._history["val_identity_acc"].append(val_metrics.get("identity_acc", 0))
+            self._record_history(train_metrics, val_metrics, grl_lambda, current_lr)
 
             # ── Epoch summary log ───────────────────────────────────
             epoch_time = time.time() - epoch_start
@@ -269,24 +278,40 @@ class AdversarialTrainer:
 
     def _train_epoch(self, epoch: int) -> Dict[str, float]:
         """
-        Train for one epoch.
+        Train for one epoch with gradient accumulation.
+
+        The forward pass unpacks three outputs from the model:
+            ``(projected_features, emotion_logits, identity_logits)``
+
+        The total loss is computed as::
+
+            total = (β × SupCon) + Emotion + (α × Identity)
+
+        and is divided by ``accumulation_steps`` before ``.backward()``
+        to average gradients across micro-batches.
+
+        Parameters
+        ----------
+        epoch : int
+            Current epoch number (0-indexed).
 
         Returns
         -------
         dict
-            Metrics: total_loss, emotion_loss, identity_loss,
+            Metrics: total_loss, supcon_loss, emotion_loss, identity_loss,
             emotion_acc, identity_acc.
         """
         self.model.train()
 
         total_loss_sum = 0.0
+        supcon_loss_sum = 0.0
         emotion_loss_sum = 0.0
         identity_loss_sum = 0.0
         emotion_correct = 0
         identity_correct = 0
         total_samples = 0
 
-        self.optimizer.zero_grad() # Clear gradients before epoch begins
+        self.optimizer.zero_grad()  # Clear gradients before epoch begins
 
         for batch_idx, (tensors, emotion_labels, subject_labels) in enumerate(
             self.train_loader
@@ -302,36 +327,42 @@ class AdversarialTrainer:
             with torch.amp.autocast(
                 device_type=self.device.type, enabled=self.use_amp,
             ):
-                emotion_logits, identity_logits = self.model(tensors)
+                # Unpack all three outputs from the wrapper
+                projected_features, emotion_logits, identity_logits = (
+                    self.model(tensors)
+                )
 
-                # ── Compute losses ──────────────────────────────────
-                emotion_loss = self.emotion_criterion(emotion_logits, emotion_labels)
-                identity_loss = self.identity_criterion(
-                    identity_logits, subject_labels
+                # ── Compute individual losses ───────────────────────
+                supcon_loss, emotion_loss, identity_loss = (
+                    self._compute_losses(
+                        projected_features,
+                        emotion_logits,
+                        identity_logits,
+                        emotion_labels,
+                        subject_labels,
+                    )
                 )
 
                 # ── Combined loss (Scaled for Accumulation) ─────────
-                total_loss = (emotion_loss + self.identity_loss_weight * identity_loss) / self.accumulation_steps
+                # Total = (β × SupCon) + Emotion + (α × Identity)
+                # Then divide by accumulation_steps for gradient averaging
+                total_loss = (
+                    self.supcon_loss_weight * supcon_loss
+                    + emotion_loss
+                    + self.identity_loss_weight * identity_loss
+                ) / self.accumulation_steps
 
             # ── Backward pass ───────────────────────────────────────
             self._scaler.scale(total_loss).backward()
 
             # ── Optimizer Step (Accumulated) ────────────────────────
-            if (batch_idx + 1) % self.accumulation_steps == 0 or (batch_idx + 1) == len(self.train_loader):
-                # ── Gradient clipping ───────────────────────────────
-                if self.gradient_clip_norm is not None:
-                    self._scaler.unscale_(self.optimizer)
-                    torch.nn.utils.clip_grad_norm_(
-                        self.model.parameters(), self.gradient_clip_norm,
-                    )
+            self._maybe_step_optimizer(batch_idx)
 
-                self._scaler.step(self.optimizer)
-                self._scaler.update()
-                self.optimizer.zero_grad() # Reset gradients ONLY after stepping
-
-# ── Accumulate metrics ──────────────────────────────────
-            # Multiply total_loss back by accumulation_steps so the logged metric is accurate
+            # ── Accumulate metrics ──────────────────────────────────
+            # Multiply total_loss back by accumulation_steps so
+            # the logged metric reflects the true unscaled loss.
             total_loss_sum += (total_loss.item() * self.accumulation_steps) * batch_size
+            supcon_loss_sum += supcon_loss.item() * batch_size
             emotion_loss_sum += emotion_loss.item() * batch_size
             identity_loss_sum += identity_loss.item() * batch_size
 
@@ -346,18 +377,22 @@ class AdversarialTrainer:
             if (batch_idx + 1) % max(1, len(self.train_loader) // 5) == 0:
                 self._log.debug(
                     "  Epoch %d | Batch %d/%d | Loss: %.4f "
-                    "(Emo: %.4f, ID: %.4f)",
+                    "(SC: %.4f, Emo: %.4f, ID: %.4f)",
                     epoch + 1, batch_idx + 1, len(self.train_loader),
-                    total_loss.item(), emotion_loss.item(), identity_loss.item(),
+                    total_loss.item() * self.accumulation_steps,
+                    supcon_loss.item(), emotion_loss.item(),
+                    identity_loss.item(),
                 )
 
         # ── Compute epoch averages ──────────────────────────────────
+        n = max(total_samples, 1)
         metrics = {
-            "total_loss": total_loss_sum / max(total_samples, 1),
-            "emotion_loss": emotion_loss_sum / max(total_samples, 1),
-            "identity_loss": identity_loss_sum / max(total_samples, 1),
-            "emotion_acc": emotion_correct / max(total_samples, 1),
-            "identity_acc": identity_correct / max(total_samples, 1),
+            "total_loss": total_loss_sum / n,
+            "supcon_loss": supcon_loss_sum / n,
+            "emotion_loss": emotion_loss_sum / n,
+            "identity_loss": identity_loss_sum / n,
+            "emotion_acc": emotion_correct / n,
+            "identity_acc": identity_correct / n,
         }
 
         return metrics
@@ -370,12 +405,13 @@ class AdversarialTrainer:
         Returns
         -------
         dict
-            Metrics: total_loss, emotion_loss, identity_loss,
+            Metrics: total_loss, supcon_loss, emotion_loss, identity_loss,
             emotion_acc, identity_acc.
         """
         self.model.eval()
 
         total_loss_sum = 0.0
+        supcon_loss_sum = 0.0
         emotion_loss_sum = 0.0
         identity_loss_sum = 0.0
         emotion_correct = 0
@@ -392,15 +428,28 @@ class AdversarialTrainer:
             with torch.amp.autocast(
                 device_type=self.device.type, enabled=self.use_amp,
             ):
-                emotion_logits, identity_logits = self.model(tensors)
-
-                emotion_loss = self.emotion_criterion(emotion_logits, emotion_labels)
-                identity_loss = self.identity_criterion(
-                    identity_logits, subject_labels
+                projected_features, emotion_logits, identity_logits = (
+                    self.model(tensors)
                 )
-                total_loss = emotion_loss + self.identity_loss_weight * identity_loss
+
+                supcon_loss, emotion_loss, identity_loss = (
+                    self._compute_losses(
+                        projected_features,
+                        emotion_logits,
+                        identity_logits,
+                        emotion_labels,
+                        subject_labels,
+                    )
+                )
+
+                total_loss = (
+                    self.supcon_loss_weight * supcon_loss
+                    + emotion_loss
+                    + self.identity_loss_weight * identity_loss
+                )
 
             total_loss_sum += total_loss.item() * batch_size
+            supcon_loss_sum += supcon_loss.item() * batch_size
             emotion_loss_sum += emotion_loss.item() * batch_size
             identity_loss_sum += identity_loss.item() * batch_size
 
@@ -411,15 +460,129 @@ class AdversarialTrainer:
             identity_correct += (identity_preds == subject_labels).sum().item()
             total_samples += batch_size
 
+        n = max(total_samples, 1)
         metrics = {
-            "total_loss": total_loss_sum / max(total_samples, 1),
-            "emotion_loss": emotion_loss_sum / max(total_samples, 1),
-            "identity_loss": identity_loss_sum / max(total_samples, 1),
-            "emotion_acc": emotion_correct / max(total_samples, 1),
-            "identity_acc": identity_correct / max(total_samples, 1),
+            "total_loss": total_loss_sum / n,
+            "supcon_loss": supcon_loss_sum / n,
+            "emotion_loss": emotion_loss_sum / n,
+            "identity_loss": identity_loss_sum / n,
+            "emotion_acc": emotion_correct / n,
+            "identity_acc": identity_correct / n,
         }
 
         return metrics
+
+    # ─────────────────────────────────────────────────────────────────
+    #  Private Helper Methods
+    # ─────────────────────────────────────────────────────────────────
+
+    def _compute_losses(
+        self,
+        projected_features: torch.Tensor,
+        emotion_logits: torch.Tensor,
+        identity_logits: torch.Tensor,
+        emotion_labels: torch.Tensor,
+        subject_labels: torch.Tensor,
+    ) -> tuple:
+        """
+        Compute the three individual loss terms.
+
+        Parameters
+        ----------
+        projected_features : torch.Tensor
+            L2-normalized projections of shape ``[B, proj_dim]``.
+        emotion_logits : torch.Tensor
+            Emotion predictions of shape ``[B, num_emotions]``.
+        identity_logits : torch.Tensor
+            Identity predictions of shape ``[B, num_subjects]``.
+        emotion_labels : torch.Tensor
+            Ground-truth emotion labels of shape ``[B]``.
+        subject_labels : torch.Tensor
+            Ground-truth subject labels of shape ``[B]``.
+
+        Returns
+        -------
+        tuple of (torch.Tensor, torch.Tensor, torch.Tensor)
+            ``(supcon_loss, emotion_loss, identity_loss)``
+        """
+        supcon_loss = self.supcon_criterion(
+            projected_features, emotion_labels,
+        )
+        emotion_loss = self.emotion_criterion(
+            emotion_logits, emotion_labels,
+        )
+        identity_loss = self.identity_criterion(
+            identity_logits, subject_labels,
+        )
+        return supcon_loss, emotion_loss, identity_loss
+
+    def _maybe_step_optimizer(self, batch_idx: int) -> None:
+        """
+        Perform an optimizer step if we've accumulated enough gradients.
+
+        Steps when:
+            - ``(batch_idx + 1) % accumulation_steps == 0``, or
+            - We've reached the last batch of the epoch.
+
+        Also handles gradient clipping and AMP scaler updates.
+
+        Parameters
+        ----------
+        batch_idx : int
+            Current batch index (0-indexed).
+        """
+        is_accumulation_boundary = (
+            (batch_idx + 1) % self.accumulation_steps == 0
+        )
+        is_last_batch = (batch_idx + 1) == len(self.train_loader)
+
+        if is_accumulation_boundary or is_last_batch:
+            # ── Gradient clipping ───────────────────────────────
+            if self.gradient_clip_norm is not None:
+                self._scaler.unscale_(self.optimizer)
+                torch.nn.utils.clip_grad_norm_(
+                    self.model.parameters(), self.gradient_clip_norm,
+                )
+
+            self._scaler.step(self.optimizer)
+            self._scaler.update()
+            self.optimizer.zero_grad()  # Reset gradients ONLY after stepping
+
+    def _record_history(
+        self,
+        train_metrics: Dict[str, float],
+        val_metrics: Dict[str, float],
+        grl_lambda: float,
+        current_lr: float,
+    ) -> None:
+        """
+        Append epoch metrics to the history dictionary.
+
+        Parameters
+        ----------
+        train_metrics : dict
+            Training metrics for the epoch.
+        val_metrics : dict
+            Validation metrics (may be empty if no val_loader).
+        grl_lambda : float
+            Current GRL lambda value.
+        current_lr : float
+            Current learning rate.
+        """
+        self._history["train_loss"].append(train_metrics["total_loss"])
+        self._history["train_supcon_loss"].append(train_metrics["supcon_loss"])
+        self._history["train_emotion_loss"].append(train_metrics["emotion_loss"])
+        self._history["train_identity_loss"].append(train_metrics["identity_loss"])
+        self._history["train_emotion_acc"].append(train_metrics["emotion_acc"])
+        self._history["train_identity_acc"].append(train_metrics["identity_acc"])
+        self._history["grl_lambda"].append(grl_lambda)
+        self._history["lr"].append(current_lr)
+
+        if val_metrics:
+            self._history["val_loss"].append(val_metrics.get("total_loss", 0))
+            self._history["val_supcon_loss"].append(val_metrics.get("supcon_loss", 0))
+            self._history["val_emotion_acc"].append(val_metrics.get("emotion_acc", 0))
+            self._history["val_identity_acc"].append(val_metrics.get("identity_acc", 0))
 
     # ─────────────────────────────────────────────────────────────────
     #  Checkpointing: Save & Resume
@@ -550,26 +713,53 @@ class AdversarialTrainer:
         lr: float,
         epoch_time: float,
     ) -> None:
-        """Log a formatted summary of one epoch's results."""
+        """
+        Log a formatted summary of one epoch's results.
+
+        Explicitly prints the SupCon loss alongside Emotion and Identity
+        losses so the clustering behavior can be monitored during training.
+
+        Parameters
+        ----------
+        epoch : int
+            Current epoch (0-indexed).
+        train_metrics : dict
+            Training metrics for the epoch.
+        val_metrics : dict
+            Validation metrics (may be empty).
+        grl_lambda : float
+            Current GRL lambda value.
+        lr : float
+            Current learning rate.
+        epoch_time : float
+            Wall-clock time for this epoch in seconds.
+        """
         self._log.info("─" * 70)
         self._log.info(
             "Epoch %d/%d  [%.1fs]  │  LR=%.6f  │  λ_GRL=%.4f",
             epoch + 1, self.num_epochs, epoch_time, lr, grl_lambda,
         )
         self._log.info(
-            "  Train │ Loss: %.4f (Emo: %.4f + %.2f×ID: %.4f)  "
-            "│ EmoAcc: %.4f  │ IDAcc: %.4f",
+            "  Train │ Loss: %.4f  "
+            "(SC: %.4f × %.1f + Emo: %.4f + %.2f × ID: %.4f)",
             train_metrics["total_loss"],
+            train_metrics["supcon_loss"],
+            self.supcon_loss_weight,
             train_metrics["emotion_loss"],
             self.identity_loss_weight,
             train_metrics["identity_loss"],
+        )
+        self._log.info(
+            "  Train │ EmoAcc: %.4f  │ IDAcc: %.4f",
             train_metrics["emotion_acc"],
             train_metrics["identity_acc"],
         )
         if val_metrics:
             self._log.info(
-                "  Val   │ Loss: %.4f  │ EmoAcc: %.4f  │ IDAcc: %.4f",
+                "  Val   │ Loss: %.4f  (SC: %.4f)  "
+                "│ EmoAcc: %.4f  │ IDAcc: %.4f",
                 val_metrics["total_loss"],
+                val_metrics.get("supcon_loss", 0.0),
                 val_metrics["emotion_acc"],
                 val_metrics["identity_acc"],
             )
