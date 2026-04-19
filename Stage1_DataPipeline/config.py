@@ -86,7 +86,7 @@ class CASME2SquaredConfig:
     """
 
     # ── Filesystem locations ──
-    excel_path: Path = PROJECT_ROOT / "DATASETS" / "CAS(ME)^2code_final.xlsx"
+    excel_path: Path = PROJECT_ROOT / "DATASETS" / "CAS ME^2" / "CAS(ME)^2code_final.xlsx"
     frames_root: Path = PROJECT_ROOT / "Processed_Data" / "Raw_Videos_Magnified" / "CASME_SQUARED"
 
     # ── Column **indices** (no header row) ──
