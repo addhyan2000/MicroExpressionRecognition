@@ -203,11 +203,11 @@ class BaseMetadataUnifier(abc.ABC):
         return length
 
     def _check_frames_directory(self, frames_dir: Path) -> bool:
-        """Return True if the frame directory exists and is non-empty."""
-        exists = frames_dir.is_dir()
+        """Return True if the target exists (either as a folder or .avi file)."""
+        exists = frames_dir.exists()
         if not exists:
             self._log.debug(
-                "Frames directory NOT found: %s", frames_dir
+                "Frames/Video NOT found: %s", frames_dir
             )
         return exists
 
@@ -366,7 +366,7 @@ class CASMEIIUnifier(BaseMetadataUnifier):
                 f"{cfg.subject_folder_prefix}"
                 f"{subject_id:0{cfg.subject_folder_pad}d}"
             )
-            frames_dir = cfg.frames_root / subject_folder / video_id
+            frames_dir = cfg.frames_root / subject_folder / f"{video_id}.avi"
             frames_exist = self._check_frames_directory(frames_dir)
 
             rows.append({
@@ -530,12 +530,12 @@ class CASME2SquaredUnifier(BaseMetadataUnifier):
             # ── Frame directory (DYNAMIC RESOLUTION) ────────────────
             # The Excel uses Subject 1, 2, 3, but the disk uses 15, 16, 17.
             # We dynamically hunt down the correct folder using the Video_ID.
-            frames_dir = cfg.frames_root / str(subject_id) / video_id # Fallback
+            frames_dir = cfg.frames_root / str(subject_id) / f"{video_id}.avi" # Fallback
             
             if cfg.frames_root.exists():
                 for folder in cfg.frames_root.iterdir():
                     if folder.is_dir():
-                        target_path = folder / video_id
+                        target_path = folder / f"{video_id}.avi"
                         if target_path.exists():
                             frames_dir = target_path
                             break
