@@ -98,7 +98,7 @@ class MERDataset(Dataset):
         tensor_dir: Path,
         expression_filter: Optional[str] = None,
         emotion_map: Optional[Dict[str, int]] = None,
-        transform=None,
+        transform: bool = False,
         log_dir: Optional[Path] = None,
     ) -> None:
         super().__init__()
@@ -297,9 +297,22 @@ class MERDataset(Dataset):
         tensor_np = np.load(str(sample["tensor_path"]))
         tensor = torch.from_numpy(tensor_np).float()
 
-        # ── Apply optional transform ────────────────────────────────
-        if self._transform is not None:
-            tensor = self._transform(tensor)
+        # ── Apply augmentations ──────────────────────────────────────
+        T = tensor.size(1)
+        if T > 32:
+            if self._transform:
+                start_idx = torch.randint(0, T - 32 + 1, (1,)).item()
+            else:
+                start_idx = (T - 32) // 2
+            tensor = tensor[:, start_idx:start_idx+32, :, :]
+
+        if self._transform:
+            import random
+            if random.random() > 0.5:
+                # Spatial flip (width is dim 3)
+                tensor = torch.flip(tensor, dims=[3])
+                # Negate u channel (horizontal flow) to align directions
+                tensor[0, :, :, :] *= -1
 
         emotion_label = sample["emotion_label"]
         subject_label = sample["subject_label"]
