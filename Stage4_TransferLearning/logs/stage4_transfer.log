@@ -248,3 +248,124 @@
 [Phase2 · 6/6] Creating AdversarialTrainer...
 2026-04-18 19:38:30 │ INFO     │ TransferOrchestrator           │ 
   ▶ LAUNCHING PHASE 2 TRAINING (150 epochs)...
+2026-05-14 14:25:09 │ DEBUG    │ TransferOrchestrator           │ Logger 'TransferOrchestrator' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage4_TransferLearning\logs\stage4_transfer.log
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+══════════════════════════════════════════════════════════════════════
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ████████╗██████╗  █████╗ ███╗   ██╗███████╗███████╗███████╗██████╗ 
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ╚══██╔══╝██╔══██╗██╔══██╗████╗  ██║██╔════╝██╔════╝██╔════╝██╔══██╗
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │      ██║   ██████╔╝███████║██╔██╗ ██║███████╗█████╗  █████╗  ██████╔╝
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │      ██║   ██╔══██╗██╔══██║██║╚██╗██║╚════██║██╔══╝  ██╔══╝  ██╔══██╗
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │      ██║   ██║  ██║██║  ██║██║ ╚████║███████║██║     ███████╗██║  ██║
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │      ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ ══════════════════════════════════════════════════════════════════════
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   STAGE 4: Macro-to-Micro Transfer Learning
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Micro-Expression Recognition — Master's Thesis
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ ══════════════════════════════════════════════════════════════════════
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+  Configuration:
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ─────────────────────────────────────────────────
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Device         : cuda
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     GPU          : NVIDIA GeForce RTX 4060 Laptop GPU
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     VRAM         : 8.6 GB
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Seed           : 42
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Batch size     : 2
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   AMP            : False
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Phase 1 (Macro):
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Epochs       : 50
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     LR           : 0.000100
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Adversary    : OFF (identity_loss_weight=0.0)
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Phase 2 (Micro):
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Epochs       : 150
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     LR           : 0.000050
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Adversary    : ON  (identity_loss_weight=0.40)
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ─────────────────────────────────────────────────
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+══════════════════════════════════════════════════════════════════════
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ╔═══════════════════════════════════════════════════╗
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ║  PHASE 1: MACRO-EXPRESSION PRE-TRAINING          ║
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ║  Adversary: OFF  │  identity_loss_weight = 0.0   ║
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ╚═══════════════════════════════════════════════════╝
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ ══════════════════════════════════════════════════════════════════════
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+[Phase1 · 1/5] Loading Macro-Expression Dataset...
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ Macro dataset: 293 samples, 4 classes, 20 subjects
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+[Phase1 · 2/5] Subject-Disjoint Split (80/20)...
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Train: 266 samples  │  Val: 27 samples
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ✓ Subject-disjoint split verified: 0 overlap.
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+[Phase1 · 3/5] Instantiating AdversarialMERWrapper...
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   Model parameters:
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Backbone (Stage 2):     363,280 trainable
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Projection Head:         15,520 trainable
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Emotion Head:               580 trainable
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     Identity Head:            2,132 trainable
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │     TOTAL:                  381,512 trainable
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │ 
+[Phase1 · 4/5] Configuring Loss Functions...
+2026-05-14 14:25:09 │ INFO     │ TransferOrchestrator           │   ★ ADVERSARY OFF: identity_loss_weight = 0.0 (macro pre-training learns facial physics freely)
+2026-05-14 14:25:11 │ INFO     │ TransferOrchestrator           │   Optimizer: AdamW(lr=0.000100)  │  Scheduler: CosineAnnealing(T=50)
+2026-05-14 14:25:11 │ INFO     │ TransferOrchestrator           │ 
+[Phase1 · 5/5] Creating AdversarialTrainer...
+2026-05-14 14:25:11 │ INFO     │ TransferOrchestrator           │ 
+  ▶ LAUNCHING PHASE 1 TRAINING (50 epochs)...
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │ ★ Phase 1 best model copied → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage4_TransferLearning\checkpoints\phase1_macro\macro_pretrained_best.pth
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │ 
+  ✓ PHASE 1 COMPLETE in 141.2 min  │  Best Val Acc: 0.7037
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │ 
+══════════════════════════════════════════════════════════════════════
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │   ╔═══════════════════════════════════════════════════╗
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │   ║  PHASE 2: MICRO-EXPRESSION FINE-TUNING           ║
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │   ║  Adversary: ON   │  identity_loss_weight = 0.40  ║
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │   ╚═══════════════════════════════════════════════════╝
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │ ══════════════════════════════════════════════════════════════════════
+2026-05-14 16:46:23 │ INFO     │ TransferOrchestrator           │ 
+[Phase2 · 1/6] Loading Micro-Expression Dataset...
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │ Micro dataset: 305 samples, 4 classes, 26 subjects
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │ 
+[Phase2 · 2/6] Subject-Disjoint Split (80/20)...
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │   Train: 215 samples  │  Val: 90 samples
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │   ✓ Subject-disjoint split verified: 0 overlap.
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │ 
+[Phase2 · 3/6] Instantiating FRESH AdversarialMERWrapper...
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │ 
+[Phase2 · 4/6] Loading Macro Pre-trained Weights...
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │   ✓ Transferred 101/103 parameter tensors from macro checkpoint.
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │   ⚠ Skipped 2 tensors (shape mismatch or missing):
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │       identity_head.2.weight: macro=[20, 96] → micro=[26, 96]
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │       identity_head.2.bias: macro=[20] → micro=[26]
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │   Model parameters:
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │     Backbone (Stage 2):     363,280 trainable
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │     Projection Head:         15,520 trainable
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │     Emotion Head:               580 trainable
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │     Identity Head:            2,714 trainable
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │     TOTAL:                  382,094 trainable
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │ 
+[Phase2 · 5/6] Configuring Loss Functions...
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │   ★ ADVERSARY ON: identity_loss_weight = 0.40 (GRL forces identity-invariance on micro data)
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │   Optimizer: AdamW(lr=0.000050)  │  Scheduler: CosineAnnealing(T=150)
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │ 
+[Phase2 · 6/6] Creating AdversarialTrainer...
+2026-05-14 16:46:24 │ INFO     │ TransferOrchestrator           │ 
+  ▶ LAUNCHING PHASE 2 TRAINING (150 epochs)...
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ ★ Phase 2 best model copied → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage4_TransferLearning\checkpoints\phase2_micro\micro_finetuned_best.pth
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ 
+  ✓ PHASE 2 COMPLETE in 358.4 min  │  Best Val Acc: 0.3778
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ 
+══════════════════════════════════════════════════════════════════════
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │   ╔═══════════════════════════════════════════════════╗
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │   ║           STAGE 4 TRANSFER LEARNING COMPLETE     ║
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │   ╚═══════════════════════════════════════════════════╝
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ ══════════════════════════════════════════════════════════════════════
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ 
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │   Artifacts:
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │     Phase 1 (Macro): C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage4_TransferLearning\checkpoints\phase1_macro\macro_pretrained_best.pth
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │     Phase 2 (Micro): C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage4_TransferLearning\checkpoints\phase2_micro\micro_finetuned_best.pth
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ 
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │   To evaluate the final model, load:
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │     checkpoint = torch.load('C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage4_TransferLearning\checkpoints\phase2_micro\micro_finetuned_best.pth')
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │     model.load_state_dict(checkpoint['model_state_dict'])
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ 
+2026-05-14 22:44:48 │ INFO     │ TransferOrchestrator           │ ══════════════════════════════════════════════════════════════════════

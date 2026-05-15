@@ -16653,3 +16653,36 @@ Checkpoints saved to: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\ch
 ══════════════════════════════════════════════════════════════════════
 2026-04-24 10:29:19 │ INFO     │ main_stage3                    │   STAGE 3 COMPLETE
 2026-04-24 10:29:19 │ INFO     │ main_stage3                    │ ══════════════════════════════════════════════════════════════════════
+2026-05-14 14:25:09 │ DEBUG    │ AdversarialMERWrapper          │ Logger 'AdversarialMERWrapper' initialised.  Console=INFO  File=DEBUG  → C:\Users\Addhyan\Desktop\Thesis\Thesis3\Stage3_Training\logs\stage3_training.log
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │   Projection dimension: 64
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Projection Head: Linear(96, 96) → ReLU → Linear(96, 64) → L2Norm
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=0.0000
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │   Projection dimension: 64
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Projection Head: Linear(96, 96) → ReLU → Linear(96, 64) → L2Norm
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 20)
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=0.0000
+2026-05-14 14:25:09 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │   Projection dimension: 64
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │ Projection Head: Linear(96, 96) → ReLU → Linear(96, 64) → L2Norm
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=0.0000
+2026-05-14 16:46:24 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │ Instantiated HybridMERModel backbone (classifier bypassed & frozen)
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │   Feature dimension (d_model): 96
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │   Projection dimension: 64
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │ Projection Head: Linear(96, 96) → ReLU → Linear(96, 64) → L2Norm
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │ Emotion Head: LayerNorm(96) → Dropout(0.30) → Linear(96, 4)
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │ Identity Head: GRL → LayerNorm(96) → Dropout(0.30) → Linear(96, 26)
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │ GRL initialized with λ=0.0000
+2026-05-14 22:44:48 │ INFO     │ AdversarialMERWrapper          │ All head weights initialized (Xavier uniform + LayerNorm defaults)
