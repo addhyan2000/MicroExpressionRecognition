@@ -11,12 +11,14 @@
 
 | Section | What it is | When to read it |
 |---|---|---|
+| **Part 0** | Direct answers to professor's doubts | Read first, before rehearsal |
 | **Part 1** | Explain the whole project like you are 15 | Study before the presentation |
 | **Part 2** | Every term defined (glossary) | Look up words you forget |
 | **Part 3** | All parameters + why they were chosen | When supervisor asks "why this number?" |
 | **Part 4** | Slide-by-slide: what is ON the slide + what to SAY | While rehearsing / during presentation |
 | **Part 5** | Research papers + comparison table | Slides 15 and Q&A |
 | **Part 6** | Results tables + Q&A cheat sheet | Last-minute review |
+| **Part 7** | Per-fold LOSO table | If asked about fold variation |
 
 **Figures folder:** `figures/` (same folder as this project)
 - `eda_micro_distribution.png` · `eda_macro_distribution.png`
@@ -25,11 +27,34 @@
 
 ---
 
+# PART 0 — PROFESSOR'S DOUBTS: DIRECT ANSWERS TO DEFEND
+
+Use this section before rehearsing the slides. These are the short answers you can give first, then expand using the detailed slide notes later.
+
+| Doubt raised | Clear answer for the defense | Where it appears in this thesis/code |
+|---|---|---|
+| "Macro can be involuntary as well." | Correct. The clean distinction is **duration, intensity and spatial extent**, not simply voluntary vs involuntary. Macro-expressions can be spontaneous/involuntary too; they are usually larger and longer, while micro-expressions are brief, subtle and often appear during concealment. | Slide 2 and glossary wording updated. Stage 4 uses macro because it shares facial action units with micro, not because macro is always voluntary. |
+| "Can use videos instead of photos." | My pipeline **does use videos**, not still photos. Each clip becomes a 32-step motion volume `[3, 32, 224, 224]`. Papers such as STSTNet and "Less is More" show that onset-apex photos can work, but my choice preserves onset -> apex -> offset dynamics for a Transformer. | `TemporalInterpolator`, `FlowStrainExtractor`, `HybridMERModel`. |
+| "Think of edge detection in an image, trade time for space." | This is the preprocessing trade-off: compute expensive motion features once, save them as `.npy` tensors, then train from disk. Like saving Canny/edge maps, I spend disk space to avoid recomputing optical flow and strain every epoch. | Stage 1 saves `[3, 32, 224, 224]` float32 tensors. One tensor is about 18.4 MiB; 598 clips are roughly 11 GiB before filesystem overhead. |
+| "Stage 3 is not adversarial training." | It is **not GAN training** and not adversarial examples. The precise term is **GRL-based domain-adversarial representation learning** or **subject-invariant multi-objective training**. I should say: "the identity head and backbone are trained with opposing gradients via GRL." | Slide 3, Slide 9, glossary and Q&A wording updated. |
+| "If expressions are small, we are dealing with 10 fps." | At 10 fps, one frame is 100 ms. A micro-expression lasting 100-200 ms gives only 1-2 frames, so onset/apex/offset motion is nearly impossible to estimate. That is why high-speed datasets (CASME II 200 fps, DFME 200/300/500 fps) matter. CAS(ME)^2 at 30 fps is usable but weak: a 0.13-0.33 s clip has only 4-10 real frames. | Temporal interpolation limitation added to Slide 6 and Q&A. |
+| "Temporal interpolation is a problem because we dropped a lot of frames." | Yes. Interpolation standardizes length but does **not create new motion information**. High-FPS clips are downsampled, so some fine motion can be skipped; very short/low-FPS clips are upsampled, so duplicate frames can create near-zero optical flow. This likely explains part of the weak Positive/Surprise results. | `TemporalInterpolator.compute_indices()` uses `np.linspace(..., 33)` and permits duplicates for short clips. |
+| "Explain optical strain; read STSTNet." | Optical strain is computed from spatial gradients of optical flow: normal strain (`du/dx`, `dv/dy`) plus shear strain (`0.5(du/dy + dv/dx)`). It measures **skin deformation intensity**, not just direction. This follows Liong et al.'s STSTNet and optical strain papers. | `FlowStrainExtractor` implements `eps_xx`, `eps_yy`, `eps_xy`, then `sqrt(...)`. |
+| "Test Douglas' dataset. It beats CASME hands down." | I found no file named Douglas in the repo. The paper that matches this comment is likely **DFME: Dynamic Facial Micro-Expressions**. DFME is much larger than CASME II: **7,526 labeled ME videos, 671 participants, 200/300/500 fps**, compared with CASME II's 247 samples from 26 participants at 200 fps. This should be a future validation target. | Added to future work and Q&A as "DFME / professor's Douglas note". |
+| "Use a 5090 machine." | Current training was constrained by RTX 4060 8.6 GB, forcing batch size 2 and XBM. A 5090-class GPU would allow larger batch, higher resolution or longer sequences, fewer gradient accumulation compromises, and practical DFME testing. | Added to future work and Q&A. |
+
+**One-sentence defense summary:**  
+> "My implemented contribution is a video-based motion pipeline: EVM makes tiny motion visible, optical flow/strain converts frames into deformation maps, a shallow STSTNet-SimAM backbone extracts spatial motion, a Transformer reads the 32-step timeline, and GRL/SupCon/Focal losses make the representation emotion-discriminative and less subject-dependent; the main remaining weakness is temporal resampling and limited low-FPS/rare-class data, which DFME plus stronger hardware should address."
+
+---
+
 # PART 1 — THE WHOLE PROJECT EXPLAINED (LIKE YOU ARE 15)
 
 ## 1.1 What problem are we solving?
 
-Imagine someone is trying to **hide** how they feel — they keep a straight face — but for a split second their face "leaks" the truth. That tiny leak is a **micro-expression**. It lasts **less than half a second** (under 500 milliseconds). Police, psychologists, and security people care about these because they are hard to fake on purpose.
+Imagine someone is trying to **hide** how they feel — they keep a straight face — but for a split second their face "leaks" the truth. That tiny leak is a **micro-expression**. It lasts **less than half a second** (under 500 milliseconds). Police, psychologists, and security people care about these because they are hard to control on purpose.
+
+Important correction for the defense: a **macro-expression is not always voluntary**. A normal big smile or fear reaction can also be spontaneous. The key difference is that macro-expressions are usually **longer, stronger and visible across more of the face**, while micro-expressions are **shorter, weaker and more localized**.
 
 **Micro-Expression Recognition (MER)** = teaching a computer to watch a short face video and answer: *"Was that Positive, Negative, Surprise, or Other?"*
 
@@ -85,7 +110,7 @@ RAW FACE VIDEO
 └──────────────┬──────────────────────┘
                ▼
 ┌─────────────────────────────────────┐
-│ STAGE 3 — Smart Training (LOSO)     │
+│ STAGE 3 — Subject-Invariant Training│
 │ GRL = force model to forget identity│
 │ SupCon = cluster same emotions      │
 │ Focal Loss = don't ignore rare class│
@@ -168,6 +193,8 @@ Clips vary from **10 to 150 frames**. The Transformer needs fixed length.
 - Resize to **224 × 224** pixels.
 - Save as `.npy` files on disk.
 
+**Important limitation:** temporal interpolation standardizes the tensor shape; it does not create new information. If the original clip has many high-FPS frames, uniform sampling can drop some subtle motion. If the clip has very few frames, sampling to 33 can duplicate frames, which weakens optical flow. At **10 fps**, one frame is **100 ms**, so a 100-200 ms micro-expression may only contain 1-2 informative frames. This is why high-speed datasets and better temporal sampling around onset/apex/offset matter.
+
 ---
 
 ## 1.4 Stage 2 — Hybrid neural network (step by step)
@@ -191,6 +218,8 @@ Conv3D(1→16, kernel 1×3×3) → BatchNorm → ReLU → Dropout(0.3)
 ```
 
 **Why kernel `(1,3,3)`?** Look at space (3×3 patch) but **not time yet** — time is for the Transformer.
+
+**Edge-detection analogy:** Instead of asking the network to rediscover motion from raw RGB every epoch, Stage 1 precomputes "motion edges": optical flow and optical strain. This trades **space** for **time**. A saved tensor is about 18.4 MiB, but training becomes faster and more repeatable because flow/strain are not recomputed every epoch.
 
 **Output after concat:** `[B, 96, 32, 112, 112]`
 
@@ -322,8 +351,8 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 |---|---|
 | **MER** | Micro-Expression Recognition |
 | **FPS** | Frames per second — how fast the camera records |
-| **Macro-expression** | Normal, big, long expression |
-| **Micro-expression** | Tiny, fast (<500ms), involuntary leak |
+| **Macro-expression** | Normal, larger, longer expression; often controllable but can also be spontaneous/involuntary |
+| **Micro-expression** | Tiny, fast (<500ms), low-intensity expression, often linked to concealment |
 | **Overfitting** | Memorizing training data, failing on new data |
 | **Identity bias** | Model learns WHO the person is, not WHAT they feel |
 | **Tensor** | Multi-dimensional array of numbers; shape = sizes of each dimension |
@@ -349,7 +378,7 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 | **d_model** | Size of each token vector (96 here) |
 | **Head (network)** | Small output module for one task |
 | **GRL** | Gradient Reversal Layer — flips identity gradient sign |
-| **Adversarial training** | Two parts fight each other to improve generalization |
+| **GRL-based adversarial objective** | Not GANs/adversarial examples; the identity head and backbone receive opposing gradients |
 | **Domain / subject-invariant** | Features that don't reveal which person or dataset |
 | **SupCon** | Supervised Contrastive Loss — cluster same class |
 | **Contrastive learning** | Pull similar together, push different apart |
@@ -472,8 +501,8 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 ## SLIDE 2 — Motivation
 
 ### What's on screen (from your PPT)
-- Micro-expression: involuntary, < 500 ms, sub-pixel displacement
-- Macro-expression: voluntary, seconds long, large and visible
+- Micro-expression: usually involuntary/concealed, < 500 ms, sub-pixel displacement
+- Macro-expression: longer and larger; can be voluntary or spontaneous/involuntary
 - Problem 1: Data starvation (~250–300 clips → overfitting)
 - Problem 2: Identity bias ("who you are" stronger than "what you express")
 - Goal: spatiotemporally sensitive **and** subject-invariant
@@ -487,7 +516,9 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 ### Full speech script (~90 sec)
 > "Let me define the problem clearly.  
 >  
-> A **micro-expression** is involuntary — the person is not doing it on purpose. It lasts **under 500 milliseconds** and the muscle movement can be **sub-pixel**, meaning smaller than a single camera pixel. Compare that to a **macro-expression**, like a normal smile, which is voluntary, lasts seconds, and is easy to see.  
+> A **micro-expression** is a very brief, low-intensity facial movement. It usually appears when a person is suppressing or concealing emotion, so it is often described as involuntary. It lasts **under 500 milliseconds** and the muscle movement can be **sub-pixel**, meaning smaller than a single camera pixel.  
+>  
+> I should be careful with the comparison: a **macro-expression is not always voluntary**. A big smile, fear reaction, or surprise reaction can also happen spontaneously. The difference I rely on in this thesis is mainly **duration and intensity**: macro-expressions are longer, stronger, and easier to see; micro-expressions are shorter, weaker, and more localized.  
 >  
 > This creates **Problem 1: data starvation**. Because experts must label these clips frame by frame, datasets are tiny — only about 250 to 300 micro-expression videos. If we train a large deep network on that little data, it **overfits**: it memorizes the training faces instead of learning general rules about motion.  
 >  
@@ -505,7 +536,7 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 ### What's on screen (from your PPT)
 - Stage 1: Data Pipeline & Preprocessing
 - Stage 2: Hybrid Model Architecture
-- Stage 3: Adversarial Domain Adaptation Training (LOSO)
+- Stage 3: Subject-Invariant Multi-Objective Training (LOSO)
 - Stage 4: Macro-to-Micro Transfer Learning
 
 ### Full speech script (~60 sec)
@@ -515,7 +546,7 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 >  
 > **Stage 2** is the hybrid neural architecture: a small three-stream 3D convolutional network plus a Transformer, totaling only about 382 thousand parameters — deliberately tiny to avoid overfitting.  
 >  
-> **Stage 3** is where I train the model to be subject-invariant using adversarial learning with a Gradient Reversal Layer, supervised contrastive learning, and focal loss, evaluated with strict Leave-One-Subject-Out cross-validation.  
+> **Stage 3** is subject-invariant multi-objective training. To avoid confusion, this is **not** adversarial training in the GAN or adversarial-example sense. I use a **Gradient Reversal Layer**, where the identity head and the backbone receive opposing gradients, so the representation becomes less informative about subject identity. This is combined with supervised contrastive learning and focal loss, evaluated with strict Leave-One-Subject-Out cross-validation.  
 >  
 > **Stage 4** addresses data scarcity through transfer learning: pre-train on easier macro-expressions, then fine-tune on micro-expressions.  
 >  
@@ -577,19 +608,22 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 ## SLIDE 6 — Stage 1b: From pixels to motion (flow + strain)
 
 ### What's on screen (from your PPT)
-- Don't feed raw RGB → 3 motion channels: u, v, os
-- Farnebäck dense optical flow; Min-Max normalize
-- Interpolate to 33 frames → 32 pairs
-- Output: `[3, 32, 224, 224]` tensor saved as .npy
+- Do not feed raw RGB photos -> use video-derived motion channels: u, v, os
+- Farnebäck dense optical flow; optical strain from flow gradients
+- Interpolate/sample to 33 frames -> 32 consecutive pairs
+- Output: `[3, 32, 224, 224]` tensor saved as `.npy`
+- Limitation: interpolation standardizes length but cannot recover missing frames
 
 ### Full speech script (~90 sec)
-> "Even after EVM, raw colour pixels still encode **identity** — skin tone, bone structure. So I never feed RGB to the network. Instead I extract **three motion channels**, following the STSTNet paper by Liong et al., 2019.  
+> "Even after EVM, raw colour pixels still encode **identity** — skin tone, bone structure. So I do not train on static photos or raw RGB frames. My input is still **video-based**: every clip becomes a thirty-two-step motion volume. Instead of RGB, I extract **three motion channels**, following the STSTNet paper by Liong et al., 2019.  
 >  
 > **Channel zero** is **horizontal optical flow**, denoted u: at every pixel, how far did it move left or right between consecutive frames? **Channel one** is **vertical flow**, v: up and down movement, which captures things like an eyebrow raise or jaw drop. **Channel two** is **optical strain**, os: a measure of local skin **stretching and squeezing**, computed from the spatial gradients of the flow field. Strain captures deformation *intensity* regardless of direction — exactly what distinguishes a real expression from a neutral face.  
 >  
 > I compute flow using the **Farnebäck** dense optical flow algorithm, which gives a motion arrow at every pixel. Each channel is independently **Min-Max normalized to zero-one** so the strain channel, which has a different numeric range, does not dominate training.  
 >  
-> Because original clips range from ten to one hundred fifty frames, I use a **temporal interpolator** to resample every clip to **thirty-three frames**, producing **thirty-two consecutive frame pairs**. The final saved tensor per clip has shape **three by thirty-two by two-twenty-four by two-twenty-four**, stored as NumPy files on disk to speed up training."
+> Because original clips range from about ten to one hundred fifty frames, I use a **temporal interpolator** to sample every clip to **thirty-three frames**, producing **thirty-two consecutive frame pairs**. The final saved tensor per clip has shape **three by thirty-two by two-twenty-four by two-twenty-four**, stored as NumPy files on disk to speed up training.  
+>  
+> The honest limitation is that interpolation is not magic. If a high-FPS clip is downsampled, some fine temporal detail can be dropped. If a low-FPS or very short clip is upsampled, frames can repeat and produce near-zero optical flow. At 10 fps, one frame is 100 milliseconds, so a 100-200 millisecond micro-expression may only have one or two useful frames. This is why high-speed datasets like CASME II and especially DFME are important."
 
 ### Transition
 → "Those motion tensors now enter the neural network."
@@ -644,12 +678,13 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 
 ---
 
-## SLIDE 9 — Stage 3a: Forgetting identity (GRL)
+## SLIDE 9 — Stage 3a: Subject-invariant training (GRL)
 
 ### What's on screen (from your PPT)
 - Three heads: Emotion (4 classes) · Projection (64-d) · Identity (26 subjects)
 - GRL: forward = identity; backward = flip gradient × −λ
 - λ ramps 0→1 via sigmoid (γ=10)
+- Not GAN training; not adversarial examples
 
 ### Full speech script (~90 sec)
 > "This slide is the conceptual heart of the thesis.  
@@ -658,7 +693,7 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 >  
 > Here is the trick: I insert a **Gradient Reversal Layer** immediately before the identity head. During the **forward pass**, the GRL does nothing — features flow through unchanged so the identity head can attempt its prediction. During **back-propagation**, when the network updates its weights, the GRL **multiplies the identity gradient by negative lambda**.  
 >  
-> So while the identity head tries to get *better* at recognizing people, the reversed gradient pushes the backbone to get *worse* at it — to actively **destroy identity information** in the features. They are adversaries. I ramp lambda smoothly from zero to one using a sigmoid schedule with gamma equals ten, so the model first learns basic motion patterns before the identity erasure kicks in fully. This technique comes from Ganin and Lempitsky's Domain-Adversarial Training, 2016 — except I treat **people as domains** rather than datasets."
+> So while the identity head tries to get *better* at recognizing people, the reversed gradient pushes the backbone to get *worse* at it — to actively **destroy identity information** in the features. This is why I call it **domain-adversarial representation learning**, not GAN training and not adversarial examples. I ramp lambda smoothly from zero to one using a sigmoid schedule with gamma equals ten, so the model first learns basic motion patterns before the identity erasure kicks in fully. This technique comes from Ganin and Lempitsky's Domain-Adversarial Training, 2016 — except I treat **people as domains** rather than datasets."
 
 ### Transition
 → "Identity erasure alone is not enough; I also need clean emotion clusters and a way to train on a tiny GPU."
@@ -727,7 +762,7 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 ## SLIDE 12 — Stage 4: Macro-to-micro transfer learning
 
 ### What's on screen (from your PPT)
-- Macro = same muscles, bigger motion → learn facial physics first
+- Macro = same facial action units, bigger/longer motion -> learn facial physics first
 - Phase 1: adversary OFF → 70.37%
 - Transfer 101/103 tensors; reinit identity head (20→26)
 - Phase 2: adversary ON, LR 5e-5 → 37.78%
@@ -746,11 +781,11 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 ### Full speech script (~90 sec)
 > "Stage 4 addresses **data scarcity** through **transfer learning**.  
 >  
-> The idea is simple: **macro-expressions** use the same facial action units as micro-expressions, but with **larger, easier-to-see muscle displacements**. So I first **pre-train** the full architecture on macro clips from CAS(ME)² with the identity adversary **turned off** — I want the model to freely learn general facial motion mechanics. Phase 1 reaches **70.37 percent validation accuracy** in about 141 minutes.  
+> The idea is simple: **macro-expressions** and micro-expressions use many of the same facial action units, but macro-expression motion is usually **larger, longer, and easier to see**. I am not claiming macro-expressions are always voluntary; they can also be spontaneous. I use them because they provide a stronger training signal for the same facial muscles. So I first **pre-train** the full architecture on macro clips from CAS(ME)² with the identity objective **turned off** — I want the model to freely learn general facial motion mechanics. Phase 1 reaches **70.37 percent validation accuracy** in about 141 minutes.  
 >  
 > I then **transfer weights** to a micro-expression model. **101 of 103 parameter tensors** load successfully. The only ones skipped are the **identity head**, because the number of subjects changes from twenty to twenty-six, so that layer must be re-initialized.  
 >  
-> Phase 2 **fine-tunes** on micro-expressions with the adversary **turned on** at weight 0.4 and a **smaller learning rate** of five times ten to the minus five, so I gently adapt without destroying the macro knowledge. This runs for 150 epochs, about six hours, reaching **37.78 percent validation accuracy**.  
+> Phase 2 **fine-tunes** on micro-expressions with the GRL identity objective **turned on** at weight 0.4 and a **smaller learning rate** of five times ten to the minus five, so I gently adapt without destroying the macro knowledge. This runs for 150 epochs, about six hours, reaching **37.78 percent validation accuracy**.  
 >  
 > As the training curves show, the contrastive loss stabilizes quickly around 4.17, while validation accuracy climbs and then plateaus — micro-expressions remain fundamentally harder."
 
@@ -821,13 +856,20 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 
 ### What's on screen (from your PPT)
 - References and Features Used (table — use Part 5 below on screen)
+- Visual examples to mention:
+  - STSTNet Fig. 1: onset/apex -> optical flow/strain -> shallow triple stream CNN
+  - "Less is More" Fig. 1: onset, apex, offset example frames
+  - DFME Fig. 1: same emotion as macro vs micro; micro has smaller arrows/intensity
+  - Your code: full 32-step tensor, not only onset/apex photos
 
 ### Full speech script (~90 sec)
 > "My work stands on eight core papers, each chosen for a specific reason.  
 >  
-> **Wu et al., 2012** gave me Eulerian Video Magnification to reveal sub-pixel motion. **Farnebäck, 2003** and **Liong et al., 2019 — STSTNet** gave me the three-channel optical flow and strain representation plus the shallow triple-stream CNN idea. **Yang et al., 2021 — SimAM** provided parameter-free attention. **Zhang et al., 2022 — SLSTT** and **Vaswani et al., 2017** gave me the temporal Transformer. **Ganin and Lempitsky, 2016** gave me the Gradient Reversal Layer for subject-invariance. **Khosla et al., 2020** and **Wang et al., 2020** gave me supervised contrastive learning and Cross-Batch Memory for training at batch size two. **Lin et al., 2017** gave me Focal Loss for class imbalance.  
+> **Wu et al., 2012** gave me Eulerian Video Magnification to reveal sub-pixel motion. **Bai et al., 2021** supports the idea that motion magnification can improve MER before temporal modelling. **Farnebäck, 2003** and **Liong et al., 2019 — STSTNet** gave me the three-channel optical flow and strain representation plus the shallow triple-stream CNN idea. The optical strain papers explain why deformation magnitude is useful: it detects local skin stretching and compression, not only direction.  
 >  
-> My contribution is not any single one of these blocks — it is the **integration**: the first micro-expression pipeline, in this combination, that simultaneously attacks data scarcity through EVM, motion representation, and macro-to-micro transfer, and attacks identity bias through adversarial training and contrastive learning — all in a model of only 382 thousand parameters, validated under twenty-six-fold leave-one-subject-out evaluation."
+> The **"Less is More"** apex-frame paper shows that onset-apex frame pairs can be highly informative. I use that insight, but I do not stop at two photos: my code keeps a thirty-two-step motion video tensor so the Transformer can learn onset-to-apex-to-offset dynamics. **Yang et al., 2021 — SimAM** provided parameter-free attention. **Zhang et al., 2022 — SLSTT** and **Vaswani et al., 2017** gave me the temporal Transformer. **Ganin and Lempitsky, 2016** gave me the Gradient Reversal Layer for subject-invariance. **Khosla et al., 2020** and **Wang et al., 2020** gave me supervised contrastive learning and Cross-Batch Memory for training at batch size two. **Lin et al., 2017** gave me Focal Loss for class imbalance.  
+>  
+> My contribution is not any single one of these blocks — it is the **integration**: a video-based micro-expression pipeline that simultaneously attacks data scarcity through EVM, motion representation, and macro-to-micro transfer, and attacks identity bias through GRL-based subject-invariant training and contrastive learning — all in a model of only 382 thousand parameters, validated under twenty-six-fold leave-one-subject-out evaluation."
 
 ### Transition
 → "Thank you."
@@ -838,9 +880,16 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 
 ### What's on screen (from your PPT)
 - **Thank you!**
+- Backup / future work if asked:
+  - Test on DFME ("Douglas" note): 7,526 ME videos, 671 participants, 200/300/500 fps
+  - Revisit temporal interpolation so low-FPS clips are not over-upsampled
+  - Train on RTX 5090-class GPU to increase batch size, sequence length, and DFME feasibility
 
 ### Full speech script (~15 sec)
 > "Thank you very much for your attention. I am happy to take your questions."
+
+### If the professor asks about future work
+> "The most important next step is external validation on DFME, which is much larger than CASME II and includes 200, 300 and 500 fps recordings. That would test whether the method generalizes beyond the small CASME-style datasets. I would also revise the temporal interpolation strategy: for high-FPS clips, preserve more key motion around onset-apex-offset; for low-FPS clips, avoid pretending duplicate frames add new information. A 5090-class machine would make this practical because the current RTX 4060 forced batch size two and heavy reliance on Cross-Batch Memory."
 
 ---
 
@@ -851,15 +900,30 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 | # | Technology | Paper | What I took from it |
 |---|---|---|---|
 | 1 | EVM | Wu et al., ACM TOG **2012** | Laplacian pyramid + FFT band-pass + amplify sub-pixel motion |
-| 2 | Optical flow | Farnebäck **2003** | Dense u and v channels between consecutive frames |
-| 3 | STSTNet | Liong et al., FG **2019** | 3-stream u/v/strain; shallow CNN; adapted to full 3D over 32 frames |
-| 4 | SimAM | Yang et al., ICML **2021** | Parameter-free 3D attention per stream |
-| 5 | SLSTT | Zhang et al., IEEE TAFFC **2022** | Sequence-level Transformer for temporal modeling |
-| 6 | Transformer PE | Vaswani et al., NeurIPS **2017** | Sinusoidal positional encoding |
-| 7 | DANN / GRL | Ganin & Lempitsky, JMLR **2016** | Subject-invariance (people as domains) |
-| 8 | SupCon | Khosla et al., NeurIPS **2020** | 64-d emotion clustering |
-| 9 | XBM | Wang et al., CVPR **2020** | Contrastive learning at batch=2 |
-| 10 | Focal Loss | Lin et al., ICCV **2017** | Class imbalance handling |
+| 2 | Motion magnification for MER | Bai et al., ICIP **2021** | Confirms magnifying subtle facial motion can improve MER before temporal learning |
+| 3 | Optical flow | Farnebäck **2003** | Dense u and v channels between consecutive frames |
+| 4 | Optical strain | Liong et al., **2014/2016** optical strain papers | Deformation magnitude from flow gradients; robust to small local skin movement |
+| 5 | STSTNet | Liong et al., FG **2019** | 3-stream u/v/strain; shallow CNN; adapted here to 32-frame video tensors |
+| 6 | Apex-frame evidence | Liong et al., **2018**, "Less is More" | Onset-apex pairs are informative; my code extends this to full video motion volumes |
+| 7 | SimAM | Yang et al., ICML **2021** | Parameter-free 3D attention per stream |
+| 8 | SLSTT | Zhang et al., IEEE TAFFC **2022** | Sequence-level Transformer for temporal modeling |
+| 9 | Transformer PE | Vaswani et al., NeurIPS **2017** | Sinusoidal positional encoding |
+| 10 | DANN / GRL | Ganin & Lempitsky, JMLR **2016** | Subject-invariance (people as domains), not GAN/adversarial examples |
+| 11 | SupCon | Khosla et al., NeurIPS **2020** | 64-d emotion clustering |
+| 12 | XBM | Wang et al., CVPR **2020** | Contrastive learning at batch=2 |
+| 13 | Focal Loss | Lin et al., ICCV **2017** | Class imbalance handling |
+| 14 | Macro-to-micro learning | Xia et al., ACM MM **2020** | Macro and micro share facial muscle patterns; macro can guide micro learning |
+| 15 | DFME benchmark | Zhao et al., IEEE TAFFC **2024** | Future validation dataset: 7,526 ME videos, 671 participants, 200/300/500 fps |
+
+## 5.1.1 Paper Figures And How To Explain Them
+
+| Paper figure/example | What it shows | How to compare it to my code |
+|---|---|---|
+| STSTNet Fig. 1 | Onset/apex frames -> optical flow/strain -> shallow triple-stream CNN | My code uses the same u/v/strain idea, but computes it over 32 consecutive frame pairs instead of one onset-apex pair. |
+| STSTNet equations for strain | `du/dx`, `dv/dy`, and shear terms measure deformation | `FlowStrainExtractor` implements the same idea with `eps_xx`, `eps_yy`, `eps_xy`, then stacks `[u, v, os]`. |
+| "Less is More" Fig. 1 | Onset, apex, offset frames; apex has highest motion intensity | I keep the whole temporal route to apex rather than only the apex photo, because the Transformer needs motion order. |
+| DFME Fig. 1 | Macro and micro with same emotion; micro arrows are shorter/weaker | This visually supports why macro pretraining can help, but why micro still needs high-FPS motion features. |
+| DFME dataset table | DFME is much larger than CASME II and uses 200/300/500 fps | Future work should test this pipeline on DFME with stronger hardware, rather than relying only on CASME II/CAS(ME)^2. |
 
 ## 5.2 Feature comparison — my thesis vs prior papers
 
@@ -870,7 +934,7 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 | 3D spatiotemporal CNN | ✅ | ⚠️ | ⚠️ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | SimAM attention | ✅ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✅ |
 | Transformer temporal model | ✅ | ✗ | ✅ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| Adversarial subject invariance | ✅ | ✗ | ✗ | ✗ | ✅ | ✗ | ✗ | ✗ | ✗ |
+| GRL subject invariance | ✅ | ✗ | ✗ | ✗ | ✅ | ✗ | ✗ | ✗ | ✗ |
 | SupCon + XBM | ✅ | ✗ | ✗ | ✗ | ✗ | ✅ | ✅ | ✗ | ✗ |
 | Focal Loss | ✅ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✅ | ✗ |
 | Macro→Micro transfer | ✅ | ✗ | ⚠️ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
@@ -887,6 +951,16 @@ L_total = 1.0 × L_SupCon + L_Focal(emotion) + 0.5 × L_Identity
 | Question | Answer |
 |---|---|
 | Why not use a big pretrained model (ViT, ResNet)? | Only ~598 clips → huge models overfit and memorize identity |
+| Are macro-expressions always voluntary? | No. Macro can also be spontaneous/involuntary. The useful distinction is duration/intensity: macro is larger and longer; micro is shorter, weaker and often concealed. |
+| Are you using photos or videos? | Videos. Each clip becomes a 32-step motion tensor. STSTNet/"Less is More" show onset-apex photos are informative, but my Transformer keeps temporal motion. |
+| Why not only use apex frames? | Apex frames reduce redundancy and work well in STSTNet/Bi-WOOF, but they discard temporal evolution. My method keeps onset-to-apex-to-offset motion so the Transformer can model sequence order. |
+| What is optical strain in one sentence? | It is the magnitude of local skin deformation computed from optical-flow gradients: normal strain plus shear strain. |
+| What is the edge-detection time/space analogy? | I precompute flow/strain tensors like saving edge maps: more disk space, less repeated computation during training. |
+| Is Stage 3 adversarial training? | Not in the GAN/adversarial-example sense. It is GRL-based subject-invariant training: the identity head learns subject labels while the backbone receives reversed gradients. |
+| Why is 10 fps a problem? | One frame is 100 ms. A 100-200 ms micro-expression gives only 1-2 frames, making optical flow and onset/apex/offset estimation unreliable. |
+| Why is temporal interpolation a weakness? | It fixes tensor length but cannot create missing motion. Downsampling high-FPS clips may drop subtle motion; upsampling short clips may duplicate frames and weaken optical flow. |
+| What is DFME / "Douglas" and why test it? | I found no repo file named Douglas; the likely target is DFME. It has 7,526 labeled ME videos from 671 participants at 200/300/500 fps, far larger than CASME II's 247 samples. |
+| Why mention a 5090 machine? | The RTX 4060 forced batch size 2. A 5090-class GPU would support larger batches, longer sequences, less XBM dependence, and realistic DFME experiments. |
 | Why is Macro-F1 much lower than accuracy? | Rare classes (Positive, Surprise) have ~45 and ~34 samples; macro-F1 penalizes that |
 | How do you *prove* identity was removed? | t-SNE mixing by subject + ~0% identity accuracy on unseen subjects |
 | Why batch size 2? | 5D tensor `[2,3,32,224,224]` maxes 8.6 GB VRAM; XBM + grad accum fix it |
