@@ -143,22 +143,24 @@ class TemporalInterpolator:
 
         # ── Read all frames into RAM (Avoid Seeking Bugs) ────────────
         all_frames: List[np.ndarray] = []
+        cv2.setNumThreads(0)
         
-        while True:
-            ret, frame = cap.read()
-            if not ret:
-                break
-                
-            # Preprocessing: Grayscale, resize, float32
-            gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            resized_frame = cv2.resize(
-                gray_frame,
-                (self._W, self._H),
-                interpolation=cv2.INTER_LINEAR,
-            )
-            all_frames.append(resized_frame.astype(np.float32))
-
-        cap.release()
+        try:
+            while True:
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                    
+                # Preprocessing: Grayscale, resize, float32
+                gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                resized_frame = cv2.resize(
+                    gray_frame,
+                    (self._W, self._H),
+                    interpolation=cv2.INTER_LINEAR,
+                )
+                all_frames.append(resized_frame.astype(np.float32))
+        finally:
+            cap.release()
 
         total_frames = len(all_frames)
         if total_frames == 0:
@@ -170,10 +172,6 @@ class TemporalInterpolator:
         indices = self.compute_indices(0, total_frames - 1)
         
         # ── Extract and Return ───────────────────────────────────────
-        selected_frames = []
-        for idx in indices:
-            # Bounds checking
-            clamped_idx = max(0, min(int(idx), total_frames - 1))
-            selected_frames.append(all_frames[clamped_idx])
-            
-        return np.stack(selected_frames, axis=0)
+        all_frames_np = np.stack(all_frames, axis=0)
+        clamped_indices = np.clip(indices, 0, total_frames - 1)
+        return all_frames_np[clamped_indices]

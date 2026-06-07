@@ -232,11 +232,12 @@ class AblationOrchestrator:
             logger=self._log,
             select_metric="f1",
         )
-        trainer.fit(train_loader, val_loader)
+        train_state = trainer.fit(train_loader, val_loader)
         trainer.load_best()
 
         _, y_true, y_pred = trainer.evaluate(val_loader)
-        return MetricsComputer.compute(y_true, y_pred, self.exp.num_classes)
+        result = MetricsComputer.compute(y_true, y_pred, self.exp.num_classes)
+        return result, train_state, model.describe_data_flow()
 
     # ── run one configuration (handles holdout vs LOSO) ────────────────────────
     def run_config(self, ablation: AblationConfig) -> Optional[EvalResult]:
@@ -254,23 +255,24 @@ class AblationOrchestrator:
 
         if self.exp.validation_protocol == "loso":
             fold_results: List[EvalResult] = []
+            train_state_final = None
+            data_flow_final = ""
             for sid, train_idx, val_idx in dataset.loso_folds():
                 self._log.info("  LOSO fold — held-out subject %s", sid)
-                fold_results.append(
-                    self._train_eval_split(ablation, dataset, train_idx, val_idx)
-                )
+                fold_res, train_state_final, data_flow_final = self._train_eval_split(ablation, dataset, train_idx, val_idx)
+                fold_results.append(fold_res)
             result = MetricsComputer.average_results(fold_results, self.exp.num_classes)
         else:  # holdout
             train_idx, val_idx = dataset.subject_disjoint_split(
                 self.exp.val_fraction, self.exp.seed,
             )
-            result = self._train_eval_split(ablation, dataset, train_idx, val_idx)
+            result, train_state_final, data_flow_final = self._train_eval_split(ablation, dataset, train_idx, val_idx)
 
         self._log.info("  RESULT %s → acc=%.4f | macroF1=%.4f",
                        ablation.name, result.accuracy, result.macro_f1)
 
         self.writer.save_config_result(
-            config_name=ablation.name,
+            config_name=ablation.folder_name,
             toggles={
                 "use_evm": ablation.use_evm,
                 "use_simam": ablation.use_simam,
@@ -278,6 +280,8 @@ class AblationOrchestrator:
                 "use_transformer": ablation.use_transformer,
             },
             result=result,
+            train_state=train_state_final,
+            data_flow=data_flow_final,
             extra={"phase": ablation.phase, "protocol": self.exp.validation_protocol},
         )
         return result

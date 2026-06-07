@@ -255,9 +255,9 @@ class STSTNetBackbone3D(nn.Module):
 
         # ── Step 1: Modality Split ──
         # Each slice: [B, 1, 32, 224, 224]
-        x_u  = x[:, 0:1, :, :, :]   # Horizontal optical flow
-        x_v  = x[:, 1:2, :, :, :]   # Vertical optical flow
-        x_os = x[:, 2:3, :, :, :]   # Optical strain
+        x_u  = x[:, 0:1, :, :, :].contiguous()   # Horizontal optical flow
+        x_v  = x[:, 1:2, :, :, :].contiguous()   # Vertical optical flow
+        x_os = x[:, 2:3, :, :, :].contiguous()   # Optical strain
 
         # ── Step 2: Independent 3D-CNN Feature Extraction ──
         feat_u  = self.stream_u(x_u)     # [B, 1, 32, 224, 224] → [B, 32, 32, 112, 112]

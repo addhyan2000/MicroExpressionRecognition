@@ -228,7 +228,7 @@ class HybridMERModel(nn.Module):
 
         # Permute to [B, T, d_model]: [B, 96, 32] → [B, 32, 96]
         # Now each of the 32 time steps has a 96-dimensional feature vector
-        features = features.permute(0, 2, 1)
+        features = features.permute(0, 2, 1).contiguous()
 
         # ── Step 4: Transformer Encoder ──
         # [B, 32, 96] → [B, 96]

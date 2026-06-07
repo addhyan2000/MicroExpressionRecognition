@@ -494,6 +494,29 @@ class AblationMERModel(nn.Module):
         trainable = sum(p.numel() for p in self.parameters() if p.requires_grad)
         return {"total": total, "trainable": trainable}
 
+    def describe_data_flow(self) -> str:
+        """Returns a multi-line string describing the tensor transformations."""
+        lines = []
+        lines.append("Stage A - Spatial Stem:")
+        if self.use_cnn:
+            lines.append("  [B, 3, 32, 224, 224] -> ThreeStreamCNNBackbone -> [B, 96, 32, 112, 112]")
+            if self.use_simam:
+                lines.append("  (SimAM attention applied internally to feature maps)")
+            lines.append("  [B, 96, 32, 112, 112] -> AdaptiveAvgPool3d(32, 1, 1) -> [B, 96, 32, 1, 1]")
+            lines.append("  [B, 96, 32, 1, 1] -> squeeze & permute -> [B, 32, 96]")
+        else:
+            lines.append(f"  [B, 3, 32, 224, 224] -> RawPatchEmbedding -> [B, 32, {self.d_model}]")
+        
+        lines.append("Stage B - Temporal Encoder:")
+        if self.use_transformer:
+            lines.append(f"  [B, 32, {self.d_model}] -> SLSTTTransformer -> [B, {self.d_model}]")
+        else:
+            lines.append(f"  [B, 32, {self.d_model}] -> TemporalPooling -> [B, {self.d_model}]")
+            
+        lines.append("Stage C - Classifier Head:")
+        lines.append(f"  [B, {self.d_model}] -> LayerNorm -> Dropout -> Linear -> [B, num_classes]")
+        return "\n".join(lines)
+
 
 def build_model(ablation, exp) -> AblationMERModel:
     """

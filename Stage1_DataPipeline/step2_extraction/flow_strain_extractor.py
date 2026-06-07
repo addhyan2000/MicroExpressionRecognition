@@ -143,15 +143,17 @@ class FlowStrainExtractor:
 
         T = L - 1  # Number of frame pairs
 
+        # ── Pre-convert to uint8 once for memory efficiency ──
+        frames_uint8 = frames.astype(np.uint8)
+
         # ── Pre-allocate output arrays ──────────────────────────────
         u_seq = np.zeros((T, H, W), dtype=np.float32)
         v_seq = np.zeros((T, H, W), dtype=np.float32)
-        os_seq = np.zeros((T, H, W), dtype=np.float32)
 
-        # ── Compute flow + strain for each consecutive pair ─────────
+        # ── Compute flow for each consecutive pair ─────────
         for t in range(T):
-            frame_prev = frames[t].astype(np.uint8)
-            frame_curr = frames[t + 1].astype(np.uint8)
+            frame_prev = frames_uint8[t]
+            frame_curr = frames_uint8[t + 1]
 
             # ── Farnebäck dense optical flow ────────────────────────
             flow = cv2.calcOpticalFlowFarneback(
@@ -162,35 +164,28 @@ class FlowStrainExtractor:
             )
             # flow shape: (H, W, 2) — channel 0 = u (horiz), 1 = v (vert)
 
-            u = flow[:, :, 0]   # Horizontal displacement
-            v = flow[:, :, 1]   # Vertical displacement
+            u_seq[t] = flow[:, :, 0]   # Horizontal displacement
+            v_seq[t] = flow[:, :, 1]   # Vertical displacement
 
-            # ── Optical Strain computation ──────────────────────────
-            #
-            #  ε_xx = ∂u/∂x       (horizontal normal strain)
-            #  ε_yy = ∂v/∂y       (vertical normal strain)
-            #  ε_xy = ½(∂u/∂y + ∂v/∂x)   (shear strain)
-            #
-            #  Magnitude: os = √(ε_xx² + ε_yy² + ε_xy²)
-            #
-            #  np.gradient returns gradient along each axis:
-            #    np.gradient(u) returns [∂u/∂y, ∂u/∂x] for a 2D array
-            #    (axis 0 = rows = y, axis 1 = cols = x)
-            # ────────────────────────────────────────────────────────
-            du_dy, du_dx = np.gradient(u)
-            dv_dy, dv_dx = np.gradient(v)
+        # ── Vectorized Optical Strain computation ──────────────────────────
+        #
+        #  Compute gradients across the whole spatial-temporal volume.
+        #  np.gradient on (T, H, W) arrays returns [∂/∂T, ∂/∂H, ∂/∂W].
+        #  We only need spatial gradients: ∂/∂y (axis 1) and ∂/∂x (axis 2).
+        # ────────────────────────────────────────────────────────
+        _, du_dy, du_dx = np.gradient(u_seq)
+        _, dv_dy, dv_dx = np.gradient(v_seq)
 
-            eps_xx = du_dx
-            eps_yy = dv_dy
-            eps_xy = 0.5 * (du_dy + dv_dx)
+        eps_xx = du_dx
+        eps_yy = dv_dy
+        eps_xy = 0.5 * (du_dy + dv_dx)
 
-            strain_magnitude = np.sqrt(
-                eps_xx ** 2 + eps_yy ** 2 + eps_xy ** 2
-            )
+        os_seq = np.sqrt(eps_xx ** 2 + eps_yy ** 2 + eps_xy ** 2)
 
-            u_seq[t] = u
-            v_seq[t] = v
-            os_seq[t] = strain_magnitude
+        # ── Memory cleanup ─────────────────────────────────────────────────
+        del du_dy, du_dx, dv_dy, dv_dx, eps_xx, eps_yy, eps_xy, frames_uint8
+        import gc
+        gc.collect()
 
         # ── Min-Max Normalization per channel ───────────────────────
         #
@@ -207,10 +202,10 @@ class FlowStrainExtractor:
         v_norm = self._minmax_normalize(v_seq)
         os_norm = self._minmax_normalize(os_seq)
 
-        # ── Stack into (3, T, H, W) ────────────────────────────────
+        # ── Stack into (3, T, H, W) and ensure contiguity ──────────
         tensor = np.stack([u_norm, v_norm, os_norm], axis=0)
 
-        return tensor
+        return np.ascontiguousarray(tensor)
 
     # ─────────────────────────────────────────────────────────────────
     #  Private Helpers

@@ -195,13 +195,15 @@ class ResultWriter:
         config_name: str,
         toggles: Dict[str, bool],
         result: EvalResult,
+        train_state=None,
+        data_flow: str = "",
         extra: Optional[Dict] = None,
     ) -> Path:
-        """Write per-config JSON + confusion matrix and append to summary CSV."""
+        """Write per-config artefacts and append to summary CSV."""
         cfg_dir = self.output_root / config_name
         cfg_dir.mkdir(parents=True, exist_ok=True)
 
-        # ── Full metrics JSON ──
+        # ── 1. Final Results JSON ──
         payload = {
             "config_name": config_name,
             "toggles": toggles,
@@ -210,15 +212,52 @@ class ResultWriter:
         }
         if extra:
             payload["extra"] = extra
-        (cfg_dir / "metrics.json").write_text(json.dumps(payload, indent=2))
+        (cfg_dir / "final_results.json").write_text(json.dumps(payload, indent=2))
 
-        # ── Confusion matrix artefacts ──
+        # ── 2. Confusion matrix artefacts ──
         cm = np.asarray(result.confusion_matrix, dtype=int)
         np.save(cfg_dir / "confusion_matrix.npy", cm)
         self._maybe_save_cm_png(cm, cfg_dir / "confusion_matrix.png", config_name)
 
-        # ── Append to master summary ──
+        # ── 3. Append to master summary ──
         self._append_summary(config_name, toggles, result)
+
+        if train_state is not None:
+            # ── 4. Training Metrics CSV ──
+            if train_state.epoch_metrics:
+                import csv
+                csv_path = cfg_dir / "training_metrics.csv"
+                with csv_path.open("w", newline="") as fh:
+                    writer = csv.DictWriter(fh, fieldnames=["epoch", "train_loss", "val_loss", "val_acc", "val_f1", "duration_sec"])
+                    writer.writeheader()
+                    writer.writerows(train_state.epoch_metrics)
+
+            # ── 5. Checkpoint ──
+            if train_state.best_state_dict is not None:
+                chk_dir = cfg_dir / "checkpoints"
+                chk_dir.mkdir(exist_ok=True)
+                import torch
+                torch.save(train_state.best_state_dict, chk_dir / "best_model.pth")
+
+            # ── 6. Configuration Summary TXT ──
+            summary_lines = [
+                f"Configuration: {config_name}",
+                "=" * 40,
+                "",
+                "Toggles:",
+            ]
+            for k, v in toggles.items():
+                summary_lines.append(f"  {k}: {v}")
+            summary_lines.append("")
+            summary_lines.append("Hardware Metrics:")
+            summary_lines.append(f"  Total Train Time: {train_state.total_train_time_sec:.2f} seconds")
+            summary_lines.append(f"  Peak VRAM: {train_state.peak_vram_mb:.1f} MB")
+            summary_lines.append("")
+            summary_lines.append("Data Flow:")
+            summary_lines.append(data_flow)
+            
+            (cfg_dir / "configuration_summary.txt").write_text("\n".join(summary_lines))
+
         return cfg_dir
 
     def _append_summary(self, config_name: str, toggles: Dict[str, bool], result: EvalResult) -> None:

@@ -106,14 +106,15 @@ class SimAM3D(nn.Module):
         # ── Step 1: Squared deviation from spatial mean ──
         # Mean computed over spatio-temporal dims (D=2, H=3, W=4)
         # x_minus_mu_sq shape: [B, C, D, H, W]
-        x_minus_mu_sq = (x - x.mean(dim=[2, 3, 4], keepdim=True)).pow(2)
+        x_minus_mu_sq = (x - x.mean(dim=[2, 3, 4], keepdim=True)).pow(2).contiguous()
 
         # ── Step 2: Compute energy score ──
         # Numerator:   (x - μ)²                          → [B, C, D, H, W]
         # Denominator: 4 · (variance_estimate + λ)       → [B, C, 1, 1, 1]
         # Energy:      neuron-level scalar                → [B, C, D, H, W]
         variance_estimate = x_minus_mu_sq.sum(dim=[2, 3, 4], keepdim=True) / n
-        energy = x_minus_mu_sq / (4 * (variance_estimate + self.e_lambda)) + 0.5
+        denom = torch.clamp(4 * (variance_estimate + self.e_lambda), min=1e-7)
+        energy = x_minus_mu_sq / denom + 0.5
 
         # ── Step 3: Sigmoid-gated attention ──
         # Neurons with higher energy (further from mean) get higher weight

@@ -150,9 +150,17 @@ class EulerianMagnifier:
             current = self._upsample(current, level_tensor.shape)
             current = current + level_tensor + magnified_motion
             
+            # Free memory
+            del level_tensor, fft_tensor, magnified_motion
+            gc.collect()
+            
+        # Free unused pyramid levels mapping
+        del pyramid
+        
         # Discard transient padding mapping back safely guaranteeing unharmed vector features!
         result = current[:, :H, :W, :]
-        return np.clip(result, 0, 255).astype(np.uint8)
+        np.clip(result, 0, 255, out=result)
+        return result.astype(np.uint8)
 
 
 class ImageSequenceOrchestrator:
@@ -179,7 +187,8 @@ class ImageSequenceOrchestrator:
             frame = cv2.imread(img_path)
             if frame is None:
                 raise IOError(f"Failed opening physical image trace: {img_path}")
-            frames.append(frame)
+            # Ensure memory contiguous arrays from cv2
+            frames.append(np.ascontiguousarray(frame))
         return np.array(frames, dtype=np.float32)
 
     def _write_video(self, tensor: np.ndarray, path: str):
@@ -187,9 +196,15 @@ class ImageSequenceOrchestrator:
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
         out = cv2.VideoWriter(path, fourcc, float(self.magnifier.fps), (W, H))
         
-        for i in range(T):
-            out.write(tensor[i])
-        out.release()
+        if not out.isOpened():
+            logger.error(f"Failed to open video writer for {path}")
+            return
+            
+        try:
+            for i in range(T):
+                out.write(tensor[i])
+        finally:
+            out.release()
         
     def process_directory(self):
         """

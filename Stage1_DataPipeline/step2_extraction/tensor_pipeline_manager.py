@@ -86,6 +86,11 @@ def process_video_worker(row: Dict[str, Any], tensors_dir_str: str) -> Dict[str,
         out_path = Path(tensors_dir_str) / out_filename
         np.save(str(out_path), tensor)
 
+        del frames
+        del tensor
+        import gc
+        gc.collect()
+
         return {
             "status": "success",
             "dataset": dataset,
@@ -95,6 +100,8 @@ def process_video_worker(row: Dict[str, Any], tensors_dir_str: str) -> Dict[str,
 
     except Exception as exc:
         err_msg = f"{type(exc).__name__}: {str(exc)}\n{traceback.format_exc()}"
+        import gc
+        gc.collect()
         return {"status": "error", "dataset": dataset, "video_id": video_id, "error": err_msg}
 
 

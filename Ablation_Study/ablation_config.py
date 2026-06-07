@@ -107,6 +107,12 @@ class AblationConfig:
             tag(self.use_transformer, "SLSTT"),
         ])
 
+    @property
+    def folder_name(self) -> str:
+        def tag(flag: bool, label: str) -> str:
+            return f"WITH_{label}" if flag else f"no_{label}"
+        return f"{self.name}__{tag(self.use_evm, 'evm')}__{tag(self.use_simam, 'simam')}__{tag(self.use_cnn, '3dcnn')}__{tag(self.use_transformer, 'transformer')}"
+
     # ── Validity guard: SimAM has no meaning without a CNN feature map ──
     def is_valid(self) -> bool:
         """
@@ -236,23 +242,31 @@ class ExperimentConfig:
 # 4.  THE 8-CELL ABLATION MATRIX (Phases I–IV from the thesis brief).
 # ─────────────────────────────────────────────────────────────────────────────
 # Each row is (name, phase, EVM, SimAM, CNN, Transformer).
-ABLATION_MATRIX: List[AblationConfig] = [
-    # ── Phase I: Baselines & raw components ──
+_ORIGINAL_MATRIX = [
     AblationConfig("config_1_pure_base",        "I",   False, False, False, False),
     AblationConfig("config_2_temporal_only",    "I",   False, False, False, True),
     AblationConfig("config_3_spatial_only",     "I",   False, False, True,  False),
-
-    # ── Phase II: Preprocessing & attention additions ──
     AblationConfig("config_4_motion_amp_base",  "II",  True,  False, False, False),
     AblationConfig("config_5_attention_base",   "II",  False, True,  True,  False),
-
-    # ── Phase III: Compound combinations ──
     AblationConfig("config_6_full_stage2_noevm","III", False, True,  True,  True),
     AblationConfig("config_7_full_no_attention","III", True,  False, True,  True),
-
-    # ── Phase IV: The complete unified model ──
     AblationConfig("config_8_proposed_unified", "IV",  True,  True,  True,  True),
 ]
+
+_known_configs = {(c.use_evm, c.use_simam, c.use_cnn, c.use_transformer): c for c in _ORIGINAL_MATRIX}
+
+import itertools
+
+ABLATION_MATRIX: List[AblationConfig] = []
+_config_idx = 9
+for evm, simam, cnn, trans in itertools.product([False, True], repeat=4):
+    key = (evm, simam, cnn, trans)
+    if key in _known_configs:
+        ABLATION_MATRIX.append(_known_configs[key])
+    else:
+        name = f"config_{_config_idx}_permutation"
+        _config_idx += 1
+        ABLATION_MATRIX.append(AblationConfig(name, "Other", evm, simam, cnn, trans))
 
 
 def get_ablation_matrix() -> List[AblationConfig]:

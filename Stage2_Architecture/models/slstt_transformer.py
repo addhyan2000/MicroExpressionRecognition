@@ -180,6 +180,7 @@ class SLSTTTransformer(nn.Module):
             encoder_layer=encoder_layer,
             num_layers=num_layers,
             norm=nn.LayerNorm(d_model),   # Final LayerNorm after all layers
+            enable_nested_tensor=False,   # AMP compatibility
         )
 
         # ── Optional CLS token (only used if pool_strategy == "cls") ──

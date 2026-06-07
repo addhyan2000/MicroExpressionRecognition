@@ -34,11 +34,14 @@ from torch.utils.data import DataLoader
 
 @dataclass
 class TrainState:
-    """Lightweight record of the best validation epoch."""
+    """Lightweight record of the best validation epoch and training statistics."""
     best_val_acc: float = 0.0
     best_val_f1: float = 0.0
     best_epoch: int = -1
     best_state_dict: Optional[dict] = None
+    epoch_metrics: List[dict] = field(default_factory=list)
+    total_train_time_sec: float = 0.0
+    peak_vram_mb: float = 0.0
 
 
 class AblationTrainer:
@@ -99,7 +102,14 @@ class AblationTrainer:
     # ────────────────────────────────────────────────────────────────────────
     def fit(self, train_loader: DataLoader, val_loader: DataLoader) -> TrainState:
         """Run the full training loop, tracking the best validation checkpoint."""
+        import time
+        start_time = time.time()
+        
+        if self.device.type == "cuda":
+            torch.cuda.reset_peak_memory_stats()
+            
         for epoch in range(1, self.num_epochs + 1):
+            epoch_start = time.time()
             train_loss = self._train_one_epoch(train_loader)
 
             val_loss, y_true, y_pred = self.evaluate(val_loader)
@@ -109,9 +119,20 @@ class AblationTrainer:
             if self.scheduler is not None:
                 self.scheduler.step()
 
+            epoch_time = time.time() - epoch_start
+
+            self.state.epoch_metrics.append({
+                "epoch": epoch,
+                "train_loss": train_loss,
+                "val_loss": val_loss,
+                "val_acc": val_acc,
+                "val_f1": val_f1,
+                "duration_sec": epoch_time
+            })
+
             self._log.info(
-                "epoch %3d/%d | train_loss=%.4f | val_loss=%.4f | val_acc=%.4f | val_macroF1=%.4f",
-                epoch, self.num_epochs, train_loss, val_loss, val_acc, val_f1,
+                "epoch %3d/%d | train_loss=%.4f | val_loss=%.4f | val_acc=%.4f | val_macroF1=%.4f | time=%.1fs",
+                epoch, self.num_epochs, train_loss, val_loss, val_acc, val_f1, epoch_time
             )
 
             score = val_f1 if self.select_metric == "f1" else val_acc
@@ -125,9 +146,13 @@ class AblationTrainer:
                     k: v.detach().cpu().clone() for k, v in self.model.state_dict().items()
                 }
 
+        self.state.total_train_time_sec = time.time() - start_time
+        if self.device.type == "cuda":
+            self.state.peak_vram_mb = torch.cuda.max_memory_allocated() / (1024 * 1024)
+
         self._log.info(
-            "Best epoch %d → val_acc=%.4f | val_macroF1=%.4f",
-            self.state.best_epoch, self.state.best_val_acc, self.state.best_val_f1,
+            "Best epoch %d → val_acc=%.4f | val_macroF1=%.4f | Peak VRAM: %.1f MB",
+            self.state.best_epoch, self.state.best_val_acc, self.state.best_val_f1, self.state.peak_vram_mb
         )
         return self.state
 
@@ -147,6 +172,19 @@ class AblationTrainer:
             self.scaler.scale(loss).backward()
             if self.gradient_clip_norm is not None:
                 self.scaler.unscale_(self.optimizer)
+                
+                # Check for NaN gradients before stepping
+                has_nan = False
+                for p in self.model.parameters():
+                    if p.grad is not None and not torch.isfinite(p.grad).all():
+                        has_nan = True
+                        break
+                        
+                if has_nan:
+                    self._log.warning("NaN gradient detected! Skipping optimizer step.")
+                    self.optimizer.zero_grad(set_to_none=True)
+                    continue
+                    
                 nn.utils.clip_grad_norm_(self.model.parameters(), self.gradient_clip_norm)
             self.scaler.step(self.optimizer)
             self.scaler.update()
