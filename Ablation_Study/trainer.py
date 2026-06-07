@@ -151,7 +151,7 @@ class AblationTrainer:
             self.state.peak_vram_mb = torch.cuda.max_memory_allocated() / (1024 * 1024)
 
         self._log.info(
-            "Best epoch %d → val_acc=%.4f | val_macroF1=%.4f | Peak VRAM: %.1f MB",
+            "Best epoch %d -> val_acc=%.4f | val_macroF1=%.4f | Peak VRAM: %.1f MB",
             self.state.best_epoch, self.state.best_val_acc, self.state.best_val_f1, self.state.peak_vram_mb
         )
         return self.state

@@ -134,12 +134,12 @@ class MERAblationDataset(Dataset):
         # ── Single-dataset focus (abstracts away multi-dataset unification) ──
         if self._dataset_filter is not None:
             df = df[df[COL_DATASET] == self._dataset_filter].copy()
-            self._log.info("Dataset filter '%s' → %d rows", self._dataset_filter, len(df))
+            self._log.info("Dataset filter '%s' -> %d rows", self._dataset_filter, len(df))
 
         # ── Expression-type focus (micro vs macro) ──
         if self._expression_filter is not None:
             df = df[df[COL_EXPRESSION_TYPE] == self._expression_filter].copy()
-            self._log.info("Expression filter '%s' → %d rows", self._expression_filter, len(df))
+            self._log.info("Expression filter '%s' -> %d rows", self._expression_filter, len(df))
 
         df.reset_index(drop=True, inplace=True)
         if len(df) == 0:

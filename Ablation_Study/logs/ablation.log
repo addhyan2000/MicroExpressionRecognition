@@ -54,3 +54,113 @@
 01:28:20 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
 01:28:20 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
 01:28:20 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': False, 'transformer': False} | trainable_params=15027
+01:29:21 | AblationOrchestrator | epoch   1/1 | train_loss=1.4428 | val_loss=0.5947 | val_acc=0.7500 | val_macroF1=0.2857 | time=61.7s
+01:29:28 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:29:28 | AblationOrchestrator | CONFIG config_7_full_no_attention [phase III] | +EVM -SimAM +CNN3D +SLSTT
+01:29:28 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+01:29:28 | AblationOrchestrator | Loaded CSV: 612 rows
+01:29:28 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:29:28 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+01:29:28 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': False, 'transformer': True} | trainable_params=363763
+01:30:21 | AblationOrchestrator | epoch   1/1 | train_loss=0.9061 | val_loss=1.7053 | val_acc=0.2500 | val_macroF1=0.1333 | time=53.2s
+01:30:27 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:30:27 | AblationOrchestrator | CONFIG config_14_permutation [phase Other] | +EVM +SimAM -CNN3D -SLSTT
+01:30:27 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+01:30:27 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:30:27 | AblationOrchestrator | CONFIG config_15_permutation [phase Other] | +EVM +SimAM -CNN3D +SLSTT
+01:30:27 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+01:30:27 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:30:27 | AblationOrchestrator | CONFIG config_16_permutation [phase Other] | +EVM +SimAM +CNN3D -SLSTT
+01:30:27 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+01:30:27 | AblationOrchestrator | Loaded CSV: 612 rows
+01:30:27 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:30:27 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+01:30:27 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': True, 'transformer': False} | trainable_params=15027
+01:30:33 | AblationOrchestrator |   CONFIG config_16_permutation failed: CUDA out of memory. Tried to allocate 196.00 MiB. GPU 0 has a total capacity of 8.00 GiB of which 0 bytes is free. Of the allocated memory 14.44 GiB is allocated by PyTorch, and 7.67 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 303, in run_matrix
+    self.run_config(ablation)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 269, in run_config
+    result, train_state_final, data_flow_final = self._train_eval_split(ablation, dataset, train_idx, val_idx)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 235, in _train_eval_split
+    train_state = trainer.fit(train_loader, val_loader)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\trainer.py", line 113, in fit
+    train_loss = self._train_one_epoch(train_loader)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\trainer.py", line 169, in _train_one_epoch
+    logits = self.model(tensors)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 476, in forward
+    seq = self._to_sequence(x)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 464, in _to_sequence
+    feats = self.backbone(x)              # [B, 96, T, 112, 112]
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 189, in forward
+    feat_os = self.simam_os(feat_os)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 87, in forward
+    return x * self.sigmoid(energy)
+           ~~^~~~~~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 196.00 MiB. GPU 0 has a total capacity of 8.00 GiB of which 0 bytes is free. Of the allocated memory 14.44 GiB is allocated by PyTorch, and 7.67 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+01:30:33 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:30:33 | AblationOrchestrator | CONFIG config_8_proposed_unified [phase IV] | +EVM +SimAM +CNN3D +SLSTT
+01:30:33 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+01:30:33 | AblationOrchestrator | Loaded CSV: 612 rows
+01:30:33 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:30:33 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+01:30:33 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': True, 'transformer': True} | trainable_params=363763
+01:30:34 | AblationOrchestrator |   CONFIG config_8_proposed_unified failed: CUDA out of memory. Tried to allocate 196.00 MiB. GPU 0 has a total capacity of 8.00 GiB of which 0 bytes is free. Of the allocated memory 14.45 GiB is allocated by PyTorch, and 6.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 303, in run_matrix
+    self.run_config(ablation)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 269, in run_config
+    result, train_state_final, data_flow_final = self._train_eval_split(ablation, dataset, train_idx, val_idx)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 235, in _train_eval_split
+    train_state = trainer.fit(train_loader, val_loader)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\trainer.py", line 113, in fit
+    train_loss = self._train_one_epoch(train_loader)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\trainer.py", line 169, in _train_one_epoch
+    logits = self.model(tensors)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 476, in forward
+    seq = self._to_sequence(x)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 464, in _to_sequence
+    feats = self.backbone(x)              # [B, 96, T, 112, 112]
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 189, in forward
+    feat_os = self.simam_os(feat_os)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\venv\Lib\site-packages\torch\nn\modules\module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\models.py", line 87, in forward
+    return x * self.sigmoid(energy)
+           ~~^~~~~~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 196.00 MiB. GPU 0 has a total capacity of 8.00 GiB of which 0 bytes is free. Of the allocated memory 14.45 GiB is allocated by PyTorch, and 6.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+01:30:34 | AblationOrchestrator | ==============================================================================
+01:30:34 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+01:30:34 | AblationOrchestrator | ==============================================================================

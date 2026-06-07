@@ -268,7 +268,7 @@ class AblationOrchestrator:
             )
             result, train_state_final, data_flow_final = self._train_eval_split(ablation, dataset, train_idx, val_idx)
 
-        self._log.info("  RESULT %s → acc=%.4f | macroF1=%.4f",
+        self._log.info("  RESULT %s -> acc=%.4f | macroF1=%.4f",
                        ablation.name, result.accuracy, result.macro_f1)
 
         self.writer.save_config_result(
