@@ -325,7 +325,7 @@ Spotting results were very low, showing spotting remains much harder than recogn
 - Recognition leaderboard table
 - Spotting evaluation table
 
-### Conclusion and limitations
+### Conclusion and limitations  
 
 Composite recognition improved, but spotting remained unsolved. Optical flow and apex-frame methods dominated strong submissions.
 
