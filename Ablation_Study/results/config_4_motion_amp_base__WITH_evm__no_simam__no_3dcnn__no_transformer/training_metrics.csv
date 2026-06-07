@@ -1,0 +1,2 @@
+epoch,train_loss,val_loss,val_acc,val_f1,duration_sec
+1,0.9201095998287201,2.368481159210205,0.0,0.0,1.4966325759887695

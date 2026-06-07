@@ -579,6 +579,6 @@ if __name__ == "__main__":
         params = model.count_parameters()["trainable"]
         tag = f"SimAM={int(use_simam)} CNN={int(use_cnn)} SLSTT={int(use_transformer)}"
         assert out.shape == (2, 3), f"{tag}: bad output {tuple(out.shape)}"
-        print(f"  {tag:<30} → out {tuple(out.shape)} | params {params:,}")
+        print(f"  {tag:<30} -> out {tuple(out.shape)} | params {params:,}")
 
-    print("\n✓ All valid toggle combinations produce [2, 3] logits.")
+    print("\nOK: All valid toggle combinations produce [2, 3] logits.")

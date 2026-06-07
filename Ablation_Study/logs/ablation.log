@@ -1,0 +1,56 @@
+01:28:16 | AblationOrchestrator | ==============================================================================
+01:28:16 | AblationOrchestrator |   Ablation Orchestrator
+01:28:16 | AblationOrchestrator |   device=cuda | classes=['Negative', 'Positive', 'Surprise'] | dataset_filter=CASME_II | expr_filter=micro-expression
+01:28:16 | AblationOrchestrator |   protocol=holdout | epochs=1 | batch=4 | loss=focal
+01:28:16 | AblationOrchestrator | ==============================================================================
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_1_pure_base [phase I] | -EVM -SimAM -CNN3D -SLSTT
+01:28:16 | AblationOrchestrator | Tensor dir for use_evm=False does not exist: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw — configs needing it will be skipped.
+01:28:16 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_2_temporal_only [phase I] | -EVM -SimAM -CNN3D +SLSTT
+01:28:16 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_3_spatial_only [phase I] | -EVM -SimAM +CNN3D -SLSTT
+01:28:16 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_9_permutation [phase Other] | -EVM -SimAM +CNN3D +SLSTT
+01:28:16 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_10_permutation [phase Other] | -EVM +SimAM -CNN3D -SLSTT
+01:28:16 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_11_permutation [phase Other] | -EVM +SimAM -CNN3D +SLSTT
+01:28:16 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_5_attention_base [phase II] | -EVM +SimAM +CNN3D -SLSTT
+01:28:16 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_6_full_stage2_noevm [phase III] | -EVM +SimAM +CNN3D +SLSTT
+01:28:16 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+01:28:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:16 | AblationOrchestrator | CONFIG config_4_motion_amp_base [phase II] | +EVM -SimAM -CNN3D -SLSTT
+01:28:16 | AblationOrchestrator | Loaded CSV: 612 rows
+01:28:16 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:28:16 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+01:28:16 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+01:28:16 | AblationOrchestrator | Loaded CSV: 612 rows
+01:28:16 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:28:16 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+01:28:16 | AblationOrchestrator |   components={'cnn_backbone': False, 'simam_attention': False, 'transformer': False} | trainable_params=5187
+01:28:19 | AblationOrchestrator | epoch   1/1 | train_loss=0.9201 | val_loss=2.3685 | val_acc=0.0000 | val_macroF1=0.0000 | time=1.5s
+01:28:19 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:19 | AblationOrchestrator | CONFIG config_12_permutation [phase Other] | +EVM -SimAM -CNN3D +SLSTT
+01:28:19 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+01:28:19 | AblationOrchestrator | Loaded CSV: 612 rows
+01:28:19 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:28:19 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+01:28:19 | AblationOrchestrator |   components={'cnn_backbone': False, 'simam_attention': False, 'transformer': True} | trainable_params=353923
+01:28:19 | AblationOrchestrator | epoch   1/1 | train_loss=1.4506 | val_loss=2.4141 | val_acc=0.2500 | val_macroF1=0.1333 | time=0.5s
+01:28:20 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:28:20 | AblationOrchestrator | CONFIG config_13_permutation [phase Other] | +EVM -SimAM +CNN3D -SLSTT
+01:28:20 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+01:28:20 | AblationOrchestrator | Loaded CSV: 612 rows
+01:28:20 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:28:20 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+01:28:20 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': False, 'transformer': False} | trainable_params=15027

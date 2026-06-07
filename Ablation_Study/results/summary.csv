@@ -1,0 +1,4 @@
+config_name,use_evm,use_simam,use_cnn,use_transformer,accuracy,macro_f1,num_samples
+config_4_motion_amp_base__WITH_evm__no_simam__no_3dcnn__no_transformer,True,False,False,False,0.0000,0.0000,4
+config_12_permutation__WITH_evm__no_simam__no_3dcnn__WITH_transformer,True,False,False,True,0.2500,0.1333,4
+config_13_permutation__WITH_evm__no_simam__WITH_3dcnn__no_transformer,True,False,True,False,0.7500,0.2857,4
