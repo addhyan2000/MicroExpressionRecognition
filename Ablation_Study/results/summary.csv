@@ -3,3 +3,11 @@ config_4_motion_amp_base__WITH_evm__no_simam__no_3dcnn__no_transformer,True,Fals
 config_12_permutation__WITH_evm__no_simam__no_3dcnn__WITH_transformer,True,False,False,True,0.2500,0.1333,4
 config_13_permutation__WITH_evm__no_simam__WITH_3dcnn__no_transformer,True,False,True,False,0.7500,0.2857,4
 config_7_full_no_attention__WITH_evm__no_simam__WITH_3dcnn__WITH_transformer,True,False,True,True,0.2500,0.1333,4
+config_4_motion_amp_base__WITH_evm__no_simam__no_3dcnn__no_transformer,True,False,False,False,0.6410,0.3340,39
+config_12_permutation__WITH_evm__no_simam__no_3dcnn__WITH_transformer,True,False,False,True,0.7436,0.4513,39
+config_13_permutation__WITH_evm__no_simam__WITH_3dcnn__no_transformer,True,False,True,False,0.7179,0.4280,39
+config_7_full_no_attention__WITH_evm__no_simam__WITH_3dcnn__WITH_transformer,True,False,True,True,0.6154,0.3636,39
+config_4_motion_amp_base__WITH_evm__no_simam__no_3dcnn__no_transformer,True,False,False,False,0.6410,0.3340,39
+config_12_permutation__WITH_evm__no_simam__no_3dcnn__WITH_transformer,True,False,False,True,0.7436,0.4513,39
+config_13_permutation__WITH_evm__no_simam__WITH_3dcnn__no_transformer,True,False,True,False,0.7179,0.4280,39
+config_7_full_no_attention__WITH_evm__no_simam__WITH_3dcnn__WITH_transformer,True,False,True,True,0.6154,0.3636,39

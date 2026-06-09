@@ -303,6 +303,12 @@ class AblationOrchestrator:
                 self.run_config(ablation)
             except Exception as err:  # keep going so one failure doesn't kill the sweep
                 self._log.exception("  CONFIG %s failed: %s", ablation.name, err)
+            finally:
+                # ── Clear GPU memory after each run to prevent accumulation ──
+                import gc
+                gc.collect()
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
 
         self._log.info("=" * 78)
         self._log.info("  Ablation sweep complete. Summary CSV: %s", self.writer.summary_csv)
