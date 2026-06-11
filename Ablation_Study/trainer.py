@@ -183,6 +183,7 @@ class AblationTrainer:
                 if has_nan:
                     self._log.warning("NaN gradient detected! Skipping optimizer step.")
                     self.optimizer.zero_grad(set_to_none=True)
+                    self.scaler.update()
                     continue
                     
                 nn.utils.clip_grad_norm_(self.model.parameters(), self.gradient_clip_norm)

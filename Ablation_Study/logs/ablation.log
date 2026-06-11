@@ -1012,3 +1012,46 @@ torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 196.00 MiB. GPU 0 
 05:26:42 | AblationOrchestrator | ==============================================================================
 05:26:42 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
 05:26:42 | AblationOrchestrator | ==============================================================================
+12:43:04 | AblationOrchestrator | ==============================================================================
+12:43:04 | AblationOrchestrator |   Ablation Orchestrator
+12:43:04 | AblationOrchestrator |   device=cuda | classes=['Negative', 'Positive', 'Surprise'] | dataset_filter=CASME_II | expr_filter=micro-expression
+12:43:04 | AblationOrchestrator |   protocol=holdout | epochs=60 | batch=2 | loss=focal
+12:43:04 | AblationOrchestrator | ==============================================================================
+12:43:04 | AblationOrchestrator | ------------------------------------------------------------------------------
+12:43:04 | AblationOrchestrator | CONFIG config_8_proposed_unified [phase IV] | +EVM +SimAM +CNN3D +SLSTT
+12:43:04 | AblationOrchestrator | Loaded CSV: 612 rows
+12:43:04 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+12:43:04 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+12:43:04 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+12:43:04 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+12:43:04 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+12:43:04 | AblationOrchestrator | Loaded CSV: 612 rows
+12:43:04 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+12:43:04 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+12:43:05 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+12:43:05 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+12:43:05 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': True, 'transformer': True} | trainable_params=363763
+12:43:09 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+12:43:10 | AblationOrchestrator |   CONFIG config_8_proposed_unified failed: unscale_() has already been called on this optimizer since the last update().
+Traceback (most recent call last):
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 303, in run_matrix
+    self.run_config(ablation)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 269, in run_config
+    result, train_state_final, data_flow_final = self._train_eval_split(ablation, dataset, train_idx, val_idx)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 235, in _train_eval_split
+    train_state = trainer.fit(train_loader, val_loader)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\trainer.py", line 113, in fit
+    train_loss = self._train_one_epoch(train_loader)
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\trainer.py", line 174, in _train_one_epoch
+    self.scaler.unscale_(self.optimizer)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\AppData\Roaming\Python\Python313\site-packages\torch\amp\grad_scaler.py", line 327, in unscale_
+    raise RuntimeError(
+        "unscale_() has already been called on this optimizer since the last update()."
+    )
+RuntimeError: unscale_() has already been called on this optimizer since the last update().
+12:43:10 | AblationOrchestrator | ==============================================================================
+12:43:10 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+12:43:10 | AblationOrchestrator | ==============================================================================
