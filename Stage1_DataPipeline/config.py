@@ -42,7 +42,7 @@ class CASMEIIConfig:
 
     # ── Filesystem locations ──
     excel_path: Path = PROJECT_ROOT / "DATASETS" / "CASME II" / "CASME2-coding-20140508.xlsx"
-    frames_root: Path = PROJECT_ROOT / "DATASETS" / "CASME II" / "Cropped"
+    frames_root: Path = PROJECT_ROOT / "Processed_Data" / "Raw_Videos_Magnified" / "CASME2"
 
     # ── Native Excel column names (as they appear in the spreadsheet) ──
     col_subject: str = "Subject"
@@ -87,7 +87,7 @@ class CASME2SquaredConfig:
 
     # ── Filesystem locations ──
     excel_path: Path = PROJECT_ROOT / "DATASETS" / "CAS ME^2" / "CAS(ME)^2code_final.xlsx"
-    frames_root: Path = PROJECT_ROOT / "DATASETS" / "CAS ME^2" / "cropped"
+    frames_root: Path = PROJECT_ROOT / "Processed_Data" / "Raw_Videos_Magnified" / "CASME_SQUARED"
 
     # ── Column **indices** (no header row) ──
     idx_subject: int = 0
