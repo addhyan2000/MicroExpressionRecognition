@@ -1,14 +1,14 @@
-Configuration: config_4_motion_amp_base__WITH_evm__no_simam__no_3dcnn__no_transformer
+Configuration: config_1_pure_base__no_evm__no_simam__no_3dcnn__no_transformer
 ========================================
 
 Toggles:
-  use_evm: True
+  use_evm: False
   use_simam: False
   use_cnn: False
   use_transformer: False
 
 Hardware Metrics:
-  Total Train Time: 182.20 seconds
+  Total Train Time: 185.32 seconds
   Peak VRAM: 54.1 MB
 
 Data Flow:

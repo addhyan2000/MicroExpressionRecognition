@@ -1,10 +1,10 @@
 {
-  "config_name": "config_7_full_no_attention__WITH_evm__no_simam__WITH_3dcnn__WITH_transformer",
+  "config_name": "config_3_spatial_only__no_evm__no_simam__WITH_3dcnn__no_transformer",
   "toggles": {
-    "use_evm": true,
+    "use_evm": false,
     "use_simam": false,
     "use_cnn": true,
-    "use_transformer": true
+    "use_transformer": false
   },
   "class_names": [
     "Negative",
@@ -12,17 +12,17 @@
     "Surprise"
   ],
   "metrics": {
-    "accuracy": 0.6923076923076923,
-    "macro_f1": 0.3577060931899641,
+    "accuracy": 0.717948717948718,
+    "macro_f1": 0.435672514619883,
     "confusion_matrix": [
       [
-        25,
-        4,
+        23,
+        6,
         0
       ],
       [
-        7,
-        2,
+        4,
+        5,
         0
       ],
       [
@@ -32,24 +32,24 @@
       ]
     ],
     "per_class_f1": [
-      0.8064516129032258,
-      0.26666666666666666,
+      0.8070175438596491,
+      0.5,
       0.0
     ],
     "per_class_precision": [
-      0.7575757575757576,
-      0.3333333333333333,
+      0.8214285714285714,
+      0.45454545454545453,
       0.0
     ],
     "per_class_recall": [
-      0.8620689655172413,
-      0.2222222222222222,
+      0.7931034482758621,
+      0.5555555555555556,
       0.0
     ],
     "num_samples": 39
   },
   "extra": {
-    "phase": "III",
+    "phase": "I",
     "protocol": "holdout"
   }
 }
