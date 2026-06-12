@@ -408,6 +408,8 @@ def build_mpi_experiment_config(
         emotion_map=emotion_map,
         # MPI has fewer subjects (10) — slightly larger val fraction
         val_fraction=0.2,
+        output_root=PROJECT_ROOT / "Ablation_Study" / f"results_mpi_{label_mode}",
+        log_dir=PROJECT_ROOT / "Ablation_Study" / f"logs_mpi_{label_mode}",
     )
 
     # Apply any user overrides
