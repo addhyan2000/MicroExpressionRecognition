@@ -15,14 +15,14 @@ Thumbs.db
 
 # --- THE DATASETS (CRITICAL) ---
 # Never push the raw images or videos to Git due to size and licensing
-DATASETS/
+DATASETS/MPI Datast
 CODEBASE/
 LatestCode/STSTNet_Weights/
 
 # --- PIPELINE OUTPUTS ---
 # These are generated files (.npy tensors). They are too large for Git.
 
-Processed_Data/
+
 # --- SECRETS ---
 # If you ever add API keys or database strings
 .env
