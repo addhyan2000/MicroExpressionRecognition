@@ -1,15 +1,15 @@
-Configuration: config_8_proposed_unified__WITH_evm__WITH_simam__WITH_3dcnn__WITH_transformer
+Configuration: config_5_attention_base__no_evm__WITH_simam__WITH_3dcnn__no_transformer
 ========================================
 
 Toggles:
-  use_evm: True
+  use_evm: False
   use_simam: True
   use_cnn: True
-  use_transformer: True
+  use_transformer: False
 
 Hardware Metrics:
-  Total Train Time: 2297.45 seconds
-  Peak VRAM: 5026.0 MB
+  Total Train Time: 2715.95 seconds
+  Peak VRAM: 5020.6 MB
 
 Data Flow:
 Stage A - Spatial Stem:
@@ -18,6 +18,6 @@ Stage A - Spatial Stem:
   [B, 96, 32, 112, 112] -> AdaptiveAvgPool3d(32, 1, 1) -> [B, 96, 32, 1, 1]
   [B, 96, 32, 1, 1] -> squeeze & permute -> [B, 32, 96]
 Stage B - Temporal Encoder:
-  [B, 32, 96] -> SLSTTTransformer -> [B, 96]
+  [B, 32, 96] -> TemporalPooling -> [B, 96]
 Stage C - Classifier Head:
   [B, 96] -> LayerNorm -> Dropout -> Linear -> [B, num_classes]

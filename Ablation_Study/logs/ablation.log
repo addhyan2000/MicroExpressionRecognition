@@ -2485,3 +2485,955 @@ CUDA kernel errors might be asynchronously reported at some other API call, so t
 For debugging consider passing CUDA_LAUNCH_BLOCKING=1
 Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
 
+23:57:52 | AblationOrchestrator | ==============================================================================
+23:57:52 | AblationOrchestrator |   Ablation Orchestrator
+23:57:52 | AblationOrchestrator |   device=cuda | classes=['Negative', 'Positive', 'Surprise'] | dataset_filter=CASME_II | expr_filter=micro-expression
+23:57:52 | AblationOrchestrator |   protocol=holdout | epochs=60 | batch=2 | loss=focal
+23:57:52 | AblationOrchestrator | ==============================================================================
+23:57:52 | AblationOrchestrator | ------------------------------------------------------------------------------
+23:57:52 | AblationOrchestrator | CONFIG config_1_pure_base [phase I] | -EVM -SimAM -CNN3D -SLSTT
+23:57:52 | AblationOrchestrator | Loaded CSV: 612 rows
+23:57:52 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+23:57:52 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+23:57:52 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+23:57:52 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw
+23:57:52 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+23:57:52 | AblationOrchestrator | Loaded CSV: 612 rows
+23:57:52 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+23:57:52 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+23:57:52 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+23:57:52 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw
+23:57:52 | AblationOrchestrator |   components={'cnn_backbone': False, 'simam_attention': False, 'transformer': False} | trainable_params=5187
+23:57:54 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+23:57:54 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+23:57:54 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+23:57:57 | AblationOrchestrator | epoch   1/60 | train_loss=1.0848 | val_loss=0.8152 | val_acc=0.0256 | val_macroF1=0.0167 | time=3.2s
+23:57:59 | AblationOrchestrator | epoch   2/60 | train_loss=1.1661 | val_loss=0.5317 | val_acc=0.3077 | val_macroF1=0.1907 | time=2.7s
+23:58:02 | AblationOrchestrator | epoch   3/60 | train_loss=1.1087 | val_loss=0.4295 | val_acc=0.7436 | val_macroF1=0.2843 | time=2.7s
+23:58:05 | AblationOrchestrator | epoch   4/60 | train_loss=1.0387 | val_loss=0.4265 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:58:08 | AblationOrchestrator | epoch   5/60 | train_loss=0.9675 | val_loss=0.3513 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:58:11 | AblationOrchestrator | epoch   6/60 | train_loss=0.8819 | val_loss=0.3880 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:58:14 | AblationOrchestrator | epoch   7/60 | train_loss=0.9295 | val_loss=0.3421 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:18 | AblationOrchestrator | epoch   8/60 | train_loss=0.8718 | val_loss=0.3513 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.3s
+23:58:21 | AblationOrchestrator | epoch   9/60 | train_loss=1.0600 | val_loss=0.3772 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:24 | AblationOrchestrator | epoch  10/60 | train_loss=0.9539 | val_loss=0.3812 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:27 | AblationOrchestrator | epoch  11/60 | train_loss=0.9249 | val_loss=0.3243 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:58:31 | AblationOrchestrator | epoch  12/60 | train_loss=0.8512 | val_loss=0.3690 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:32 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+23:58:34 | AblationOrchestrator | epoch  13/60 | train_loss=0.8885 | val_loss=0.3581 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:37 | AblationOrchestrator | epoch  14/60 | train_loss=1.0754 | val_loss=0.3368 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:40 | AblationOrchestrator | epoch  15/60 | train_loss=1.0536 | val_loss=0.4046 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:43 | AblationOrchestrator | epoch  16/60 | train_loss=1.1104 | val_loss=0.3538 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:46 | AblationOrchestrator | epoch  17/60 | train_loss=0.9230 | val_loss=0.3431 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:50 | AblationOrchestrator | epoch  18/60 | train_loss=0.9824 | val_loss=0.3599 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:53 | AblationOrchestrator | epoch  19/60 | train_loss=0.9102 | val_loss=0.3452 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:56 | AblationOrchestrator | epoch  20/60 | train_loss=0.9646 | val_loss=0.3877 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:58:59 | AblationOrchestrator | epoch  21/60 | train_loss=0.8318 | val_loss=0.3831 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:02 | AblationOrchestrator | epoch  22/60 | train_loss=0.9873 | val_loss=0.3675 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:05 | AblationOrchestrator | epoch  23/60 | train_loss=0.8285 | val_loss=0.4035 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:08 | AblationOrchestrator | epoch  24/60 | train_loss=0.8408 | val_loss=0.3692 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:12 | AblationOrchestrator | epoch  25/60 | train_loss=0.9685 | val_loss=0.3715 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:15 | AblationOrchestrator | epoch  26/60 | train_loss=0.8698 | val_loss=0.3656 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:18 | AblationOrchestrator | epoch  27/60 | train_loss=1.0184 | val_loss=0.3786 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:21 | AblationOrchestrator | epoch  28/60 | train_loss=0.8064 | val_loss=0.3702 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:24 | AblationOrchestrator | epoch  29/60 | train_loss=0.9387 | val_loss=0.3961 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:27 | AblationOrchestrator | epoch  30/60 | train_loss=1.0641 | val_loss=0.3764 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:30 | AblationOrchestrator | epoch  31/60 | train_loss=0.8914 | val_loss=0.3644 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:34 | AblationOrchestrator | epoch  32/60 | train_loss=0.9403 | val_loss=0.3674 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:37 | AblationOrchestrator | epoch  33/60 | train_loss=0.8458 | val_loss=0.3778 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:40 | AblationOrchestrator | epoch  34/60 | train_loss=0.8750 | val_loss=0.3977 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:43 | AblationOrchestrator | epoch  35/60 | train_loss=0.9482 | val_loss=0.4099 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:46 | AblationOrchestrator | epoch  36/60 | train_loss=0.9912 | val_loss=0.4230 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+23:59:49 | AblationOrchestrator | epoch  37/60 | train_loss=0.9948 | val_loss=0.4450 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:53 | AblationOrchestrator | epoch  38/60 | train_loss=0.8595 | val_loss=0.4758 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:56 | AblationOrchestrator | epoch  39/60 | train_loss=0.9260 | val_loss=0.4553 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+23:59:59 | AblationOrchestrator | epoch  40/60 | train_loss=0.8189 | val_loss=0.4367 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:02 | AblationOrchestrator | epoch  41/60 | train_loss=1.0340 | val_loss=0.4423 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:05 | AblationOrchestrator | epoch  42/60 | train_loss=0.9478 | val_loss=0.4495 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:08 | AblationOrchestrator | epoch  43/60 | train_loss=1.0816 | val_loss=0.4418 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:11 | AblationOrchestrator | epoch  44/60 | train_loss=0.9458 | val_loss=0.4520 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:15 | AblationOrchestrator | epoch  45/60 | train_loss=0.7859 | val_loss=0.4448 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:18 | AblationOrchestrator | epoch  46/60 | train_loss=0.9707 | val_loss=0.4389 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:21 | AblationOrchestrator | epoch  47/60 | train_loss=0.8489 | val_loss=0.4442 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:24 | AblationOrchestrator | epoch  48/60 | train_loss=0.9882 | val_loss=0.4426 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:27 | AblationOrchestrator | epoch  49/60 | train_loss=1.0082 | val_loss=0.4357 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:29 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:00:30 | AblationOrchestrator | epoch  50/60 | train_loss=0.7745 | val_loss=0.4390 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:33 | AblationOrchestrator | epoch  51/60 | train_loss=0.8497 | val_loss=0.4408 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:37 | AblationOrchestrator | epoch  52/60 | train_loss=0.8088 | val_loss=0.4424 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:40 | AblationOrchestrator | epoch  53/60 | train_loss=0.9003 | val_loss=0.4405 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:43 | AblationOrchestrator | epoch  54/60 | train_loss=0.7131 | val_loss=0.4387 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:00:46 | AblationOrchestrator | epoch  55/60 | train_loss=0.8808 | val_loss=0.4390 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:49 | AblationOrchestrator | epoch  56/60 | train_loss=0.9497 | val_loss=0.4378 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:52 | AblationOrchestrator | epoch  57/60 | train_loss=1.0234 | val_loss=0.4375 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:55 | AblationOrchestrator | epoch  58/60 | train_loss=0.9549 | val_loss=0.4374 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:00:59 | AblationOrchestrator | epoch  59/60 | train_loss=0.8488 | val_loss=0.4372 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.2s
+00:01:02 | AblationOrchestrator | epoch  60/60 | train_loss=0.9437 | val_loss=0.4371 | val_acc=0.7436 | val_macroF1=0.2843 | time=3.1s
+00:01:02 | AblationOrchestrator | Best epoch 60 -> val_acc=0.7436 | val_macroF1=0.2843 | Peak VRAM: 54.1 MB
+00:01:02 | AblationOrchestrator |   RESULT config_1_pure_base -> acc=0.7436 | macroF1=0.2843
+00:01:03 | AblationOrchestrator | ------------------------------------------------------------------------------
+00:01:03 | AblationOrchestrator | CONFIG config_2_temporal_only [phase I] | -EVM -SimAM -CNN3D +SLSTT
+00:01:03 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+00:01:03 | AblationOrchestrator | Loaded CSV: 612 rows
+00:01:03 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+00:01:03 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+00:01:03 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+00:01:03 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw
+00:01:03 | AblationOrchestrator |   components={'cnn_backbone': False, 'simam_attention': False, 'transformer': True} | trainable_params=353923
+00:01:03 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:01:03 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:01:04 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:01:08 | AblationOrchestrator | epoch   1/60 | train_loss=1.3421 | val_loss=0.7576 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.9s
+00:01:10 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:01:13 | AblationOrchestrator | epoch   2/60 | train_loss=1.2805 | val_loss=0.4295 | val_acc=0.7179 | val_macroF1=0.2786 | time=4.8s
+00:01:18 | AblationOrchestrator | epoch   3/60 | train_loss=1.2391 | val_loss=0.5519 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:01:22 | AblationOrchestrator | epoch   4/60 | train_loss=1.0652 | val_loss=0.9126 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:01:27 | AblationOrchestrator | epoch   5/60 | train_loss=1.2483 | val_loss=0.7795 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.8s
+00:01:32 | AblationOrchestrator | epoch   6/60 | train_loss=1.1112 | val_loss=0.4518 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:01:36 | AblationOrchestrator | epoch   7/60 | train_loss=1.1122 | val_loss=0.5929 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.8s
+00:01:41 | AblationOrchestrator | epoch   8/60 | train_loss=1.3227 | val_loss=0.4230 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:01:46 | AblationOrchestrator | epoch   9/60 | train_loss=1.0511 | val_loss=0.4806 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:01:51 | AblationOrchestrator | epoch  10/60 | train_loss=0.7903 | val_loss=0.5392 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.9s
+00:01:56 | AblationOrchestrator | epoch  11/60 | train_loss=0.9515 | val_loss=0.3446 | val_acc=0.2051 | val_macroF1=0.1245 | time=4.8s
+00:02:00 | AblationOrchestrator | epoch  12/60 | train_loss=0.7757 | val_loss=0.3881 | val_acc=0.2308 | val_macroF1=0.1250 | time=4.5s
+00:02:05 | AblationOrchestrator | epoch  13/60 | train_loss=0.7489 | val_loss=0.4524 | val_acc=0.0256 | val_macroF1=0.0167 | time=4.7s
+00:02:09 | AblationOrchestrator | epoch  14/60 | train_loss=0.7864 | val_loss=0.3167 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:02:14 | AblationOrchestrator | epoch  15/60 | train_loss=0.8593 | val_loss=0.4088 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.5s
+00:02:18 | AblationOrchestrator | epoch  16/60 | train_loss=0.9358 | val_loss=0.3809 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:02:23 | AblationOrchestrator | epoch  17/60 | train_loss=0.8028 | val_loss=0.5427 | val_acc=0.0256 | val_macroF1=0.0167 | time=4.7s
+00:02:28 | AblationOrchestrator | epoch  18/60 | train_loss=0.7525 | val_loss=0.3692 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:02:32 | AblationOrchestrator | epoch  19/60 | train_loss=0.8684 | val_loss=0.4814 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:02:37 | AblationOrchestrator | epoch  20/60 | train_loss=0.7118 | val_loss=0.4765 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.5s
+00:02:41 | AblationOrchestrator | epoch  21/60 | train_loss=0.7804 | val_loss=0.3947 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:02:46 | AblationOrchestrator | epoch  22/60 | train_loss=0.6856 | val_loss=0.3989 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.4s
+00:02:50 | AblationOrchestrator | epoch  23/60 | train_loss=0.8771 | val_loss=0.4676 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.5s
+00:02:55 | AblationOrchestrator | epoch  24/60 | train_loss=0.6171 | val_loss=0.3858 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.5s
+00:02:59 | AblationOrchestrator | epoch  25/60 | train_loss=0.7026 | val_loss=0.3221 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.2s
+00:03:03 | AblationOrchestrator | epoch  26/60 | train_loss=0.7042 | val_loss=0.3489 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:08 | AblationOrchestrator | epoch  27/60 | train_loss=0.7693 | val_loss=0.3728 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:12 | AblationOrchestrator | epoch  28/60 | train_loss=0.6231 | val_loss=0.3279 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:16 | AblationOrchestrator | epoch  29/60 | train_loss=0.8350 | val_loss=0.3650 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:21 | AblationOrchestrator | epoch  30/60 | train_loss=0.5998 | val_loss=0.3657 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.2s
+00:03:25 | AblationOrchestrator | epoch  31/60 | train_loss=0.7150 | val_loss=0.3665 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:29 | AblationOrchestrator | epoch  32/60 | train_loss=0.7035 | val_loss=0.4089 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:33 | AblationOrchestrator | epoch  33/60 | train_loss=0.7443 | val_loss=0.3616 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:38 | AblationOrchestrator | epoch  34/60 | train_loss=0.7164 | val_loss=0.4186 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:42 | AblationOrchestrator | epoch  35/60 | train_loss=0.7592 | val_loss=0.3763 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.2s
+00:03:46 | AblationOrchestrator | epoch  36/60 | train_loss=0.7484 | val_loss=0.3959 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:50 | AblationOrchestrator | epoch  37/60 | train_loss=0.6250 | val_loss=0.4269 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:53 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:03:55 | AblationOrchestrator | epoch  38/60 | train_loss=0.6297 | val_loss=0.3700 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:03:59 | AblationOrchestrator | epoch  39/60 | train_loss=0.6045 | val_loss=0.3892 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:03 | AblationOrchestrator | epoch  40/60 | train_loss=0.6545 | val_loss=0.3512 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:08 | AblationOrchestrator | epoch  41/60 | train_loss=0.6560 | val_loss=0.3528 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.4s
+00:04:12 | AblationOrchestrator | epoch  42/60 | train_loss=0.6613 | val_loss=0.3725 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:16 | AblationOrchestrator | epoch  43/60 | train_loss=0.6405 | val_loss=0.3863 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:21 | AblationOrchestrator | epoch  44/60 | train_loss=0.5772 | val_loss=0.4128 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:25 | AblationOrchestrator | epoch  45/60 | train_loss=0.6306 | val_loss=0.4007 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:29 | AblationOrchestrator | epoch  46/60 | train_loss=0.6143 | val_loss=0.3819 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:33 | AblationOrchestrator | epoch  47/60 | train_loss=0.7087 | val_loss=0.3903 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:38 | AblationOrchestrator | epoch  48/60 | train_loss=0.6579 | val_loss=0.3766 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:42 | AblationOrchestrator | epoch  49/60 | train_loss=0.6256 | val_loss=0.3704 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:46 | AblationOrchestrator | epoch  50/60 | train_loss=0.6212 | val_loss=0.3694 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:50 | AblationOrchestrator | epoch  51/60 | train_loss=0.6973 | val_loss=0.3720 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:55 | AblationOrchestrator | epoch  52/60 | train_loss=0.6538 | val_loss=0.3763 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.3s
+00:04:59 | AblationOrchestrator | epoch  53/60 | train_loss=0.6298 | val_loss=0.3769 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:05:04 | AblationOrchestrator | epoch  54/60 | train_loss=0.6254 | val_loss=0.3760 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:05:09 | AblationOrchestrator | epoch  55/60 | train_loss=0.5990 | val_loss=0.3823 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:05:13 | AblationOrchestrator | epoch  56/60 | train_loss=0.6001 | val_loss=0.3803 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.7s
+00:05:18 | AblationOrchestrator | epoch  57/60 | train_loss=0.6577 | val_loss=0.3815 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:05:23 | AblationOrchestrator | epoch  58/60 | train_loss=0.6641 | val_loss=0.3815 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:05:27 | AblationOrchestrator | epoch  59/60 | train_loss=0.7172 | val_loss=0.3815 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.6s
+00:05:32 | AblationOrchestrator | epoch  60/60 | train_loss=0.6404 | val_loss=0.3814 | val_acc=0.7436 | val_macroF1=0.2843 | time=4.5s
+00:05:32 | AblationOrchestrator | Best epoch 60 -> val_acc=0.7436 | val_macroF1=0.2843 | Peak VRAM: 60.4 MB
+00:05:33 | AblationOrchestrator |   RESULT config_2_temporal_only -> acc=0.7436 | macroF1=0.2843
+00:05:33 | AblationOrchestrator | ------------------------------------------------------------------------------
+00:05:33 | AblationOrchestrator | CONFIG config_3_spatial_only [phase I] | -EVM -SimAM +CNN3D -SLSTT
+00:05:33 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+00:05:33 | AblationOrchestrator | Loaded CSV: 612 rows
+00:05:33 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+00:05:33 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+00:05:33 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+00:05:33 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw
+00:05:33 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': False, 'transformer': False} | trainable_params=15027
+00:05:34 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:05:34 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:05:35 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:05:36 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:05:54 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:06:03 | AblationOrchestrator | epoch   1/60 | train_loss=1.3529 | val_loss=0.2930 | val_acc=0.7179 | val_macroF1=0.4357 | time=30.4s
+00:06:33 | AblationOrchestrator | epoch   2/60 | train_loss=1.4217 | val_loss=0.4310 | val_acc=0.2051 | val_macroF1=0.2156 | time=30.2s
+00:07:04 | AblationOrchestrator | epoch   3/60 | train_loss=1.7892 | val_loss=0.4009 | val_acc=0.3333 | val_macroF1=0.2832 | time=30.2s
+00:07:34 | AblationOrchestrator | epoch   4/60 | train_loss=1.5703 | val_loss=0.3178 | val_acc=0.6154 | val_macroF1=0.3789 | time=30.2s
+00:08:04 | AblationOrchestrator | epoch   5/60 | train_loss=1.2524 | val_loss=0.3947 | val_acc=0.5641 | val_macroF1=0.3841 | time=30.2s
+00:08:34 | AblationOrchestrator | epoch   6/60 | train_loss=0.9636 | val_loss=0.4356 | val_acc=0.2564 | val_macroF1=0.1844 | time=30.2s
+00:09:05 | AblationOrchestrator | epoch   7/60 | train_loss=1.2575 | val_loss=0.4325 | val_acc=0.1795 | val_macroF1=0.1889 | time=30.2s
+00:09:35 | AblationOrchestrator | epoch   8/60 | train_loss=1.3664 | val_loss=0.6211 | val_acc=0.0769 | val_macroF1=0.0924 | time=30.2s
+00:10:05 | AblationOrchestrator | epoch   9/60 | train_loss=1.9311 | val_loss=0.4145 | val_acc=0.5897 | val_macroF1=0.2473 | time=30.3s
+00:10:35 | AblationOrchestrator | epoch  10/60 | train_loss=1.0921 | val_loss=0.3825 | val_acc=0.6154 | val_macroF1=0.2540 | time=30.3s
+00:11:06 | AblationOrchestrator | epoch  11/60 | train_loss=1.2618 | val_loss=0.3317 | val_acc=0.5385 | val_macroF1=0.3492 | time=30.2s
+00:11:36 | AblationOrchestrator | epoch  12/60 | train_loss=1.6969 | val_loss=0.6185 | val_acc=0.5641 | val_macroF1=0.2404 | time=30.2s
+00:12:06 | AblationOrchestrator | epoch  13/60 | train_loss=0.9555 | val_loss=0.3695 | val_acc=0.7179 | val_macroF1=0.2786 | time=30.2s
+00:12:36 | AblationOrchestrator | epoch  14/60 | train_loss=1.2918 | val_loss=0.4239 | val_acc=0.6154 | val_macroF1=0.2540 | time=30.2s
+00:13:06 | AblationOrchestrator | epoch  15/60 | train_loss=1.4478 | val_loss=0.4012 | val_acc=0.7179 | val_macroF1=0.2786 | time=30.2s
+00:13:37 | AblationOrchestrator | epoch  16/60 | train_loss=1.8431 | val_loss=0.4275 | val_acc=0.6154 | val_macroF1=0.2540 | time=30.2s
+00:14:03 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:14:07 | AblationOrchestrator | epoch  17/60 | train_loss=1.3885 | val_loss=0.4451 | val_acc=0.6410 | val_macroF1=0.3247 | time=30.2s
+00:14:37 | AblationOrchestrator | epoch  18/60 | train_loss=1.1522 | val_loss=0.4483 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.2s
+00:15:07 | AblationOrchestrator | epoch  19/60 | train_loss=1.3295 | val_loss=0.6402 | val_acc=0.6923 | val_macroF1=0.2727 | time=30.2s
+00:15:38 | AblationOrchestrator | epoch  20/60 | train_loss=1.6424 | val_loss=0.5575 | val_acc=0.6154 | val_macroF1=0.2540 | time=30.2s
+00:16:08 | AblationOrchestrator | epoch  21/60 | train_loss=1.1982 | val_loss=0.5854 | val_acc=0.6923 | val_macroF1=0.2727 | time=30.2s
+00:16:38 | AblationOrchestrator | epoch  22/60 | train_loss=1.6801 | val_loss=0.6880 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.3s
+00:17:08 | AblationOrchestrator | epoch  23/60 | train_loss=1.7772 | val_loss=0.7472 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.2s
+00:17:38 | AblationOrchestrator | epoch  24/60 | train_loss=1.5704 | val_loss=0.4222 | val_acc=0.7179 | val_macroF1=0.2786 | time=30.3s
+00:18:09 | AblationOrchestrator | epoch  25/60 | train_loss=1.3331 | val_loss=0.4906 | val_acc=0.6667 | val_macroF1=0.2708 | time=30.2s
+00:18:39 | AblationOrchestrator | epoch  26/60 | train_loss=1.3767 | val_loss=0.4433 | val_acc=0.7179 | val_macroF1=0.2786 | time=30.2s
+00:19:09 | AblationOrchestrator | epoch  27/60 | train_loss=1.4751 | val_loss=0.5681 | val_acc=0.5897 | val_macroF1=0.2473 | time=30.2s
+00:19:39 | AblationOrchestrator | epoch  28/60 | train_loss=1.4527 | val_loss=0.5900 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.2s
+00:20:10 | AblationOrchestrator | epoch  29/60 | train_loss=1.4535 | val_loss=0.4092 | val_acc=0.6154 | val_macroF1=0.2540 | time=30.2s
+00:20:40 | AblationOrchestrator | epoch  30/60 | train_loss=1.3100 | val_loss=0.6319 | val_acc=0.6667 | val_macroF1=0.2667 | time=30.2s
+00:21:10 | AblationOrchestrator | epoch  31/60 | train_loss=1.5573 | val_loss=0.5793 | val_acc=0.6154 | val_macroF1=0.2540 | time=30.2s
+00:21:40 | AblationOrchestrator | epoch  32/60 | train_loss=1.3936 | val_loss=0.5163 | val_acc=0.5897 | val_macroF1=0.2473 | time=30.2s
+00:22:11 | AblationOrchestrator | epoch  33/60 | train_loss=1.6659 | val_loss=0.6235 | val_acc=0.5897 | val_macroF1=0.2473 | time=30.2s
+00:22:41 | AblationOrchestrator | epoch  34/60 | train_loss=1.8859 | val_loss=0.4581 | val_acc=0.3333 | val_macroF1=0.1733 | time=30.3s
+00:23:11 | AblationOrchestrator | epoch  35/60 | train_loss=1.1694 | val_loss=0.5933 | val_acc=0.4615 | val_macroF1=0.2143 | time=30.2s
+00:23:41 | AblationOrchestrator | epoch  36/60 | train_loss=1.2541 | val_loss=0.5698 | val_acc=0.4103 | val_macroF1=0.2013 | time=30.2s
+00:24:11 | AblationOrchestrator | epoch  37/60 | train_loss=1.1816 | val_loss=0.4364 | val_acc=0.6923 | val_macroF1=0.2727 | time=30.2s
+00:24:42 | AblationOrchestrator | epoch  38/60 | train_loss=1.2049 | val_loss=0.6733 | val_acc=0.5128 | val_macroF1=0.2260 | time=30.3s
+00:25:12 | AblationOrchestrator | epoch  39/60 | train_loss=1.5100 | val_loss=0.6543 | val_acc=0.5385 | val_macroF1=0.2333 | time=30.2s
+00:25:42 | AblationOrchestrator | epoch  40/60 | train_loss=1.3572 | val_loss=0.4096 | val_acc=0.5385 | val_macroF1=0.2333 | time=30.2s
+00:26:12 | AblationOrchestrator | epoch  41/60 | train_loss=1.6488 | val_loss=0.5449 | val_acc=0.5641 | val_macroF1=0.2404 | time=30.2s
+00:26:43 | AblationOrchestrator | epoch  42/60 | train_loss=1.3496 | val_loss=0.5727 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.2s
+00:27:13 | AblationOrchestrator | epoch  43/60 | train_loss=1.5137 | val_loss=0.4708 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.2s
+00:27:43 | AblationOrchestrator | epoch  44/60 | train_loss=1.3105 | val_loss=0.6033 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.2s
+00:28:13 | AblationOrchestrator | epoch  45/60 | train_loss=1.7324 | val_loss=0.5222 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.2s
+00:28:44 | AblationOrchestrator | epoch  46/60 | train_loss=1.6281 | val_loss=0.4828 | val_acc=0.7436 | val_macroF1=0.2843 | time=30.3s
+00:28:52 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:29:14 | AblationOrchestrator | epoch  47/60 | train_loss=1.4727 | val_loss=0.5317 | val_acc=0.3846 | val_macroF1=0.2652 | time=30.6s
+00:29:48 | AblationOrchestrator | epoch  48/60 | train_loss=1.2292 | val_loss=0.7684 | val_acc=0.5385 | val_macroF1=0.2333 | time=33.8s
+00:30:24 | AblationOrchestrator | epoch  49/60 | train_loss=1.2158 | val_loss=0.5109 | val_acc=0.7179 | val_macroF1=0.2786 | time=35.8s
+00:30:57 | AblationOrchestrator | epoch  50/60 | train_loss=1.4053 | val_loss=0.7736 | val_acc=0.4103 | val_macroF1=0.2013 | time=33.6s
+00:31:31 | AblationOrchestrator | epoch  51/60 | train_loss=1.5366 | val_loss=0.4552 | val_acc=0.5385 | val_macroF1=0.2333 | time=33.6s
+00:32:13 | AblationOrchestrator | epoch  52/60 | train_loss=1.8363 | val_loss=0.5481 | val_acc=0.3333 | val_macroF1=0.1844 | time=42.2s
+00:32:55 | AblationOrchestrator | epoch  53/60 | train_loss=1.3977 | val_loss=0.5927 | val_acc=0.7179 | val_macroF1=0.2786 | time=41.4s
+00:33:34 | AblationOrchestrator | epoch  54/60 | train_loss=1.4123 | val_loss=0.4648 | val_acc=0.7179 | val_macroF1=0.2786 | time=39.6s
+00:34:14 | AblationOrchestrator | epoch  55/60 | train_loss=1.6477 | val_loss=0.7106 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.6s
+00:34:53 | AblationOrchestrator | epoch  56/60 | train_loss=1.6294 | val_loss=0.6279 | val_acc=0.6667 | val_macroF1=0.2667 | time=39.3s
+00:35:33 | AblationOrchestrator | epoch  57/60 | train_loss=1.4877 | val_loss=0.6674 | val_acc=0.4615 | val_macroF1=0.2105 | time=39.6s
+00:36:12 | AblationOrchestrator | epoch  58/60 | train_loss=1.3741 | val_loss=0.5240 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.4s
+00:36:51 | AblationOrchestrator | epoch  59/60 | train_loss=1.1311 | val_loss=0.7226 | val_acc=0.5385 | val_macroF1=0.2333 | time=39.4s
+00:37:31 | AblationOrchestrator | epoch  60/60 | train_loss=1.1943 | val_loss=0.7206 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.3s
+00:37:31 | AblationOrchestrator | Best epoch 1 -> val_acc=0.7179 | val_macroF1=0.4357 | Peak VRAM: 3698.6 MB
+00:37:33 | AblationOrchestrator |   RESULT config_3_spatial_only -> acc=0.7179 | macroF1=0.4357
+00:37:34 | AblationOrchestrator | ------------------------------------------------------------------------------
+00:37:34 | AblationOrchestrator | CONFIG config_9_permutation [phase Other] | -EVM -SimAM +CNN3D +SLSTT
+00:37:34 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+00:37:34 | AblationOrchestrator | Loaded CSV: 612 rows
+00:37:34 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+00:37:34 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+00:37:34 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+00:37:34 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw
+00:37:34 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': False, 'transformer': True} | trainable_params=363763
+00:37:36 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:37:36 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:37:39 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:37:51 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:37:52 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:38:14 | AblationOrchestrator | epoch   1/60 | train_loss=1.7839 | val_loss=0.7438 | val_acc=0.2051 | val_macroF1=0.1301 | time=40.4s
+00:38:55 | AblationOrchestrator | epoch   2/60 | train_loss=1.3829 | val_loss=1.0496 | val_acc=0.7436 | val_macroF1=0.2843 | time=40.5s
+00:39:35 | AblationOrchestrator | epoch   3/60 | train_loss=1.4054 | val_loss=0.8646 | val_acc=0.1538 | val_macroF1=0.1026 | time=40.6s
+00:40:16 | AblationOrchestrator | epoch   4/60 | train_loss=1.3133 | val_loss=0.6311 | val_acc=0.7179 | val_macroF1=0.2786 | time=41.1s
+00:40:58 | AblationOrchestrator | epoch   5/60 | train_loss=0.9582 | val_loss=0.3939 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:41:39 | AblationOrchestrator | epoch   6/60 | train_loss=0.7389 | val_loss=0.3118 | val_acc=0.6923 | val_macroF1=0.3577 | time=41.4s
+00:42:21 | AblationOrchestrator | epoch   7/60 | train_loss=1.1198 | val_loss=0.4386 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+00:43:02 | AblationOrchestrator | epoch   8/60 | train_loss=0.9995 | val_loss=0.4572 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:43:43 | AblationOrchestrator | epoch   9/60 | train_loss=0.9594 | val_loss=0.3631 | val_acc=0.2308 | val_macroF1=0.1250 | time=41.3s
+00:43:45 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+00:44:24 | AblationOrchestrator | epoch  10/60 | train_loss=1.1685 | val_loss=0.4206 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.2s
+00:45:06 | AblationOrchestrator | epoch  11/60 | train_loss=0.8613 | val_loss=0.2909 | val_acc=0.4615 | val_macroF1=0.3108 | time=41.3s
+00:45:47 | AblationOrchestrator | epoch  12/60 | train_loss=1.0886 | val_loss=0.5275 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+00:46:29 | AblationOrchestrator | epoch  13/60 | train_loss=0.8217 | val_loss=0.4272 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:47:10 | AblationOrchestrator | epoch  14/60 | train_loss=1.1057 | val_loss=0.4780 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+00:47:53 | AblationOrchestrator | epoch  15/60 | train_loss=0.8864 | val_loss=0.5269 | val_acc=0.7436 | val_macroF1=0.2843 | time=43.0s
+00:48:34 | AblationOrchestrator | epoch  16/60 | train_loss=0.8030 | val_loss=0.4239 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:49:16 | AblationOrchestrator | epoch  17/60 | train_loss=0.9037 | val_loss=0.3609 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:49:57 | AblationOrchestrator | epoch  18/60 | train_loss=1.0613 | val_loss=0.3776 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.5s
+00:50:39 | AblationOrchestrator | epoch  19/60 | train_loss=0.8184 | val_loss=0.4226 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:51:20 | AblationOrchestrator | epoch  20/60 | train_loss=0.7894 | val_loss=0.5138 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:52:01 | AblationOrchestrator | epoch  21/60 | train_loss=0.8741 | val_loss=0.3776 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.5s
+00:52:43 | AblationOrchestrator | epoch  22/60 | train_loss=0.8049 | val_loss=0.3576 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:53:24 | AblationOrchestrator | epoch  23/60 | train_loss=1.0263 | val_loss=0.3638 | val_acc=0.7436 | val_macroF1=0.2843 | time=40.9s
+00:54:05 | AblationOrchestrator | epoch  24/60 | train_loss=0.6938 | val_loss=0.4102 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.6s
+00:54:47 | AblationOrchestrator | epoch  25/60 | train_loss=0.8299 | val_loss=0.3886 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:55:28 | AblationOrchestrator | epoch  26/60 | train_loss=0.7131 | val_loss=0.4491 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+00:56:09 | AblationOrchestrator | epoch  27/60 | train_loss=0.7326 | val_loss=0.3648 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:56:51 | AblationOrchestrator | epoch  28/60 | train_loss=0.6786 | val_loss=0.3656 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+00:57:32 | AblationOrchestrator | epoch  29/60 | train_loss=0.6869 | val_loss=0.4183 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.5s
+00:58:09 | AblationOrchestrator | epoch  30/60 | train_loss=0.7545 | val_loss=0.4253 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.9s
+00:58:45 | AblationOrchestrator | epoch  31/60 | train_loss=0.7195 | val_loss=0.4373 | val_acc=0.7436 | val_macroF1=0.2843 | time=35.9s
+00:59:24 | AblationOrchestrator | epoch  32/60 | train_loss=0.8120 | val_loss=0.4339 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.9s
+01:00:00 | AblationOrchestrator | epoch  33/60 | train_loss=0.7800 | val_loss=0.3827 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.3s
+01:00:41 | AblationOrchestrator | epoch  34/60 | train_loss=0.8286 | val_loss=0.3880 | val_acc=0.7436 | val_macroF1=0.2843 | time=40.1s
+01:01:23 | AblationOrchestrator | epoch  35/60 | train_loss=0.9228 | val_loss=0.4059 | val_acc=0.7436 | val_macroF1=0.2843 | time=42.5s
+01:02:05 | AblationOrchestrator | epoch  36/60 | train_loss=0.6987 | val_loss=0.4062 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.7s
+01:02:46 | AblationOrchestrator | epoch  37/60 | train_loss=0.7045 | val_loss=0.4104 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.6s
+01:03:28 | AblationOrchestrator | epoch  38/60 | train_loss=0.6595 | val_loss=0.3912 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.5s
+01:04:09 | AblationOrchestrator | epoch  39/60 | train_loss=0.8010 | val_loss=0.3998 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+01:04:51 | AblationOrchestrator | epoch  40/60 | train_loss=0.6892 | val_loss=0.3624 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.5s
+01:05:32 | AblationOrchestrator | epoch  41/60 | train_loss=0.6885 | val_loss=0.3601 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.2s
+01:06:16 | AblationOrchestrator | epoch  42/60 | train_loss=0.7127 | val_loss=0.3793 | val_acc=0.7436 | val_macroF1=0.2843 | time=44.1s
+01:06:59 | AblationOrchestrator | epoch  43/60 | train_loss=0.7454 | val_loss=0.4283 | val_acc=0.7436 | val_macroF1=0.2843 | time=42.6s
+01:07:40 | AblationOrchestrator | epoch  44/60 | train_loss=0.7841 | val_loss=0.3956 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.2s
+01:08:21 | AblationOrchestrator | epoch  45/60 | train_loss=0.7818 | val_loss=0.3884 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+01:09:02 | AblationOrchestrator | epoch  46/60 | train_loss=0.7415 | val_loss=0.3819 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.2s
+01:09:44 | AblationOrchestrator | epoch  47/60 | train_loss=0.7124 | val_loss=0.3753 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.2s
+01:10:25 | AblationOrchestrator | epoch  48/60 | train_loss=0.6915 | val_loss=0.3914 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.1s
+01:11:06 | AblationOrchestrator | epoch  49/60 | train_loss=0.7641 | val_loss=0.3853 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+01:11:47 | AblationOrchestrator | epoch  50/60 | train_loss=0.7806 | val_loss=0.3782 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.1s
+01:12:29 | AblationOrchestrator | epoch  51/60 | train_loss=0.8398 | val_loss=0.3802 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+01:13:10 | AblationOrchestrator | epoch  52/60 | train_loss=0.7721 | val_loss=0.3843 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.2s
+01:13:51 | AblationOrchestrator | epoch  53/60 | train_loss=0.8043 | val_loss=0.3843 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+01:14:33 | AblationOrchestrator | epoch  54/60 | train_loss=0.7148 | val_loss=0.3833 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+01:15:14 | AblationOrchestrator | epoch  55/60 | train_loss=0.7591 | val_loss=0.3781 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+01:15:55 | AblationOrchestrator | epoch  56/60 | train_loss=0.7398 | val_loss=0.3814 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.1s
+01:16:36 | AblationOrchestrator | epoch  57/60 | train_loss=0.7519 | val_loss=0.3863 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+01:17:19 | AblationOrchestrator | epoch  58/60 | train_loss=0.7723 | val_loss=0.3782 | val_acc=0.7436 | val_macroF1=0.2843 | time=42.9s
+01:18:01 | AblationOrchestrator | epoch  59/60 | train_loss=0.6947 | val_loss=0.3857 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.5s
+01:18:42 | AblationOrchestrator | epoch  60/60 | train_loss=0.7102 | val_loss=0.3997 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.4s
+01:18:42 | AblationOrchestrator | Best epoch 6 -> val_acc=0.6923 | val_macroF1=0.3577 | Peak VRAM: 3704.0 MB
+01:18:44 | AblationOrchestrator |   RESULT config_9_permutation -> acc=0.6923 | macroF1=0.3577
+01:18:45 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:18:45 | AblationOrchestrator | CONFIG config_10_permutation [phase Other] | -EVM +SimAM -CNN3D -SLSTT
+01:18:45 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+01:18:45 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:18:45 | AblationOrchestrator | CONFIG config_11_permutation [phase Other] | -EVM +SimAM -CNN3D +SLSTT
+01:18:45 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+01:18:45 | AblationOrchestrator | ------------------------------------------------------------------------------
+01:18:45 | AblationOrchestrator | CONFIG config_5_attention_base [phase II] | -EVM +SimAM +CNN3D -SLSTT
+01:18:45 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+01:18:45 | AblationOrchestrator | Loaded CSV: 612 rows
+01:18:45 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+01:18:45 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+01:18:45 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+01:18:45 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw
+01:18:45 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': True, 'transformer': False} | trainable_params=15027
+01:18:46 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+01:18:47 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+01:18:48 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+01:18:50 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+01:19:16 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+01:19:31 | AblationOrchestrator | epoch   1/60 | train_loss=1.3752 | val_loss=0.2888 | val_acc=0.6410 | val_macroF1=0.4022 | time=45.3s
+01:20:16 | AblationOrchestrator | epoch   2/60 | train_loss=1.4464 | val_loss=0.4410 | val_acc=0.1538 | val_macroF1=0.1739 | time=45.3s
+01:21:01 | AblationOrchestrator | epoch   3/60 | train_loss=1.7716 | val_loss=0.3939 | val_acc=0.3333 | val_macroF1=0.2733 | time=45.0s
+01:21:46 | AblationOrchestrator | epoch   4/60 | train_loss=1.5811 | val_loss=0.3159 | val_acc=0.5897 | val_macroF1=0.3631 | time=45.0s
+01:22:31 | AblationOrchestrator | epoch   5/60 | train_loss=1.2390 | val_loss=0.3754 | val_acc=0.5385 | val_macroF1=0.3761 | time=45.1s
+01:23:16 | AblationOrchestrator | epoch   6/60 | train_loss=0.9878 | val_loss=0.4195 | val_acc=0.2564 | val_macroF1=0.1844 | time=44.9s
+01:24:01 | AblationOrchestrator | epoch   7/60 | train_loss=1.2698 | val_loss=0.4176 | val_acc=0.1795 | val_macroF1=0.1889 | time=45.2s
+01:24:47 | AblationOrchestrator | epoch   8/60 | train_loss=1.3885 | val_loss=0.6485 | val_acc=0.0769 | val_macroF1=0.0924 | time=45.3s
+01:25:32 | AblationOrchestrator | epoch   9/60 | train_loss=1.9385 | val_loss=0.4124 | val_acc=0.6154 | val_macroF1=0.2540 | time=45.3s
+01:26:17 | AblationOrchestrator | epoch  10/60 | train_loss=1.1046 | val_loss=0.3754 | val_acc=0.6667 | val_macroF1=0.2667 | time=44.9s
+01:27:02 | AblationOrchestrator | epoch  11/60 | train_loss=1.2615 | val_loss=0.3213 | val_acc=0.5897 | val_macroF1=0.4052 | time=45.1s
+01:27:47 | AblationOrchestrator | epoch  12/60 | train_loss=1.6968 | val_loss=0.6420 | val_acc=0.5897 | val_macroF1=0.2473 | time=45.1s
+01:28:32 | AblationOrchestrator | epoch  13/60 | train_loss=0.9527 | val_loss=0.3648 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.3s
+01:29:17 | AblationOrchestrator | epoch  14/60 | train_loss=1.2900 | val_loss=0.4249 | val_acc=0.7179 | val_macroF1=0.2786 | time=45.1s
+01:30:02 | AblationOrchestrator | epoch  15/60 | train_loss=1.4487 | val_loss=0.3939 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+01:30:48 | AblationOrchestrator | epoch  16/60 | train_loss=1.8683 | val_loss=0.4371 | val_acc=0.7179 | val_macroF1=0.2786 | time=46.0s
+01:31:30 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+01:31:36 | AblationOrchestrator | epoch  17/60 | train_loss=1.4043 | val_loss=0.4363 | val_acc=0.6667 | val_macroF1=0.3312 | time=47.4s
+01:32:21 | AblationOrchestrator | epoch  18/60 | train_loss=1.1471 | val_loss=0.4513 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.0s
+01:33:07 | AblationOrchestrator | epoch  19/60 | train_loss=1.2955 | val_loss=0.6160 | val_acc=0.7436 | val_macroF1=0.2843 | time=46.6s
+01:33:56 | AblationOrchestrator | epoch  20/60 | train_loss=1.6436 | val_loss=0.5119 | val_acc=0.6923 | val_macroF1=0.2727 | time=48.3s
+01:34:41 | AblationOrchestrator | epoch  21/60 | train_loss=1.1748 | val_loss=0.5563 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.3s
+01:35:26 | AblationOrchestrator | epoch  22/60 | train_loss=1.7141 | val_loss=0.6865 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.0s
+01:36:11 | AblationOrchestrator | epoch  23/60 | train_loss=1.7579 | val_loss=0.6715 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+01:36:56 | AblationOrchestrator | epoch  24/60 | train_loss=1.5671 | val_loss=0.3800 | val_acc=0.7436 | val_macroF1=0.3434 | time=45.2s
+01:37:41 | AblationOrchestrator | epoch  25/60 | train_loss=1.3384 | val_loss=0.4318 | val_acc=0.6667 | val_macroF1=0.3252 | time=45.0s
+01:38:26 | AblationOrchestrator | epoch  26/60 | train_loss=1.3864 | val_loss=0.4269 | val_acc=0.7436 | val_macroF1=0.2843 | time=44.8s
+01:39:11 | AblationOrchestrator | epoch  27/60 | train_loss=1.4720 | val_loss=0.5441 | val_acc=0.7179 | val_macroF1=0.2786 | time=45.1s
+01:39:56 | AblationOrchestrator | epoch  28/60 | train_loss=1.4376 | val_loss=0.5981 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+01:40:42 | AblationOrchestrator | epoch  29/60 | train_loss=1.4712 | val_loss=0.3946 | val_acc=0.7179 | val_macroF1=0.2786 | time=45.3s
+01:41:27 | AblationOrchestrator | epoch  30/60 | train_loss=1.3054 | val_loss=0.5924 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+01:42:12 | AblationOrchestrator | epoch  31/60 | train_loss=1.5879 | val_loss=0.5401 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.3s
+01:42:57 | AblationOrchestrator | epoch  32/60 | train_loss=1.4065 | val_loss=0.5081 | val_acc=0.7179 | val_macroF1=0.2786 | time=45.3s
+01:43:43 | AblationOrchestrator | epoch  33/60 | train_loss=1.6691 | val_loss=0.6114 | val_acc=0.6154 | val_macroF1=0.2540 | time=45.2s
+01:44:28 | AblationOrchestrator | epoch  34/60 | train_loss=1.8870 | val_loss=0.4387 | val_acc=0.4872 | val_macroF1=0.2184 | time=45.1s
+01:45:13 | AblationOrchestrator | epoch  35/60 | train_loss=1.1644 | val_loss=0.5637 | val_acc=0.5385 | val_macroF1=0.2333 | time=44.9s
+01:45:58 | AblationOrchestrator | epoch  36/60 | train_loss=1.2562 | val_loss=0.5512 | val_acc=0.4615 | val_macroF1=0.2105 | time=45.1s
+01:46:43 | AblationOrchestrator | epoch  37/60 | train_loss=1.2059 | val_loss=0.4292 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+01:47:28 | AblationOrchestrator | epoch  38/60 | train_loss=1.1973 | val_loss=0.6636 | val_acc=0.5641 | val_macroF1=0.2404 | time=45.3s
+01:48:15 | AblationOrchestrator | epoch  39/60 | train_loss=1.5093 | val_loss=0.6357 | val_acc=0.6154 | val_macroF1=0.2540 | time=47.0s
+01:49:00 | AblationOrchestrator | epoch  40/60 | train_loss=1.3565 | val_loss=0.3958 | val_acc=0.6410 | val_macroF1=0.2604 | time=45.2s
+01:49:45 | AblationOrchestrator | epoch  41/60 | train_loss=1.6334 | val_loss=0.5274 | val_acc=0.6154 | val_macroF1=0.2540 | time=45.0s
+01:50:30 | AblationOrchestrator | epoch  42/60 | train_loss=1.3521 | val_loss=0.5659 | val_acc=0.7436 | val_macroF1=0.2843 | time=44.9s
+01:51:15 | AblationOrchestrator | epoch  43/60 | train_loss=1.5232 | val_loss=0.4621 | val_acc=0.7436 | val_macroF1=0.2843 | time=44.9s
+01:52:00 | AblationOrchestrator | epoch  44/60 | train_loss=1.2977 | val_loss=0.5881 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.0s
+01:52:45 | AblationOrchestrator | epoch  45/60 | train_loss=1.7310 | val_loss=0.5135 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+01:53:30 | AblationOrchestrator | epoch  46/60 | train_loss=1.6432 | val_loss=0.4771 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.0s
+01:53:43 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+01:54:15 | AblationOrchestrator | epoch  47/60 | train_loss=1.4715 | val_loss=0.5024 | val_acc=0.3846 | val_macroF1=0.2511 | time=45.2s
+01:55:01 | AblationOrchestrator | epoch  48/60 | train_loss=1.2401 | val_loss=0.7512 | val_acc=0.6154 | val_macroF1=0.2540 | time=45.1s
+01:55:45 | AblationOrchestrator | epoch  49/60 | train_loss=1.2377 | val_loss=0.5021 | val_acc=0.7436 | val_macroF1=0.2843 | time=44.9s
+01:56:31 | AblationOrchestrator | epoch  50/60 | train_loss=1.4220 | val_loss=0.7629 | val_acc=0.4103 | val_macroF1=0.1975 | time=45.1s
+01:57:16 | AblationOrchestrator | epoch  51/60 | train_loss=1.5712 | val_loss=0.4453 | val_acc=0.6154 | val_macroF1=0.2540 | time=45.0s
+01:58:01 | AblationOrchestrator | epoch  52/60 | train_loss=1.8165 | val_loss=0.5360 | val_acc=0.3590 | val_macroF1=0.1905 | time=45.0s
+01:58:46 | AblationOrchestrator | epoch  53/60 | train_loss=1.4018 | val_loss=0.5730 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.0s
+01:59:31 | AblationOrchestrator | epoch  54/60 | train_loss=1.3812 | val_loss=0.4644 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+02:00:16 | AblationOrchestrator | epoch  55/60 | train_loss=1.6285 | val_loss=0.6769 | val_acc=0.7436 | val_macroF1=0.2843 | time=44.8s
+02:01:01 | AblationOrchestrator | epoch  56/60 | train_loss=1.6634 | val_loss=0.6239 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.0s
+02:01:46 | AblationOrchestrator | epoch  57/60 | train_loss=1.4858 | val_loss=0.6545 | val_acc=0.5385 | val_macroF1=0.2333 | time=45.2s
+02:02:31 | AblationOrchestrator | epoch  58/60 | train_loss=1.4192 | val_loss=0.5231 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.1s
+02:03:16 | AblationOrchestrator | epoch  59/60 | train_loss=1.1281 | val_loss=0.7054 | val_acc=0.6154 | val_macroF1=0.2540 | time=44.9s
+02:04:01 | AblationOrchestrator | epoch  60/60 | train_loss=1.2175 | val_loss=0.7001 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.7s
+02:04:01 | AblationOrchestrator | Best epoch 11 -> val_acc=0.5897 | val_macroF1=0.4052 | Peak VRAM: 5020.6 MB
+02:04:05 | AblationOrchestrator |   RESULT config_5_attention_base -> acc=0.5897 | macroF1=0.4052
+02:04:06 | AblationOrchestrator | ------------------------------------------------------------------------------
+02:04:06 | AblationOrchestrator | CONFIG config_6_full_stage2_noevm [phase III] | -EVM +SimAM +CNN3D +SLSTT
+02:04:06 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+02:04:06 | AblationOrchestrator | Loaded CSV: 612 rows
+02:04:06 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+02:04:06 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+02:04:06 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+02:04:06 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors_raw
+02:04:06 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': True, 'transformer': True} | trainable_params=363763
+02:04:08 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:04:09 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:04:12 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:04:26 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:04:54 | AblationOrchestrator | epoch   1/60 | train_loss=1.6651 | val_loss=0.5751 | val_acc=0.3333 | val_macroF1=0.1806 | time=47.9s
+02:05:39 | AblationOrchestrator | epoch   2/60 | train_loss=1.2829 | val_loss=1.0641 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.2s
+02:06:26 | AblationOrchestrator | epoch   3/60 | train_loss=1.3435 | val_loss=0.9351 | val_acc=0.1282 | val_macroF1=0.0975 | time=47.5s
+02:07:16 | AblationOrchestrator | epoch   4/60 | train_loss=1.2402 | val_loss=0.6149 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.2s
+02:07:38 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:08:05 | AblationOrchestrator | epoch   5/60 | train_loss=0.9413 | val_loss=0.3770 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.2s
+02:08:54 | AblationOrchestrator | epoch   6/60 | train_loss=0.7314 | val_loss=0.3541 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.3s
+02:09:43 | AblationOrchestrator | epoch   7/60 | train_loss=1.0891 | val_loss=0.4874 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.3s
+02:10:33 | AblationOrchestrator | epoch   8/60 | train_loss=0.9833 | val_loss=0.4815 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.1s
+02:11:22 | AblationOrchestrator | epoch   9/60 | train_loss=1.0056 | val_loss=0.3734 | val_acc=0.4359 | val_macroF1=0.2725 | time=49.3s
+02:12:12 | AblationOrchestrator | epoch  10/60 | train_loss=1.1541 | val_loss=0.4260 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.9s
+02:13:01 | AblationOrchestrator | epoch  11/60 | train_loss=0.8000 | val_loss=0.2891 | val_acc=0.4872 | val_macroF1=0.3094 | time=49.4s
+02:13:50 | AblationOrchestrator | epoch  12/60 | train_loss=1.0305 | val_loss=0.5205 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.2s
+02:14:40 | AblationOrchestrator | epoch  13/60 | train_loss=0.7635 | val_loss=0.3872 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.1s
+02:15:29 | AblationOrchestrator | epoch  14/60 | train_loss=1.0652 | val_loss=0.4930 | val_acc=0.7436 | val_macroF1=0.2843 | time=49.1s
+02:16:17 | AblationOrchestrator | epoch  15/60 | train_loss=0.9104 | val_loss=0.4871 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.8s
+02:17:04 | AblationOrchestrator | epoch  16/60 | train_loss=0.7896 | val_loss=0.3887 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.0s
+02:17:51 | AblationOrchestrator | epoch  17/60 | train_loss=0.8770 | val_loss=0.3458 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:18:38 | AblationOrchestrator | epoch  18/60 | train_loss=0.9869 | val_loss=0.3397 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.0s
+02:19:25 | AblationOrchestrator | epoch  19/60 | train_loss=0.7940 | val_loss=0.3991 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:20:12 | AblationOrchestrator | epoch  20/60 | train_loss=0.7755 | val_loss=0.4691 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.0s
+02:20:59 | AblationOrchestrator | epoch  21/60 | train_loss=0.8395 | val_loss=0.3702 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.3s
+02:21:46 | AblationOrchestrator | epoch  22/60 | train_loss=0.8072 | val_loss=0.3455 | val_acc=0.7436 | val_macroF1=0.2843 | time=46.9s
+02:22:33 | AblationOrchestrator | epoch  23/60 | train_loss=1.0005 | val_loss=0.3627 | val_acc=0.7436 | val_macroF1=0.2843 | time=46.8s
+02:23:20 | AblationOrchestrator | epoch  24/60 | train_loss=0.6828 | val_loss=0.3796 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:24:07 | AblationOrchestrator | epoch  25/60 | train_loss=0.8430 | val_loss=0.3710 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.0s
+02:24:54 | AblationOrchestrator | epoch  26/60 | train_loss=0.7076 | val_loss=0.4186 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.0s
+02:25:41 | AblationOrchestrator | epoch  27/60 | train_loss=0.7236 | val_loss=0.3457 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:26:28 | AblationOrchestrator | epoch  28/60 | train_loss=0.6666 | val_loss=0.3483 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.0s
+02:27:15 | AblationOrchestrator | epoch  29/60 | train_loss=0.6843 | val_loss=0.3649 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.0s
+02:28:02 | AblationOrchestrator | epoch  30/60 | train_loss=0.7453 | val_loss=0.4201 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.2s
+02:28:49 | AblationOrchestrator | epoch  31/60 | train_loss=0.7199 | val_loss=0.4230 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.2s
+02:29:36 | AblationOrchestrator | epoch  32/60 | train_loss=0.7977 | val_loss=0.3957 | val_acc=0.7436 | val_macroF1=0.2843 | time=46.9s
+02:30:24 | AblationOrchestrator | epoch  33/60 | train_loss=0.7439 | val_loss=0.3584 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.3s
+02:31:11 | AblationOrchestrator | epoch  34/60 | train_loss=0.7970 | val_loss=0.3713 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:31:58 | AblationOrchestrator | epoch  35/60 | train_loss=0.8809 | val_loss=0.4081 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.2s
+02:32:45 | AblationOrchestrator | epoch  36/60 | train_loss=0.6636 | val_loss=0.3850 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:33:32 | AblationOrchestrator | epoch  37/60 | train_loss=0.6595 | val_loss=0.3886 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:34:19 | AblationOrchestrator | epoch  38/60 | train_loss=0.6249 | val_loss=0.3874 | val_acc=0.7436 | val_macroF1=0.2843 | time=47.1s
+02:35:05 | AblationOrchestrator | epoch  39/60 | train_loss=0.7653 | val_loss=0.3742 | val_acc=0.7436 | val_macroF1=0.2843 | time=45.8s
+02:35:45 | AblationOrchestrator | epoch  40/60 | train_loss=0.6754 | val_loss=0.3532 | val_acc=0.7436 | val_macroF1=0.2843 | time=40.2s
+02:36:23 | AblationOrchestrator | epoch  41/60 | train_loss=0.6688 | val_loss=0.3567 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+02:37:02 | AblationOrchestrator | epoch  42/60 | train_loss=0.6688 | val_loss=0.3813 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+02:37:40 | AblationOrchestrator | epoch  43/60 | train_loss=0.7045 | val_loss=0.4076 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+02:38:18 | AblationOrchestrator | epoch  44/60 | train_loss=0.7410 | val_loss=0.3836 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+02:38:57 | AblationOrchestrator | epoch  45/60 | train_loss=0.7448 | val_loss=0.3760 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+02:39:35 | AblationOrchestrator | epoch  46/60 | train_loss=0.6998 | val_loss=0.3680 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+02:40:16 | AblationOrchestrator | epoch  47/60 | train_loss=0.6805 | val_loss=0.3678 | val_acc=0.7436 | val_macroF1=0.2843 | time=41.3s
+02:40:54 | AblationOrchestrator | epoch  48/60 | train_loss=0.6623 | val_loss=0.3900 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.0s
+02:41:32 | AblationOrchestrator | epoch  49/60 | train_loss=0.7263 | val_loss=0.3816 | val_acc=0.7436 | val_macroF1=0.2843 | time=37.4s
+02:42:08 | AblationOrchestrator | epoch  50/60 | train_loss=0.7491 | val_loss=0.3740 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.6s
+02:42:47 | AblationOrchestrator | epoch  51/60 | train_loss=0.7964 | val_loss=0.3714 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.6s
+02:43:26 | AblationOrchestrator | epoch  52/60 | train_loss=0.7285 | val_loss=0.3894 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.5s
+02:44:06 | AblationOrchestrator | epoch  53/60 | train_loss=0.7771 | val_loss=0.3810 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.6s
+02:44:45 | AblationOrchestrator | epoch  54/60 | train_loss=0.6978 | val_loss=0.3755 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.0s
+02:45:24 | AblationOrchestrator | epoch  55/60 | train_loss=0.7350 | val_loss=0.3821 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.8s
+02:46:03 | AblationOrchestrator | epoch  56/60 | train_loss=0.7207 | val_loss=0.3832 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.4s
+02:46:42 | AblationOrchestrator | epoch  57/60 | train_loss=0.7174 | val_loss=0.3824 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.0s
+02:47:22 | AblationOrchestrator | epoch  58/60 | train_loss=0.7602 | val_loss=0.3722 | val_acc=0.7436 | val_macroF1=0.2843 | time=40.2s
+02:48:02 | AblationOrchestrator | epoch  59/60 | train_loss=0.6619 | val_loss=0.3827 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.8s
+02:48:41 | AblationOrchestrator | epoch  60/60 | train_loss=0.6787 | val_loss=0.3950 | val_acc=0.7436 | val_macroF1=0.2843 | time=39.2s
+02:48:41 | AblationOrchestrator | Best epoch 11 -> val_acc=0.4872 | val_macroF1=0.3094 | Peak VRAM: 5026.0 MB
+02:48:44 | AblationOrchestrator |   RESULT config_6_full_stage2_noevm -> acc=0.4872 | macroF1=0.3094
+02:48:45 | AblationOrchestrator | ------------------------------------------------------------------------------
+02:48:45 | AblationOrchestrator | CONFIG config_4_motion_amp_base [phase II] | +EVM -SimAM -CNN3D -SLSTT
+02:48:45 | AblationOrchestrator | Loaded CSV: 612 rows
+02:48:45 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+02:48:45 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+02:48:45 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+02:48:45 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+02:48:45 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+02:48:45 | AblationOrchestrator | Loaded CSV: 612 rows
+02:48:45 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+02:48:45 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+02:48:45 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+02:48:45 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+02:48:45 | AblationOrchestrator |   components={'cnn_backbone': False, 'simam_attention': False, 'transformer': False} | trainable_params=5187
+02:48:46 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:48:46 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:48:47 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:48:55 | AblationOrchestrator | epoch   1/60 | train_loss=1.0848 | val_loss=0.8152 | val_acc=0.0256 | val_macroF1=0.0167 | time=10.4s
+02:49:01 | AblationOrchestrator | epoch   2/60 | train_loss=1.1661 | val_loss=0.5317 | val_acc=0.3077 | val_macroF1=0.1907 | time=6.1s
+02:49:07 | AblationOrchestrator | epoch   3/60 | train_loss=1.1087 | val_loss=0.4295 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.5s
+02:49:12 | AblationOrchestrator | epoch   4/60 | train_loss=1.0387 | val_loss=0.4265 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.6s
+02:49:19 | AblationOrchestrator | epoch   5/60 | train_loss=0.9675 | val_loss=0.3513 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:49:25 | AblationOrchestrator | epoch   6/60 | train_loss=0.8819 | val_loss=0.3880 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.1s
+02:49:31 | AblationOrchestrator | epoch   7/60 | train_loss=0.9295 | val_loss=0.3421 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:49:37 | AblationOrchestrator | epoch   8/60 | train_loss=0.8718 | val_loss=0.3513 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.1s
+02:49:43 | AblationOrchestrator | epoch   9/60 | train_loss=1.0600 | val_loss=0.3772 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:49:49 | AblationOrchestrator | epoch  10/60 | train_loss=0.9539 | val_loss=0.3812 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.1s
+02:49:55 | AblationOrchestrator | epoch  11/60 | train_loss=0.9249 | val_loss=0.3243 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:50:01 | AblationOrchestrator | epoch  12/60 | train_loss=0.8512 | val_loss=0.3690 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.8s
+02:50:04 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:50:07 | AblationOrchestrator | epoch  13/60 | train_loss=0.8885 | val_loss=0.3581 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.1s
+02:50:13 | AblationOrchestrator | epoch  14/60 | train_loss=1.0754 | val_loss=0.3368 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.9s
+02:50:19 | AblationOrchestrator | epoch  15/60 | train_loss=1.0536 | val_loss=0.4046 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.7s
+02:50:25 | AblationOrchestrator | epoch  16/60 | train_loss=1.1104 | val_loss=0.3538 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.9s
+02:50:31 | AblationOrchestrator | epoch  17/60 | train_loss=0.9230 | val_loss=0.3431 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:50:37 | AblationOrchestrator | epoch  18/60 | train_loss=0.9824 | val_loss=0.3599 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:50:43 | AblationOrchestrator | epoch  19/60 | train_loss=0.9102 | val_loss=0.3452 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.9s
+02:50:48 | AblationOrchestrator | epoch  20/60 | train_loss=0.9646 | val_loss=0.3877 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.2s
+02:50:53 | AblationOrchestrator | epoch  21/60 | train_loss=0.8318 | val_loss=0.3831 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.3s
+02:51:00 | AblationOrchestrator | epoch  22/60 | train_loss=0.9873 | val_loss=0.3675 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.4s
+02:51:06 | AblationOrchestrator | epoch  23/60 | train_loss=0.8285 | val_loss=0.4035 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.3s
+02:51:12 | AblationOrchestrator | epoch  24/60 | train_loss=0.8408 | val_loss=0.3692 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.3s
+02:51:18 | AblationOrchestrator | epoch  25/60 | train_loss=0.9685 | val_loss=0.3715 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:51:24 | AblationOrchestrator | epoch  26/60 | train_loss=0.8698 | val_loss=0.3656 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.4s
+02:51:29 | AblationOrchestrator | epoch  27/60 | train_loss=1.0184 | val_loss=0.3786 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.7s
+02:51:35 | AblationOrchestrator | epoch  28/60 | train_loss=0.8064 | val_loss=0.3702 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:51:42 | AblationOrchestrator | epoch  29/60 | train_loss=0.9387 | val_loss=0.3961 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.4s
+02:51:48 | AblationOrchestrator | epoch  30/60 | train_loss=1.0641 | val_loss=0.3764 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:51:54 | AblationOrchestrator | epoch  31/60 | train_loss=0.8914 | val_loss=0.3644 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.8s
+02:51:59 | AblationOrchestrator | epoch  32/60 | train_loss=0.9403 | val_loss=0.3674 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.3s
+02:52:05 | AblationOrchestrator | epoch  33/60 | train_loss=0.8458 | val_loss=0.3778 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.8s
+02:52:11 | AblationOrchestrator | epoch  34/60 | train_loss=0.8750 | val_loss=0.3977 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:52:17 | AblationOrchestrator | epoch  35/60 | train_loss=0.9482 | val_loss=0.4099 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:52:23 | AblationOrchestrator | epoch  36/60 | train_loss=0.9912 | val_loss=0.4230 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.9s
+02:52:29 | AblationOrchestrator | epoch  37/60 | train_loss=0.9948 | val_loss=0.4450 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.7s
+02:52:34 | AblationOrchestrator | epoch  38/60 | train_loss=0.8595 | val_loss=0.4758 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.2s
+02:52:39 | AblationOrchestrator | epoch  39/60 | train_loss=0.9260 | val_loss=0.4553 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.5s
+02:52:45 | AblationOrchestrator | epoch  40/60 | train_loss=0.8189 | val_loss=0.4367 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:52:51 | AblationOrchestrator | epoch  41/60 | train_loss=1.0340 | val_loss=0.4423 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.8s
+02:52:57 | AblationOrchestrator | epoch  42/60 | train_loss=0.9478 | val_loss=0.4495 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.9s
+02:53:03 | AblationOrchestrator | epoch  43/60 | train_loss=1.0816 | val_loss=0.4418 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.3s
+02:53:09 | AblationOrchestrator | epoch  44/60 | train_loss=0.9458 | val_loss=0.4520 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.7s
+02:53:15 | AblationOrchestrator | epoch  45/60 | train_loss=0.7859 | val_loss=0.4448 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.7s
+02:53:21 | AblationOrchestrator | epoch  46/60 | train_loss=0.9707 | val_loss=0.4389 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.1s
+02:53:27 | AblationOrchestrator | epoch  47/60 | train_loss=0.8489 | val_loss=0.4442 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:53:34 | AblationOrchestrator | epoch  48/60 | train_loss=0.9882 | val_loss=0.4426 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.4s
+02:53:40 | AblationOrchestrator | epoch  49/60 | train_loss=1.0082 | val_loss=0.4357 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.1s
+02:53:43 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:53:45 | AblationOrchestrator | epoch  50/60 | train_loss=0.7745 | val_loss=0.4390 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.4s
+02:53:51 | AblationOrchestrator | epoch  51/60 | train_loss=0.8497 | val_loss=0.4408 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.0s
+02:53:57 | AblationOrchestrator | epoch  52/60 | train_loss=0.8088 | val_loss=0.4424 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.3s
+02:54:04 | AblationOrchestrator | epoch  53/60 | train_loss=0.9003 | val_loss=0.4405 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:54:10 | AblationOrchestrator | epoch  54/60 | train_loss=0.7131 | val_loss=0.4387 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.4s
+02:54:16 | AblationOrchestrator | epoch  55/60 | train_loss=0.8808 | val_loss=0.4390 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.9s
+02:54:22 | AblationOrchestrator | epoch  56/60 | train_loss=0.9497 | val_loss=0.4378 | val_acc=0.7436 | val_macroF1=0.2843 | time=5.5s
+02:54:28 | AblationOrchestrator | epoch  57/60 | train_loss=1.0234 | val_loss=0.4375 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.3s
+02:54:34 | AblationOrchestrator | epoch  58/60 | train_loss=0.9549 | val_loss=0.4374 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.3s
+02:54:40 | AblationOrchestrator | epoch  59/60 | train_loss=0.8488 | val_loss=0.4372 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:54:46 | AblationOrchestrator | epoch  60/60 | train_loss=0.9437 | val_loss=0.4371 | val_acc=0.7436 | val_macroF1=0.2843 | time=6.2s
+02:54:46 | AblationOrchestrator | Best epoch 60 -> val_acc=0.7436 | val_macroF1=0.2843 | Peak VRAM: 54.1 MB
+02:54:48 | AblationOrchestrator |   RESULT config_4_motion_amp_base -> acc=0.7436 | macroF1=0.2843
+02:54:48 | AblationOrchestrator | ------------------------------------------------------------------------------
+02:54:48 | AblationOrchestrator | CONFIG config_12_permutation [phase Other] | +EVM -SimAM -CNN3D +SLSTT
+02:54:48 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+02:54:48 | AblationOrchestrator | Loaded CSV: 612 rows
+02:54:48 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+02:54:48 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+02:54:49 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+02:54:49 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+02:54:49 | AblationOrchestrator |   components={'cnn_backbone': False, 'simam_attention': False, 'transformer': True} | trainable_params=353923
+02:54:49 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:54:49 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:54:50 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:54:59 | AblationOrchestrator | epoch   1/60 | train_loss=1.3421 | val_loss=0.7576 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.7s
+02:55:03 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+02:55:10 | AblationOrchestrator | epoch   2/60 | train_loss=1.2805 | val_loss=0.4295 | val_acc=0.7179 | val_macroF1=0.2786 | time=10.6s
+02:55:19 | AblationOrchestrator | epoch   3/60 | train_loss=1.2391 | val_loss=0.5519 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.6s
+02:55:30 | AblationOrchestrator | epoch   4/60 | train_loss=1.0652 | val_loss=0.9126 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.3s
+02:55:40 | AblationOrchestrator | epoch   5/60 | train_loss=1.2483 | val_loss=0.7795 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:55:50 | AblationOrchestrator | epoch   6/60 | train_loss=1.1112 | val_loss=0.4518 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.0s
+02:55:59 | AblationOrchestrator | epoch   7/60 | train_loss=1.1122 | val_loss=0.5929 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.4s
+02:56:10 | AblationOrchestrator | epoch   8/60 | train_loss=1.3227 | val_loss=0.4230 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.3s
+02:56:20 | AblationOrchestrator | epoch   9/60 | train_loss=1.0511 | val_loss=0.4806 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:56:30 | AblationOrchestrator | epoch  10/60 | train_loss=0.7903 | val_loss=0.5392 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.0s
+02:56:40 | AblationOrchestrator | epoch  11/60 | train_loss=0.9515 | val_loss=0.3446 | val_acc=0.2051 | val_macroF1=0.1245 | time=9.5s
+02:56:50 | AblationOrchestrator | epoch  12/60 | train_loss=0.7757 | val_loss=0.3881 | val_acc=0.2308 | val_macroF1=0.1250 | time=10.4s
+02:57:00 | AblationOrchestrator | epoch  13/60 | train_loss=0.7489 | val_loss=0.4524 | val_acc=0.0256 | val_macroF1=0.0167 | time=9.9s
+02:57:10 | AblationOrchestrator | epoch  14/60 | train_loss=0.7864 | val_loss=0.3167 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.7s
+02:57:20 | AblationOrchestrator | epoch  15/60 | train_loss=0.8593 | val_loss=0.4088 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.0s
+02:57:30 | AblationOrchestrator | epoch  16/60 | train_loss=0.9358 | val_loss=0.3809 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:57:40 | AblationOrchestrator | epoch  17/60 | train_loss=0.8028 | val_loss=0.5427 | val_acc=0.0256 | val_macroF1=0.0167 | time=9.9s
+02:57:50 | AblationOrchestrator | epoch  18/60 | train_loss=0.7525 | val_loss=0.3692 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:58:00 | AblationOrchestrator | epoch  19/60 | train_loss=0.8684 | val_loss=0.4814 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.7s
+02:58:09 | AblationOrchestrator | epoch  20/60 | train_loss=0.7118 | val_loss=0.4765 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.8s
+02:58:20 | AblationOrchestrator | epoch  21/60 | train_loss=0.7804 | val_loss=0.3947 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:58:30 | AblationOrchestrator | epoch  22/60 | train_loss=0.6856 | val_loss=0.3989 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.1s
+02:58:40 | AblationOrchestrator | epoch  23/60 | train_loss=0.8771 | val_loss=0.4676 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:58:50 | AblationOrchestrator | epoch  24/60 | train_loss=0.6171 | val_loss=0.3858 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:59:00 | AblationOrchestrator | epoch  25/60 | train_loss=0.7026 | val_loss=0.3221 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.6s
+02:59:10 | AblationOrchestrator | epoch  26/60 | train_loss=0.7042 | val_loss=0.3489 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.0s
+02:59:20 | AblationOrchestrator | epoch  27/60 | train_loss=0.7693 | val_loss=0.3728 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.6s
+02:59:31 | AblationOrchestrator | epoch  28/60 | train_loss=0.6231 | val_loss=0.3279 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+02:59:41 | AblationOrchestrator | epoch  29/60 | train_loss=0.8350 | val_loss=0.3650 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.3s
+02:59:51 | AblationOrchestrator | epoch  30/60 | train_loss=0.5998 | val_loss=0.3657 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.3s
+03:00:02 | AblationOrchestrator | epoch  31/60 | train_loss=0.7150 | val_loss=0.3665 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.3s
+03:00:12 | AblationOrchestrator | epoch  32/60 | train_loss=0.7035 | val_loss=0.4089 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+03:00:22 | AblationOrchestrator | epoch  33/60 | train_loss=0.7443 | val_loss=0.3616 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.8s
+03:00:31 | AblationOrchestrator | epoch  34/60 | train_loss=0.7164 | val_loss=0.4186 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.7s
+03:00:41 | AblationOrchestrator | epoch  35/60 | train_loss=0.7592 | val_loss=0.3763 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.1s
+03:00:51 | AblationOrchestrator | epoch  36/60 | train_loss=0.7484 | val_loss=0.3959 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.9s
+03:01:01 | AblationOrchestrator | epoch  37/60 | train_loss=0.6250 | val_loss=0.4269 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.7s
+03:01:07 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:01:11 | AblationOrchestrator | epoch  38/60 | train_loss=0.6297 | val_loss=0.3700 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.3s
+03:01:21 | AblationOrchestrator | epoch  39/60 | train_loss=0.6045 | val_loss=0.3892 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.3s
+03:01:32 | AblationOrchestrator | epoch  40/60 | train_loss=0.6545 | val_loss=0.3512 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+03:01:42 | AblationOrchestrator | epoch  41/60 | train_loss=0.6560 | val_loss=0.3528 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.0s
+03:01:52 | AblationOrchestrator | epoch  42/60 | train_loss=0.6613 | val_loss=0.3725 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.2s
+03:02:02 | AblationOrchestrator | epoch  43/60 | train_loss=0.6405 | val_loss=0.3863 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.4s
+03:02:12 | AblationOrchestrator | epoch  44/60 | train_loss=0.5772 | val_loss=0.4128 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.9s
+03:02:22 | AblationOrchestrator | epoch  45/60 | train_loss=0.6306 | val_loss=0.4007 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.1s
+03:02:32 | AblationOrchestrator | epoch  46/60 | train_loss=0.6143 | val_loss=0.3819 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.9s
+03:02:42 | AblationOrchestrator | epoch  47/60 | train_loss=0.7087 | val_loss=0.3903 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.6s
+03:02:51 | AblationOrchestrator | epoch  48/60 | train_loss=0.6579 | val_loss=0.3766 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.5s
+03:03:01 | AblationOrchestrator | epoch  49/60 | train_loss=0.6256 | val_loss=0.3704 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.9s
+03:03:11 | AblationOrchestrator | epoch  50/60 | train_loss=0.6212 | val_loss=0.3694 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.7s
+03:03:20 | AblationOrchestrator | epoch  51/60 | train_loss=0.6973 | val_loss=0.3720 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.2s
+03:03:30 | AblationOrchestrator | epoch  52/60 | train_loss=0.6538 | val_loss=0.3763 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.9s
+03:03:40 | AblationOrchestrator | epoch  53/60 | train_loss=0.6298 | val_loss=0.3769 | val_acc=0.7436 | val_macroF1=0.2843 | time=10.0s
+03:03:49 | AblationOrchestrator | epoch  54/60 | train_loss=0.6254 | val_loss=0.3760 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.1s
+03:03:59 | AblationOrchestrator | epoch  55/60 | train_loss=0.5990 | val_loss=0.3823 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.4s
+03:04:09 | AblationOrchestrator | epoch  56/60 | train_loss=0.6001 | val_loss=0.3803 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.9s
+03:04:18 | AblationOrchestrator | epoch  57/60 | train_loss=0.6577 | val_loss=0.3815 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.8s
+03:04:27 | AblationOrchestrator | epoch  58/60 | train_loss=0.6641 | val_loss=0.3815 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.1s
+03:04:37 | AblationOrchestrator | epoch  59/60 | train_loss=0.7172 | val_loss=0.3815 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.9s
+03:04:47 | AblationOrchestrator | epoch  60/60 | train_loss=0.6404 | val_loss=0.3814 | val_acc=0.7436 | val_macroF1=0.2843 | time=9.7s
+03:04:47 | AblationOrchestrator | Best epoch 60 -> val_acc=0.7436 | val_macroF1=0.2843 | Peak VRAM: 60.4 MB
+03:04:49 | AblationOrchestrator |   RESULT config_12_permutation -> acc=0.7436 | macroF1=0.2843
+03:04:49 | AblationOrchestrator | ------------------------------------------------------------------------------
+03:04:49 | AblationOrchestrator | CONFIG config_13_permutation [phase Other] | +EVM -SimAM +CNN3D -SLSTT
+03:04:49 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+03:04:49 | AblationOrchestrator | Loaded CSV: 612 rows
+03:04:49 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+03:04:49 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+03:04:49 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+03:04:49 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+03:04:49 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': False, 'transformer': False} | trainable_params=15027
+03:04:50 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:04:51 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:04:51 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:04:53 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:05:12 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:05:22 | AblationOrchestrator | epoch   1/60 | train_loss=1.3529 | val_loss=0.2930 | val_acc=0.7179 | val_macroF1=0.4357 | time=32.4s
+03:05:54 | AblationOrchestrator | epoch   2/60 | train_loss=1.4217 | val_loss=0.4310 | val_acc=0.2051 | val_macroF1=0.2156 | time=32.4s
+03:06:26 | AblationOrchestrator | epoch   3/60 | train_loss=1.7892 | val_loss=0.4009 | val_acc=0.3333 | val_macroF1=0.2832 | time=32.3s
+03:06:59 | AblationOrchestrator | epoch   4/60 | train_loss=1.5703 | val_loss=0.3178 | val_acc=0.6154 | val_macroF1=0.3789 | time=32.3s
+03:07:31 | AblationOrchestrator | epoch   5/60 | train_loss=1.2524 | val_loss=0.3947 | val_acc=0.5641 | val_macroF1=0.3841 | time=32.4s
+03:08:03 | AblationOrchestrator | epoch   6/60 | train_loss=0.9636 | val_loss=0.4356 | val_acc=0.2564 | val_macroF1=0.1844 | time=32.3s
+03:08:36 | AblationOrchestrator | epoch   7/60 | train_loss=1.2575 | val_loss=0.4325 | val_acc=0.1795 | val_macroF1=0.1889 | time=32.2s
+03:09:08 | AblationOrchestrator | epoch   8/60 | train_loss=1.3664 | val_loss=0.6211 | val_acc=0.0769 | val_macroF1=0.0924 | time=32.2s
+03:09:40 | AblationOrchestrator | epoch   9/60 | train_loss=1.9311 | val_loss=0.4145 | val_acc=0.5897 | val_macroF1=0.2473 | time=32.3s
+03:10:13 | AblationOrchestrator | epoch  10/60 | train_loss=1.0921 | val_loss=0.3825 | val_acc=0.6154 | val_macroF1=0.2540 | time=32.3s
+03:10:45 | AblationOrchestrator | epoch  11/60 | train_loss=1.2618 | val_loss=0.3317 | val_acc=0.5385 | val_macroF1=0.3492 | time=32.2s
+03:11:17 | AblationOrchestrator | epoch  12/60 | train_loss=1.6969 | val_loss=0.6185 | val_acc=0.5641 | val_macroF1=0.2404 | time=32.3s
+03:11:49 | AblationOrchestrator | epoch  13/60 | train_loss=0.9555 | val_loss=0.3695 | val_acc=0.7179 | val_macroF1=0.2786 | time=32.4s
+03:12:22 | AblationOrchestrator | epoch  14/60 | train_loss=1.2918 | val_loss=0.4239 | val_acc=0.6154 | val_macroF1=0.2540 | time=32.4s
+03:12:54 | AblationOrchestrator | epoch  15/60 | train_loss=1.4478 | val_loss=0.4012 | val_acc=0.7179 | val_macroF1=0.2786 | time=32.2s
+03:13:26 | AblationOrchestrator | epoch  16/60 | train_loss=1.8431 | val_loss=0.4275 | val_acc=0.6154 | val_macroF1=0.2540 | time=32.5s
+03:13:55 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:13:59 | AblationOrchestrator | epoch  17/60 | train_loss=1.3885 | val_loss=0.4451 | val_acc=0.6410 | val_macroF1=0.3247 | time=32.4s
+03:14:31 | AblationOrchestrator | epoch  18/60 | train_loss=1.1522 | val_loss=0.4483 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.2s
+03:15:03 | AblationOrchestrator | epoch  19/60 | train_loss=1.3295 | val_loss=0.6402 | val_acc=0.6923 | val_macroF1=0.2727 | time=32.3s
+03:15:36 | AblationOrchestrator | epoch  20/60 | train_loss=1.6424 | val_loss=0.5575 | val_acc=0.6154 | val_macroF1=0.2540 | time=32.4s
+03:16:08 | AblationOrchestrator | epoch  21/60 | train_loss=1.1982 | val_loss=0.5854 | val_acc=0.6923 | val_macroF1=0.2727 | time=32.3s
+03:16:40 | AblationOrchestrator | epoch  22/60 | train_loss=1.6801 | val_loss=0.6880 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.2s
+03:17:13 | AblationOrchestrator | epoch  23/60 | train_loss=1.7772 | val_loss=0.7472 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.3s
+03:17:45 | AblationOrchestrator | epoch  24/60 | train_loss=1.5704 | val_loss=0.4222 | val_acc=0.7179 | val_macroF1=0.2786 | time=32.4s
+03:18:17 | AblationOrchestrator | epoch  25/60 | train_loss=1.3331 | val_loss=0.4906 | val_acc=0.6667 | val_macroF1=0.2708 | time=32.2s
+03:18:49 | AblationOrchestrator | epoch  26/60 | train_loss=1.3767 | val_loss=0.4433 | val_acc=0.7179 | val_macroF1=0.2786 | time=32.2s
+03:19:22 | AblationOrchestrator | epoch  27/60 | train_loss=1.4751 | val_loss=0.5681 | val_acc=0.5897 | val_macroF1=0.2473 | time=32.4s
+03:19:54 | AblationOrchestrator | epoch  28/60 | train_loss=1.4527 | val_loss=0.5900 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.3s
+03:20:27 | AblationOrchestrator | epoch  29/60 | train_loss=1.4535 | val_loss=0.4092 | val_acc=0.6154 | val_macroF1=0.2540 | time=32.5s
+03:20:59 | AblationOrchestrator | epoch  30/60 | train_loss=1.3100 | val_loss=0.6319 | val_acc=0.6667 | val_macroF1=0.2667 | time=32.2s
+03:21:31 | AblationOrchestrator | epoch  31/60 | train_loss=1.5573 | val_loss=0.5793 | val_acc=0.6154 | val_macroF1=0.2540 | time=32.3s
+03:22:03 | AblationOrchestrator | epoch  32/60 | train_loss=1.3936 | val_loss=0.5163 | val_acc=0.5897 | val_macroF1=0.2473 | time=32.3s
+03:22:36 | AblationOrchestrator | epoch  33/60 | train_loss=1.6659 | val_loss=0.6235 | val_acc=0.5897 | val_macroF1=0.2473 | time=32.2s
+03:23:08 | AblationOrchestrator | epoch  34/60 | train_loss=1.8859 | val_loss=0.4581 | val_acc=0.3333 | val_macroF1=0.1733 | time=32.4s
+03:23:40 | AblationOrchestrator | epoch  35/60 | train_loss=1.1694 | val_loss=0.5933 | val_acc=0.4615 | val_macroF1=0.2143 | time=32.2s
+03:24:13 | AblationOrchestrator | epoch  36/60 | train_loss=1.2541 | val_loss=0.5698 | val_acc=0.4103 | val_macroF1=0.2013 | time=32.3s
+03:24:45 | AblationOrchestrator | epoch  37/60 | train_loss=1.1816 | val_loss=0.4364 | val_acc=0.6923 | val_macroF1=0.2727 | time=32.3s
+03:25:17 | AblationOrchestrator | epoch  38/60 | train_loss=1.2049 | val_loss=0.6733 | val_acc=0.5128 | val_macroF1=0.2260 | time=32.3s
+03:25:49 | AblationOrchestrator | epoch  39/60 | train_loss=1.5100 | val_loss=0.6543 | val_acc=0.5385 | val_macroF1=0.2333 | time=32.2s
+03:26:22 | AblationOrchestrator | epoch  40/60 | train_loss=1.3572 | val_loss=0.4096 | val_acc=0.5385 | val_macroF1=0.2333 | time=32.3s
+03:26:54 | AblationOrchestrator | epoch  41/60 | train_loss=1.6488 | val_loss=0.5449 | val_acc=0.5641 | val_macroF1=0.2404 | time=32.1s
+03:27:26 | AblationOrchestrator | epoch  42/60 | train_loss=1.3496 | val_loss=0.5727 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.4s
+03:27:58 | AblationOrchestrator | epoch  43/60 | train_loss=1.5137 | val_loss=0.4708 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.4s
+03:28:31 | AblationOrchestrator | epoch  44/60 | train_loss=1.3105 | val_loss=0.6033 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.2s
+03:29:03 | AblationOrchestrator | epoch  45/60 | train_loss=1.7324 | val_loss=0.5222 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.4s
+03:29:36 | AblationOrchestrator | epoch  46/60 | train_loss=1.6281 | val_loss=0.4828 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.4s
+03:29:45 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:30:08 | AblationOrchestrator | epoch  47/60 | train_loss=1.4727 | val_loss=0.5317 | val_acc=0.3846 | val_macroF1=0.2652 | time=32.5s
+03:30:40 | AblationOrchestrator | epoch  48/60 | train_loss=1.2292 | val_loss=0.7684 | val_acc=0.5385 | val_macroF1=0.2333 | time=32.3s
+03:31:13 | AblationOrchestrator | epoch  49/60 | train_loss=1.2158 | val_loss=0.5109 | val_acc=0.7179 | val_macroF1=0.2786 | time=32.3s
+03:31:45 | AblationOrchestrator | epoch  50/60 | train_loss=1.4053 | val_loss=0.7736 | val_acc=0.4103 | val_macroF1=0.2013 | time=32.3s
+03:32:17 | AblationOrchestrator | epoch  51/60 | train_loss=1.5366 | val_loss=0.4552 | val_acc=0.5385 | val_macroF1=0.2333 | time=32.4s
+03:32:50 | AblationOrchestrator | epoch  52/60 | train_loss=1.8363 | val_loss=0.5481 | val_acc=0.3333 | val_macroF1=0.1844 | time=32.2s
+03:33:22 | AblationOrchestrator | epoch  53/60 | train_loss=1.3977 | val_loss=0.5927 | val_acc=0.7179 | val_macroF1=0.2786 | time=32.3s
+03:33:54 | AblationOrchestrator | epoch  54/60 | train_loss=1.4123 | val_loss=0.4648 | val_acc=0.7179 | val_macroF1=0.2786 | time=32.3s
+03:34:26 | AblationOrchestrator | epoch  55/60 | train_loss=1.6477 | val_loss=0.7106 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.1s
+03:34:58 | AblationOrchestrator | epoch  56/60 | train_loss=1.6294 | val_loss=0.6279 | val_acc=0.6667 | val_macroF1=0.2667 | time=32.2s
+03:35:31 | AblationOrchestrator | epoch  57/60 | train_loss=1.4877 | val_loss=0.6674 | val_acc=0.4615 | val_macroF1=0.2105 | time=32.4s
+03:36:03 | AblationOrchestrator | epoch  58/60 | train_loss=1.3741 | val_loss=0.5240 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.4s
+03:36:35 | AblationOrchestrator | epoch  59/60 | train_loss=1.1311 | val_loss=0.7226 | val_acc=0.5385 | val_macroF1=0.2333 | time=32.3s
+03:37:08 | AblationOrchestrator | epoch  60/60 | train_loss=1.1943 | val_loss=0.7206 | val_acc=0.7436 | val_macroF1=0.2843 | time=32.3s
+03:37:08 | AblationOrchestrator | Best epoch 1 -> val_acc=0.7179 | val_macroF1=0.4357 | Peak VRAM: 3698.6 MB
+03:37:10 | AblationOrchestrator |   RESULT config_13_permutation -> acc=0.7179 | macroF1=0.4357
+03:37:10 | AblationOrchestrator | ------------------------------------------------------------------------------
+03:37:10 | AblationOrchestrator | CONFIG config_7_full_no_attention [phase III] | +EVM -SimAM +CNN3D +SLSTT
+03:37:10 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+03:37:10 | AblationOrchestrator | Loaded CSV: 612 rows
+03:37:10 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+03:37:10 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+03:37:10 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+03:37:10 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+03:37:10 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': False, 'transformer': True} | trainable_params=363763
+03:37:12 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:37:13 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:37:15 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:37:25 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:37:26 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:37:44 | AblationOrchestrator | epoch   1/60 | train_loss=1.7839 | val_loss=0.7438 | val_acc=0.2051 | val_macroF1=0.1301 | time=34.0s
+03:38:18 | AblationOrchestrator | epoch   2/60 | train_loss=1.3829 | val_loss=1.0496 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:38:52 | AblationOrchestrator | epoch   3/60 | train_loss=1.4054 | val_loss=0.8646 | val_acc=0.1538 | val_macroF1=0.1026 | time=33.8s
+03:39:26 | AblationOrchestrator | epoch   4/60 | train_loss=1.3133 | val_loss=0.6311 | val_acc=0.7179 | val_macroF1=0.2786 | time=33.8s
+03:40:00 | AblationOrchestrator | epoch   5/60 | train_loss=0.9582 | val_loss=0.3939 | val_acc=0.7436 | val_macroF1=0.2843 | time=34.1s
+03:40:34 | AblationOrchestrator | epoch   6/60 | train_loss=0.7389 | val_loss=0.3118 | val_acc=0.6923 | val_macroF1=0.3577 | time=33.8s
+03:41:08 | AblationOrchestrator | epoch   7/60 | train_loss=1.1198 | val_loss=0.4386 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+03:41:42 | AblationOrchestrator | epoch   8/60 | train_loss=0.9995 | val_loss=0.4572 | val_acc=0.7436 | val_macroF1=0.2843 | time=34.0s
+03:42:15 | AblationOrchestrator | epoch   9/60 | train_loss=0.9594 | val_loss=0.3631 | val_acc=0.2308 | val_macroF1=0.1250 | time=33.8s
+03:42:17 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+03:42:49 | AblationOrchestrator | epoch  10/60 | train_loss=1.1685 | val_loss=0.4206 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:43:23 | AblationOrchestrator | epoch  11/60 | train_loss=0.8613 | val_loss=0.2909 | val_acc=0.4615 | val_macroF1=0.3108 | time=33.8s
+03:43:57 | AblationOrchestrator | epoch  12/60 | train_loss=1.0886 | val_loss=0.5275 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+03:44:30 | AblationOrchestrator | epoch  13/60 | train_loss=0.8217 | val_loss=0.4272 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:45:04 | AblationOrchestrator | epoch  14/60 | train_loss=1.1057 | val_loss=0.4780 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+03:45:38 | AblationOrchestrator | epoch  15/60 | train_loss=0.8864 | val_loss=0.5269 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:46:12 | AblationOrchestrator | epoch  16/60 | train_loss=0.8030 | val_loss=0.4239 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:46:45 | AblationOrchestrator | epoch  17/60 | train_loss=0.9037 | val_loss=0.3609 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:47:19 | AblationOrchestrator | epoch  18/60 | train_loss=1.0613 | val_loss=0.3776 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+03:47:53 | AblationOrchestrator | epoch  19/60 | train_loss=0.8184 | val_loss=0.4226 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+03:48:27 | AblationOrchestrator | epoch  20/60 | train_loss=0.7894 | val_loss=0.5138 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:49:01 | AblationOrchestrator | epoch  21/60 | train_loss=0.8741 | val_loss=0.3776 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+03:49:34 | AblationOrchestrator | epoch  22/60 | train_loss=0.8049 | val_loss=0.3576 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+03:50:08 | AblationOrchestrator | epoch  23/60 | train_loss=1.0263 | val_loss=0.3638 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:50:42 | AblationOrchestrator | epoch  24/60 | train_loss=0.6938 | val_loss=0.4102 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:51:16 | AblationOrchestrator | epoch  25/60 | train_loss=0.8299 | val_loss=0.3886 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+03:51:49 | AblationOrchestrator | epoch  26/60 | train_loss=0.7131 | val_loss=0.4491 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+03:52:23 | AblationOrchestrator | epoch  27/60 | train_loss=0.7326 | val_loss=0.3648 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:52:57 | AblationOrchestrator | epoch  28/60 | train_loss=0.6786 | val_loss=0.3656 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:53:30 | AblationOrchestrator | epoch  29/60 | train_loss=0.6869 | val_loss=0.4183 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+03:54:04 | AblationOrchestrator | epoch  30/60 | train_loss=0.7545 | val_loss=0.4253 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:54:38 | AblationOrchestrator | epoch  31/60 | train_loss=0.7195 | val_loss=0.4373 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.5s
+03:55:11 | AblationOrchestrator | epoch  32/60 | train_loss=0.8120 | val_loss=0.4339 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:55:45 | AblationOrchestrator | epoch  33/60 | train_loss=0.7800 | val_loss=0.3827 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:56:18 | AblationOrchestrator | epoch  34/60 | train_loss=0.8286 | val_loss=0.3880 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:56:52 | AblationOrchestrator | epoch  35/60 | train_loss=0.9228 | val_loss=0.4059 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+03:57:26 | AblationOrchestrator | epoch  36/60 | train_loss=0.6987 | val_loss=0.4062 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+03:58:00 | AblationOrchestrator | epoch  37/60 | train_loss=0.7045 | val_loss=0.4104 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:58:33 | AblationOrchestrator | epoch  38/60 | train_loss=0.6595 | val_loss=0.3912 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+03:59:07 | AblationOrchestrator | epoch  39/60 | train_loss=0.8010 | val_loss=0.3998 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+03:59:41 | AblationOrchestrator | epoch  40/60 | train_loss=0.6892 | val_loss=0.3624 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+04:00:15 | AblationOrchestrator | epoch  41/60 | train_loss=0.6885 | val_loss=0.3601 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:00:48 | AblationOrchestrator | epoch  42/60 | train_loss=0.7127 | val_loss=0.3793 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:01:22 | AblationOrchestrator | epoch  43/60 | train_loss=0.7454 | val_loss=0.4283 | val_acc=0.7436 | val_macroF1=0.2843 | time=34.0s
+04:01:56 | AblationOrchestrator | epoch  44/60 | train_loss=0.7841 | val_loss=0.3956 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+04:02:29 | AblationOrchestrator | epoch  45/60 | train_loss=0.7818 | val_loss=0.3884 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+04:03:03 | AblationOrchestrator | epoch  46/60 | train_loss=0.7415 | val_loss=0.3819 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:03:37 | AblationOrchestrator | epoch  47/60 | train_loss=0.7124 | val_loss=0.3753 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+04:04:11 | AblationOrchestrator | epoch  48/60 | train_loss=0.6915 | val_loss=0.3914 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+04:04:44 | AblationOrchestrator | epoch  49/60 | train_loss=0.7641 | val_loss=0.3853 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:05:18 | AblationOrchestrator | epoch  50/60 | train_loss=0.7806 | val_loss=0.3782 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:05:52 | AblationOrchestrator | epoch  51/60 | train_loss=0.8398 | val_loss=0.3802 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.9s
+04:06:26 | AblationOrchestrator | epoch  52/60 | train_loss=0.7721 | val_loss=0.3843 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+04:06:59 | AblationOrchestrator | epoch  53/60 | train_loss=0.8043 | val_loss=0.3843 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.6s
+04:07:33 | AblationOrchestrator | epoch  54/60 | train_loss=0.7148 | val_loss=0.3833 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:08:07 | AblationOrchestrator | epoch  55/60 | train_loss=0.7591 | val_loss=0.3781 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+04:08:41 | AblationOrchestrator | epoch  56/60 | train_loss=0.7398 | val_loss=0.3814 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.8s
+04:09:14 | AblationOrchestrator | epoch  57/60 | train_loss=0.7519 | val_loss=0.3863 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:09:48 | AblationOrchestrator | epoch  58/60 | train_loss=0.7723 | val_loss=0.3782 | val_acc=0.7436 | val_macroF1=0.2843 | time=34.0s
+04:10:22 | AblationOrchestrator | epoch  59/60 | train_loss=0.6947 | val_loss=0.3857 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.7s
+04:10:55 | AblationOrchestrator | epoch  60/60 | train_loss=0.7102 | val_loss=0.3997 | val_acc=0.7436 | val_macroF1=0.2843 | time=33.5s
+04:10:55 | AblationOrchestrator | Best epoch 6 -> val_acc=0.6923 | val_macroF1=0.3577 | Peak VRAM: 3704.0 MB
+04:10:58 | AblationOrchestrator |   RESULT config_7_full_no_attention -> acc=0.6923 | macroF1=0.3577
+04:10:58 | AblationOrchestrator | ------------------------------------------------------------------------------
+04:10:58 | AblationOrchestrator | CONFIG config_14_permutation [phase Other] | +EVM +SimAM -CNN3D -SLSTT
+04:10:58 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+04:10:58 | AblationOrchestrator | ------------------------------------------------------------------------------
+04:10:58 | AblationOrchestrator | CONFIG config_15_permutation [phase Other] | +EVM +SimAM -CNN3D +SLSTT
+04:10:58 | AblationOrchestrator |   Skipping degenerate combo (SimAM without CNN).
+04:10:58 | AblationOrchestrator | ------------------------------------------------------------------------------
+04:10:58 | AblationOrchestrator | CONFIG config_16_permutation [phase Other] | +EVM +SimAM +CNN3D -SLSTT
+04:10:58 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+04:10:58 | AblationOrchestrator | Loaded CSV: 612 rows
+04:10:58 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+04:10:58 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+04:10:59 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+04:10:59 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+04:10:59 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': True, 'transformer': False} | trainable_params=15027
+04:10:59 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:11:00 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:11:00 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:11:02 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:11:24 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:11:36 | AblationOrchestrator | epoch   1/60 | train_loss=1.3752 | val_loss=0.2888 | val_acc=0.6410 | val_macroF1=0.4022 | time=37.1s
+04:12:12 | AblationOrchestrator | epoch   2/60 | train_loss=1.4464 | val_loss=0.4410 | val_acc=0.1538 | val_macroF1=0.1739 | time=36.8s
+04:12:49 | AblationOrchestrator | epoch   3/60 | train_loss=1.7716 | val_loss=0.3939 | val_acc=0.3333 | val_macroF1=0.2733 | time=36.8s
+04:13:26 | AblationOrchestrator | epoch   4/60 | train_loss=1.5811 | val_loss=0.3159 | val_acc=0.5897 | val_macroF1=0.3631 | time=37.0s
+04:14:03 | AblationOrchestrator | epoch   5/60 | train_loss=1.2390 | val_loss=0.3754 | val_acc=0.5385 | val_macroF1=0.3761 | time=36.6s
+04:14:39 | AblationOrchestrator | epoch   6/60 | train_loss=0.9878 | val_loss=0.4195 | val_acc=0.2564 | val_macroF1=0.1844 | time=36.5s
+04:15:16 | AblationOrchestrator | epoch   7/60 | train_loss=1.2698 | val_loss=0.4176 | val_acc=0.1795 | val_macroF1=0.1889 | time=36.9s
+04:15:53 | AblationOrchestrator | epoch   8/60 | train_loss=1.3885 | val_loss=0.6485 | val_acc=0.0769 | val_macroF1=0.0924 | time=37.0s
+04:16:30 | AblationOrchestrator | epoch   9/60 | train_loss=1.9385 | val_loss=0.4124 | val_acc=0.6154 | val_macroF1=0.2540 | time=36.8s
+04:17:07 | AblationOrchestrator | epoch  10/60 | train_loss=1.1046 | val_loss=0.3754 | val_acc=0.6667 | val_macroF1=0.2667 | time=36.7s
+04:17:44 | AblationOrchestrator | epoch  11/60 | train_loss=1.2615 | val_loss=0.3213 | val_acc=0.5897 | val_macroF1=0.4052 | time=36.8s
+04:18:20 | AblationOrchestrator | epoch  12/60 | train_loss=1.6968 | val_loss=0.6420 | val_acc=0.5897 | val_macroF1=0.2473 | time=36.8s
+04:18:57 | AblationOrchestrator | epoch  13/60 | train_loss=0.9527 | val_loss=0.3648 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.7s
+04:19:34 | AblationOrchestrator | epoch  14/60 | train_loss=1.2900 | val_loss=0.4249 | val_acc=0.7179 | val_macroF1=0.2786 | time=36.9s
+04:20:11 | AblationOrchestrator | epoch  15/60 | train_loss=1.4487 | val_loss=0.3939 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:20:47 | AblationOrchestrator | epoch  16/60 | train_loss=1.8683 | val_loss=0.4371 | val_acc=0.7179 | val_macroF1=0.2786 | time=36.6s
+04:21:19 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:21:24 | AblationOrchestrator | epoch  17/60 | train_loss=1.4043 | val_loss=0.4363 | val_acc=0.6667 | val_macroF1=0.3312 | time=36.8s
+04:22:01 | AblationOrchestrator | epoch  18/60 | train_loss=1.1471 | val_loss=0.4513 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.7s
+04:22:38 | AblationOrchestrator | epoch  19/60 | train_loss=1.2955 | val_loss=0.6160 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.7s
+04:23:15 | AblationOrchestrator | epoch  20/60 | train_loss=1.6436 | val_loss=0.5119 | val_acc=0.6923 | val_macroF1=0.2727 | time=36.8s
+04:23:51 | AblationOrchestrator | epoch  21/60 | train_loss=1.1748 | val_loss=0.5563 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.9s
+04:24:28 | AblationOrchestrator | epoch  22/60 | train_loss=1.7141 | val_loss=0.6865 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.7s
+04:25:05 | AblationOrchestrator | epoch  23/60 | train_loss=1.7579 | val_loss=0.6715 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.7s
+04:25:42 | AblationOrchestrator | epoch  24/60 | train_loss=1.5671 | val_loss=0.3800 | val_acc=0.7436 | val_macroF1=0.3434 | time=37.0s
+04:26:19 | AblationOrchestrator | epoch  25/60 | train_loss=1.3384 | val_loss=0.4318 | val_acc=0.6667 | val_macroF1=0.3252 | time=36.7s
+04:26:55 | AblationOrchestrator | epoch  26/60 | train_loss=1.3864 | val_loss=0.4269 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.7s
+04:27:32 | AblationOrchestrator | epoch  27/60 | train_loss=1.4720 | val_loss=0.5441 | val_acc=0.7179 | val_macroF1=0.2786 | time=36.9s
+04:28:09 | AblationOrchestrator | epoch  28/60 | train_loss=1.4376 | val_loss=0.5981 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:28:46 | AblationOrchestrator | epoch  29/60 | train_loss=1.4712 | val_loss=0.3946 | val_acc=0.7179 | val_macroF1=0.2786 | time=36.6s
+04:29:22 | AblationOrchestrator | epoch  30/60 | train_loss=1.3054 | val_loss=0.5924 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:29:59 | AblationOrchestrator | epoch  31/60 | train_loss=1.5879 | val_loss=0.5401 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:30:36 | AblationOrchestrator | epoch  32/60 | train_loss=1.4065 | val_loss=0.5081 | val_acc=0.7179 | val_macroF1=0.2786 | time=36.7s
+04:31:12 | AblationOrchestrator | epoch  33/60 | train_loss=1.6691 | val_loss=0.6114 | val_acc=0.6154 | val_macroF1=0.2540 | time=36.7s
+04:31:49 | AblationOrchestrator | epoch  34/60 | train_loss=1.8870 | val_loss=0.4387 | val_acc=0.4872 | val_macroF1=0.2184 | time=36.9s
+04:32:26 | AblationOrchestrator | epoch  35/60 | train_loss=1.1644 | val_loss=0.5637 | val_acc=0.5385 | val_macroF1=0.2333 | time=36.6s
+04:33:03 | AblationOrchestrator | epoch  36/60 | train_loss=1.2562 | val_loss=0.5512 | val_acc=0.4615 | val_macroF1=0.2105 | time=36.7s
+04:33:40 | AblationOrchestrator | epoch  37/60 | train_loss=1.2059 | val_loss=0.4292 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.9s
+04:34:16 | AblationOrchestrator | epoch  38/60 | train_loss=1.1973 | val_loss=0.6636 | val_acc=0.5641 | val_macroF1=0.2404 | time=36.8s
+04:34:53 | AblationOrchestrator | epoch  39/60 | train_loss=1.5093 | val_loss=0.6357 | val_acc=0.6154 | val_macroF1=0.2540 | time=36.8s
+04:35:30 | AblationOrchestrator | epoch  40/60 | train_loss=1.3565 | val_loss=0.3958 | val_acc=0.6410 | val_macroF1=0.2604 | time=37.0s
+04:36:07 | AblationOrchestrator | epoch  41/60 | train_loss=1.6334 | val_loss=0.5274 | val_acc=0.6154 | val_macroF1=0.2540 | time=36.8s
+04:36:44 | AblationOrchestrator | epoch  42/60 | train_loss=1.3521 | val_loss=0.5659 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:37:20 | AblationOrchestrator | epoch  43/60 | train_loss=1.5232 | val_loss=0.4621 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:37:57 | AblationOrchestrator | epoch  44/60 | train_loss=1.2977 | val_loss=0.5881 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.9s
+04:38:34 | AblationOrchestrator | epoch  45/60 | train_loss=1.7310 | val_loss=0.5135 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:39:11 | AblationOrchestrator | epoch  46/60 | train_loss=1.6432 | val_loss=0.4771 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:39:21 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:39:48 | AblationOrchestrator | epoch  47/60 | train_loss=1.4715 | val_loss=0.5024 | val_acc=0.3846 | val_macroF1=0.2511 | time=37.0s
+04:40:25 | AblationOrchestrator | epoch  48/60 | train_loss=1.2401 | val_loss=0.7512 | val_acc=0.6154 | val_macroF1=0.2540 | time=36.8s
+04:41:01 | AblationOrchestrator | epoch  49/60 | train_loss=1.2377 | val_loss=0.5021 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:41:38 | AblationOrchestrator | epoch  50/60 | train_loss=1.4220 | val_loss=0.7629 | val_acc=0.4103 | val_macroF1=0.1975 | time=37.0s
+04:42:15 | AblationOrchestrator | epoch  51/60 | train_loss=1.5712 | val_loss=0.4453 | val_acc=0.6154 | val_macroF1=0.2540 | time=36.9s
+04:42:52 | AblationOrchestrator | epoch  52/60 | train_loss=1.8165 | val_loss=0.5360 | val_acc=0.3590 | val_macroF1=0.1905 | time=36.6s
+04:43:29 | AblationOrchestrator | epoch  53/60 | train_loss=1.4018 | val_loss=0.5730 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.6s
+04:44:05 | AblationOrchestrator | epoch  54/60 | train_loss=1.3812 | val_loss=0.4644 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:44:42 | AblationOrchestrator | epoch  55/60 | train_loss=1.6285 | val_loss=0.6769 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.7s
+04:45:19 | AblationOrchestrator | epoch  56/60 | train_loss=1.6634 | val_loss=0.6239 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.8s
+04:45:56 | AblationOrchestrator | epoch  57/60 | train_loss=1.4858 | val_loss=0.6545 | val_acc=0.5385 | val_macroF1=0.2333 | time=36.9s
+04:46:33 | AblationOrchestrator | epoch  58/60 | train_loss=1.4192 | val_loss=0.5231 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.9s
+04:47:09 | AblationOrchestrator | epoch  59/60 | train_loss=1.1281 | val_loss=0.7054 | val_acc=0.6154 | val_macroF1=0.2540 | time=36.8s
+04:47:46 | AblationOrchestrator | epoch  60/60 | train_loss=1.2175 | val_loss=0.7001 | val_acc=0.7436 | val_macroF1=0.2843 | time=36.9s
+04:47:46 | AblationOrchestrator | Best epoch 11 -> val_acc=0.5897 | val_macroF1=0.4052 | Peak VRAM: 5020.6 MB
+04:47:49 | AblationOrchestrator |   RESULT config_16_permutation -> acc=0.5897 | macroF1=0.4052
+04:47:49 | AblationOrchestrator | ------------------------------------------------------------------------------
+04:47:49 | AblationOrchestrator | CONFIG config_8_proposed_unified [phase IV] | +EVM +SimAM +CNN3D +SLSTT
+04:47:49 | AblationOrchestrator | Subject-disjoint split (seed=42): train=20 subj/112 samp | val=5 subj/39 samp | val_subjects=[10, 13, 17, 20, 21]
+04:47:49 | AblationOrchestrator | Loaded CSV: 612 rows
+04:47:49 | AblationOrchestrator | Dataset filter 'CASME_II' -> 255 rows
+04:47:49 | AblationOrchestrator | Expression filter 'micro-expression' -> 255 rows
+04:47:49 | AblationOrchestrator | Tensor matching: matched=151 missing=5 unknown_emotion=99
+04:47:49 | AblationOrchestrator | Dataset ready: 151 samples | 3 classes | 26 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\tensors
+04:47:49 | AblationOrchestrator |   components={'cnn_backbone': True, 'simam_attention': True, 'transformer': True} | trainable_params=363763
+04:47:52 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:47:52 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:47:54 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:48:06 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:48:28 | AblationOrchestrator | epoch   1/60 | train_loss=1.6651 | val_loss=0.5751 | val_acc=0.3333 | val_macroF1=0.1806 | time=38.3s
+04:49:06 | AblationOrchestrator | epoch   2/60 | train_loss=1.2829 | val_loss=1.0641 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+04:49:45 | AblationOrchestrator | epoch   3/60 | train_loss=1.3435 | val_loss=0.9351 | val_acc=0.1282 | val_macroF1=0.0975 | time=38.5s
+04:50:23 | AblationOrchestrator | epoch   4/60 | train_loss=1.2402 | val_loss=0.6149 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+04:50:40 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+04:51:01 | AblationOrchestrator | epoch   5/60 | train_loss=0.9413 | val_loss=0.3770 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.1s
+04:51:39 | AblationOrchestrator | epoch   6/60 | train_loss=0.7314 | val_loss=0.3541 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+04:52:18 | AblationOrchestrator | epoch   7/60 | train_loss=1.0891 | val_loss=0.4874 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+04:52:56 | AblationOrchestrator | epoch   8/60 | train_loss=0.9833 | val_loss=0.4815 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+04:53:34 | AblationOrchestrator | epoch   9/60 | train_loss=1.0056 | val_loss=0.3734 | val_acc=0.4359 | val_macroF1=0.2725 | time=38.5s
+04:54:13 | AblationOrchestrator | epoch  10/60 | train_loss=1.1541 | val_loss=0.4260 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+04:54:51 | AblationOrchestrator | epoch  11/60 | train_loss=0.8000 | val_loss=0.2891 | val_acc=0.4872 | val_macroF1=0.3094 | time=38.1s
+04:55:29 | AblationOrchestrator | epoch  12/60 | train_loss=1.0305 | val_loss=0.5205 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+04:56:08 | AblationOrchestrator | epoch  13/60 | train_loss=0.7635 | val_loss=0.3872 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+04:56:46 | AblationOrchestrator | epoch  14/60 | train_loss=1.0652 | val_loss=0.4930 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+04:57:24 | AblationOrchestrator | epoch  15/60 | train_loss=0.9104 | val_loss=0.4871 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+04:58:02 | AblationOrchestrator | epoch  16/60 | train_loss=0.7896 | val_loss=0.3887 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+04:58:41 | AblationOrchestrator | epoch  17/60 | train_loss=0.8770 | val_loss=0.3458 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+04:59:19 | AblationOrchestrator | epoch  18/60 | train_loss=0.9869 | val_loss=0.3397 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+04:59:58 | AblationOrchestrator | epoch  19/60 | train_loss=0.7940 | val_loss=0.3991 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.6s
+05:00:36 | AblationOrchestrator | epoch  20/60 | train_loss=0.7755 | val_loss=0.4691 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:01:14 | AblationOrchestrator | epoch  21/60 | train_loss=0.8395 | val_loss=0.3702 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:01:52 | AblationOrchestrator | epoch  22/60 | train_loss=0.8072 | val_loss=0.3455 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:02:31 | AblationOrchestrator | epoch  23/60 | train_loss=1.0005 | val_loss=0.3627 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.1s
+05:03:09 | AblationOrchestrator | epoch  24/60 | train_loss=0.6828 | val_loss=0.3796 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:03:47 | AblationOrchestrator | epoch  25/60 | train_loss=0.8430 | val_loss=0.3710 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:04:25 | AblationOrchestrator | epoch  26/60 | train_loss=0.7076 | val_loss=0.4186 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.1s
+05:05:04 | AblationOrchestrator | epoch  27/60 | train_loss=0.7236 | val_loss=0.3457 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:05:42 | AblationOrchestrator | epoch  28/60 | train_loss=0.6666 | val_loss=0.3483 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:06:20 | AblationOrchestrator | epoch  29/60 | train_loss=0.6843 | val_loss=0.3649 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:06:59 | AblationOrchestrator | epoch  30/60 | train_loss=0.7453 | val_loss=0.4201 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:07:37 | AblationOrchestrator | epoch  31/60 | train_loss=0.7199 | val_loss=0.4230 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:08:15 | AblationOrchestrator | epoch  32/60 | train_loss=0.7977 | val_loss=0.3957 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:08:53 | AblationOrchestrator | epoch  33/60 | train_loss=0.7439 | val_loss=0.3584 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.1s
+05:09:32 | AblationOrchestrator | epoch  34/60 | train_loss=0.7970 | val_loss=0.3713 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:10:10 | AblationOrchestrator | epoch  35/60 | train_loss=0.8809 | val_loss=0.4081 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:10:48 | AblationOrchestrator | epoch  36/60 | train_loss=0.6636 | val_loss=0.3850 | val_acc=0.7436 | val_macroF1=0.2843 | time=37.9s
+05:11:26 | AblationOrchestrator | epoch  37/60 | train_loss=0.6595 | val_loss=0.3886 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:12:04 | AblationOrchestrator | epoch  38/60 | train_loss=0.6249 | val_loss=0.3874 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:12:42 | AblationOrchestrator | epoch  39/60 | train_loss=0.7653 | val_loss=0.3742 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.0s
+05:13:21 | AblationOrchestrator | epoch  40/60 | train_loss=0.6754 | val_loss=0.3532 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:13:59 | AblationOrchestrator | epoch  41/60 | train_loss=0.6688 | val_loss=0.3567 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:14:37 | AblationOrchestrator | epoch  42/60 | train_loss=0.6688 | val_loss=0.3813 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.0s
+05:15:15 | AblationOrchestrator | epoch  43/60 | train_loss=0.7045 | val_loss=0.4076 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:15:54 | AblationOrchestrator | epoch  44/60 | train_loss=0.7410 | val_loss=0.3836 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:16:32 | AblationOrchestrator | epoch  45/60 | train_loss=0.7448 | val_loss=0.3760 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:17:10 | AblationOrchestrator | epoch  46/60 | train_loss=0.6998 | val_loss=0.3680 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:17:48 | AblationOrchestrator | epoch  47/60 | train_loss=0.6805 | val_loss=0.3678 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:18:27 | AblationOrchestrator | epoch  48/60 | train_loss=0.6623 | val_loss=0.3900 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:19:05 | AblationOrchestrator | epoch  49/60 | train_loss=0.7263 | val_loss=0.3816 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:19:44 | AblationOrchestrator | epoch  50/60 | train_loss=0.7491 | val_loss=0.3740 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:20:22 | AblationOrchestrator | epoch  51/60 | train_loss=0.7964 | val_loss=0.3714 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.6s
+05:21:01 | AblationOrchestrator | epoch  52/60 | train_loss=0.7285 | val_loss=0.3894 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:21:39 | AblationOrchestrator | epoch  53/60 | train_loss=0.7771 | val_loss=0.3810 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:22:17 | AblationOrchestrator | epoch  54/60 | train_loss=0.6978 | val_loss=0.3755 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:22:55 | AblationOrchestrator | epoch  55/60 | train_loss=0.7350 | val_loss=0.3821 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:23:34 | AblationOrchestrator | epoch  56/60 | train_loss=0.7207 | val_loss=0.3832 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.4s
+05:24:12 | AblationOrchestrator | epoch  57/60 | train_loss=0.7174 | val_loss=0.3824 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.3s
+05:24:50 | AblationOrchestrator | epoch  58/60 | train_loss=0.7602 | val_loss=0.3722 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:25:29 | AblationOrchestrator | epoch  59/60 | train_loss=0.6619 | val_loss=0.3827 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:26:07 | AblationOrchestrator | epoch  60/60 | train_loss=0.6787 | val_loss=0.3950 | val_acc=0.7436 | val_macroF1=0.2843 | time=38.2s
+05:26:07 | AblationOrchestrator | Best epoch 11 -> val_acc=0.4872 | val_macroF1=0.3094 | Peak VRAM: 5026.0 MB
+05:26:09 | AblationOrchestrator |   RESULT config_8_proposed_unified -> acc=0.4872 | macroF1=0.3094
+05:26:10 | AblationOrchestrator | ==============================================================================
+05:26:10 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+05:26:10 | AblationOrchestrator | ==============================================================================
