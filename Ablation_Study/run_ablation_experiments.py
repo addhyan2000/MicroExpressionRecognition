@@ -187,11 +187,11 @@ class AblationOrchestrator:
         )
         train_loader = DataLoader(
             Subset(train_ds, train_idx), batch_size=self.exp.batch_size,
-            shuffle=True, num_workers=0, drop_last=False,
+            shuffle=True, num_workers=self.exp.num_workers, drop_last=False,
         )
         val_loader = DataLoader(
             Subset(dataset, val_idx), batch_size=self.exp.batch_size,
-            shuffle=False, num_workers=0, drop_last=False,
+            shuffle=False, num_workers=self.exp.num_workers, drop_last=False,
         )
         return train_loader, val_loader
 
@@ -342,6 +342,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--phase", type=str, default=None, help="Run only this phase (I/II/III/IV).")
     p.add_argument("--max_samples", type=int, default=None, help="Cap samples for a smoke test.")
     p.add_argument("--output_root", type=Path, default=None)
+    p.add_argument("--num_workers", type=int, default=None, help="Number of DataLoader workers (e.g. 4).")
     return p.parse_args()
     
 
@@ -379,6 +380,8 @@ def build_experiment_config(args: argparse.Namespace) -> ExperimentConfig:
         exp.seed = args.seed
     if args.output_root is not None:
         exp.output_root = args.output_root
+    if args.num_workers is not None:
+        exp.num_workers = args.num_workers
     return exp
 
 

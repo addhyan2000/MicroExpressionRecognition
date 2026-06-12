@@ -205,11 +205,12 @@ class ExperimentConfig:
 
     # ── Optimisation ──────────────────────────────────────────────────────────
     epochs: int = 60
-    batch_size: int = 2
+    batch_size: int = 16
     lr: float = 1e-4
     weight_decay: float = 1e-4
     gradient_clip_norm: float | None = 1.0
     use_amp: bool = True
+    num_workers: int = 4
 
     # ── Validation protocol (strict subject-disjoint) ─────────────────────────
     # "holdout"  → single subject-disjoint train/val split (fast; default)
