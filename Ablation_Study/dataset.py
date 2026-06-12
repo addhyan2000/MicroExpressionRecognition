@@ -35,7 +35,7 @@ from __future__ import annotations
 import logging
 import random
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -104,7 +104,7 @@ class MERAblationDataset(Dataset):
         self._augment = augment
 
         self.samples: List[dict] = []
-        self.subject_map: Dict[int, int] = {}
+        self.subject_map: Dict[Any, int] = {}
         self._build_samples()
 
         self.num_classes = len(self.emotion_map)
@@ -147,7 +147,11 @@ class MERAblationDataset(Dataset):
             return
 
         # ── Contiguous subject mapping (raw id → 0..N-1), for split logic only ──
-        unique_subjects = sorted(df[COL_SUBJECT].unique().tolist())
+        # Subject IDs may be int (CASME-II: 1, 2, …) or str (MPI: "cawm", …).
+        # We sort with a key that works for mixed types.
+        unique_subjects = sorted(
+            df[COL_SUBJECT].unique().tolist(), key=lambda x: str(x)
+        )
         self.subject_map = {raw: idx for idx, raw in enumerate(unique_subjects)}
 
         matched = missing = unknown = 0
@@ -155,7 +159,12 @@ class MERAblationDataset(Dataset):
             dataset_tag = str(row[COL_DATASET])
             video_id = str(row[COL_VIDEO])
             emotion = str(row[COL_UNIFIED_EMOTION])
-            subject_id = int(row[COL_SUBJECT])
+            # Subject IDs: try int first (CASME-II), fall back to str (MPI)
+            raw_sid = row[COL_SUBJECT]
+            try:
+                subject_id = int(raw_sid)
+            except (ValueError, TypeError):
+                subject_id = str(raw_sid)
 
             tensor_path = self._tensor_dir / f"{dataset_tag}_{video_id}.npy"
             if not tensor_path.exists():
@@ -235,11 +244,11 @@ class MERAblationDataset(Dataset):
     # ────────────────────────────────────────────────────────────────────────
     #  Subject-disjoint split utilities (strict — no identity leakage)
     # ────────────────────────────────────────────────────────────────────────
-    def get_unique_subject_ids(self) -> List[int]:
+    def get_unique_subject_ids(self) -> List:
         """Sorted unique raw subject ids present in the dataset."""
-        return sorted({s["raw_subject_id"] for s in self.samples})
+        return sorted({s["raw_subject_id"] for s in self.samples}, key=lambda x: str(x))
 
-    def get_indices_for_subjects(self, subject_ids: List[int]) -> List[int]:
+    def get_indices_for_subjects(self, subject_ids: List) -> List[int]:
         """All sample indices whose raw subject id is in ``subject_ids``."""
         wanted = set(subject_ids)
         return [i for i, s in enumerate(self.samples) if s["raw_subject_id"] in wanted]
@@ -277,7 +286,7 @@ class MERAblationDataset(Dataset):
         )
         return train_idx, val_idx
 
-    def loso_folds(self) -> List[Tuple[int, List[int], List[int]]]:
+    def loso_folds(self) -> List[Tuple[Any, List[int], List[int]]]:
         """
         Leave-One-Subject-Out folds.
 

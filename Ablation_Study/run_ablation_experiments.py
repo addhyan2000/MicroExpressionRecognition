@@ -320,6 +320,10 @@ class AblationOrchestrator:
 # ─────────────────────────────────────────────────────────────────────────────
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Stage 1 + Stage 2 ablation sweep.")
+    p.add_argument("--dataset", choices=["casme_ii", "mpi"], default="casme_ii",
+                   help="Dataset to target: 'casme_ii' (default) or 'mpi'.")
+    p.add_argument("--mpi_label_mode", choices=["3class", "full"], default="3class",
+                   help="MPI mapping mode: '3class' (Positive/Negative/Surprise) or 'full' (all 51 expressions).")
     p.add_argument("--csv_path", type=Path, default=None)
     p.add_argument("--tensor_dir_evm", type=Path, default=None)
     p.add_argument("--tensor_dir_raw", type=Path, default=None)
@@ -339,11 +343,16 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--max_samples", type=int, default=None, help="Cap samples for a smoke test.")
     p.add_argument("--output_root", type=Path, default=None)
     return p.parse_args()
-
+    
 
 def build_experiment_config(args: argparse.Namespace) -> ExperimentConfig:
-    """Apply CLI overrides on top of the dataclass defaults."""
-    exp = ExperimentConfig()
+    """Apply CLI overrides on top of the dataset-specific default config."""
+    if args.dataset.lower() == "mpi":
+        from ablation_config import build_mpi_experiment_config
+        exp = build_mpi_experiment_config(label_mode=args.mpi_label_mode)
+    else:
+        exp = ExperimentConfig()
+
     if args.csv_path is not None:
         exp.csv_path = args.csv_path
     if args.tensor_dir_evm is not None:

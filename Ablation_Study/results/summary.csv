@@ -39,3 +39,4 @@ config_13_permutation__WITH_evm__no_simam__WITH_3dcnn__no_transformer,True,False
 config_7_full_no_attention__WITH_evm__no_simam__WITH_3dcnn__WITH_transformer,True,False,True,True,0.6923,0.3577,39
 config_16_permutation__WITH_evm__WITH_simam__WITH_3dcnn__no_transformer,True,True,True,False,0.5897,0.4052,39
 config_8_proposed_unified__WITH_evm__WITH_simam__WITH_3dcnn__WITH_transformer,True,True,True,True,0.4872,0.3094,39
+config_1_pure_base__no_evm__no_simam__no_3dcnn__no_transformer,False,False,False,False,0.0000,0.0000,2

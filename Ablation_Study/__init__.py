@@ -7,14 +7,19 @@ transfer-learning machinery (GRL, identity head, SupCon, XBM) and reduces the
 project to a clean, toggleable study of how each Stage 1/Stage 2 component
 contributes to Micro-Expression Recognition.
 
+Supports both CASME-II and MPI Facial Expression Database datasets.
+
 Public modules
 --------------
-    ablation_config : AblationConfig, ExperimentConfig, ABLATION_MATRIX
+    ablation_config : AblationConfig, ExperimentConfig, ABLATION_MATRIX,
+                      MPI_EMOTION_MAP_3CLASS, MPI_EMOTION_MAP_FULL,
+                      build_mpi_experiment_config
     models          : AblationMERModel (+ build_model factory) and sub-modules
     dataset         : MERAblationDataset (generalised, single-dataset)
     losses          : FocalLoss, build_loss
     metrics         : MetricsComputer, ResultWriter, EvalResult
     trainer         : AblationTrainer
+    mpi_data_pipeline : MPIDataPipeline, scan_mpi_dataset
     run_ablation_experiments : orchestrating CLI over the 8-config matrix
 """
 
@@ -22,18 +27,25 @@ from .ablation_config import (
     ABLATION_MATRIX,
     AblationConfig,
     ExperimentConfig,
+    MPI_EMOTION_MAP_3CLASS,
+    MPI_EMOTION_MAP_FULL,
+    build_mpi_experiment_config,
     get_ablation_matrix,
 )
 from .dataset import MERAblationDataset
 from .losses import FocalLoss, build_loss
 from .metrics import EvalResult, MetricsComputer, ResultWriter
 from .models import AblationMERModel, build_model
+from .mpi_data_pipeline import MPIDataPipeline, scan_mpi_dataset
 from .trainer import AblationTrainer
 
 __all__ = [
     "ABLATION_MATRIX",
     "AblationConfig",
     "ExperimentConfig",
+    "MPI_EMOTION_MAP_3CLASS",
+    "MPI_EMOTION_MAP_FULL",
+    "build_mpi_experiment_config",
     "get_ablation_matrix",
     "MERAblationDataset",
     "FocalLoss",
@@ -43,5 +55,8 @@ __all__ = [
     "ResultWriter",
     "AblationMERModel",
     "build_model",
+    "MPIDataPipeline",
+    "scan_mpi_dataset",
     "AblationTrainer",
 ]
+

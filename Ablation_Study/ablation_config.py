@@ -275,6 +275,154 @@ def get_ablation_matrix() -> List[AblationConfig]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 5.  MPI FACIAL EXPRESSION DATABASE — LABEL MAPPINGS
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# The MPI database has 51 unique expression classes (13 subsets × ~4 each).
+# Two mappings are provided:
+#
+#   • MPI_EMOTION_MAP_3CLASS  — collapses MPI labels into the same 3 thesis
+#     classes (Positive / Negative / Surprise) for direct comparison with
+#     CASME-II results. Ambiguous / conversational expressions are mapped to
+#     "Others" and excluded by the emotion_map in ExperimentConfig.
+#
+#   • MPI_EMOTION_MAP_FULL   — assigns a unique integer to each of the 51
+#     MPI expressions. Use this when retraining the classifier for the full
+#     MPI label space (num_classes == 51).
+#
+# Academic justification for the 3-class mapping:
+#   • Positive: expressions with clear positive valence / enjoyment
+#   • Negative: expressions with aversive valence (disgust, fear, pain, etc.)
+#   • Surprise: expressions involving sudden realisation or confusion
+#   • Others: conversational / socially functional expressions that do not
+#     map cleanly to a single emotional valence
+# ─────────────────────────────────────────────────────────────────────────────
+
+MPI_EMOTION_MAP_3CLASS: Dict[str, str] = {
+    # ── Positive (enjoyment, amusement, satisfaction) ──
+    "happy_achievement":      "Positive",
+    "happy_laughing":         "Positive",
+    "happy_satiated":         "Positive",
+    "happy_schadenfreude":    "Positive",
+    "smiling_encouraging":    "Positive",
+    "smiling_endearment":     "Positive",
+    "smiling_flirting":       "Positive",
+    "smiling_triumphant":     "Positive",
+    "smiling_winning":        "Positive",
+    "imagine_positive":       "Positive",
+    "remember_positive":      "Positive",
+    "impressed":              "Positive",
+    "aha-light_bulb_moment":  "Positive",
+    "compassion":             "Positive",
+
+    # ── Negative (aversive, distress, aversion) ──
+    "annoyed_bothered":       "Negative",
+    "annoyed_rolling-eyes":   "Negative",
+    "contempt":               "Negative",
+    "disgust":                "Negative",
+    "embarrassment":          "Negative",
+    "fear_oops":              "Negative",
+    "fear_terror":            "Negative",
+    "sad":                    "Negative",
+    "pain_felt":              "Negative",
+    "pain_seen":              "Negative",
+    "insecurity":             "Negative",
+    "imagine_negative":       "Negative",
+    "remember_negative":      "Negative",
+    "tired":                  "Negative",
+    "arrogant":               "Negative",
+    "smiling_sardonic":       "Negative",
+    "smiling_yeah-right":     "Negative",
+
+    # ── Surprise (sudden realisation, confusion, disbelief) ──
+    "confused":               "Surprise",
+    "disbelief":              "Surprise",
+    "I_did_not_hear":         "Surprise",
+    "I_dont_understand":      "Surprise",
+
+    # ── Others (conversational / ambiguous — excluded from 3-class training) ──
+    "agree_considered":       "Others",
+    "agree_continue":         "Others",
+    "agree_pure":             "Others",
+    "agree_reluctant":        "Others",
+    "disagree_considered":    "Others",
+    "disagree_pure":          "Others",
+    "disagree_reluctant":     "Others",
+    "I_dont_care":            "Others",
+    "I_dont_know":            "Others",
+    "bored":                  "Others",
+    "not_convinced":          "Others",
+    "smiling_sad-nostalgia":  "Others",
+    "smiling_uncertain":      "Others",
+    "thinking_considering":   "Others",
+    "thinking_problem-solving": "Others",
+    "treudoof_bambi-eyes":    "Others",
+}
+
+# All 51 expressions sorted alphabetically → integer label 0–50.
+_MPI_ALL_EXPRESSIONS = sorted(MPI_EMOTION_MAP_3CLASS.keys())
+
+MPI_EMOTION_MAP_FULL: Dict[str, int] = {
+    expr: idx for idx, expr in enumerate(_MPI_ALL_EXPRESSIONS)
+}
+
+
+def build_mpi_experiment_config(
+    label_mode: str = "3class",
+    **overrides,
+) -> ExperimentConfig:
+    """
+    Factory: create an ``ExperimentConfig`` pre-configured for the MPI dataset.
+
+    Parameters
+    ----------
+    label_mode : str
+        ``"3class"`` → 3 thesis classes (Positive/Negative/Surprise) for
+        direct comparison with CASME-II.
+        ``"full"`` → all 51 MPI expression classes.
+    **overrides
+        Any ``ExperimentConfig`` field to override (e.g., ``epochs=100``).
+
+    Returns
+    -------
+    ExperimentConfig
+        Ready to use with the ablation matrix.
+    """
+    if label_mode == "3class":
+        emotion_map = {
+            "Negative": 0,
+            "Positive": 1,
+            "Surprise": 2,
+        }
+    elif label_mode == "full":
+        emotion_map = dict(MPI_EMOTION_MAP_FULL)
+    else:
+        raise ValueError(f"Unknown label_mode: {label_mode!r}")
+
+    exp = ExperimentConfig(
+        csv_path=PROJECT_ROOT / "Processed_Data" / "mpi_labels.csv",
+        tensor_dir_evm=PROJECT_ROOT / "Processed_Data" / "mpi_tensors_evm",
+        tensor_dir_raw=PROJECT_ROOT / "Processed_Data" / "mpi_tensors",
+        dataset_filter="MPI",
+        expression_filter=None,   # MPI has no micro/macro distinction
+        emotion_map=emotion_map,
+        # MPI has fewer subjects (10) — slightly larger val fraction
+        val_fraction=0.2,
+    )
+
+    # Apply any user overrides
+    for key, val in overrides.items():
+        if hasattr(exp, key):
+            setattr(exp, key, val)
+        else:
+            raise AttributeError(
+                f"ExperimentConfig has no field {key!r}"
+            )
+
+    return exp
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Standalone sanity print
 # ─────────────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
@@ -293,3 +441,21 @@ if __name__ == "__main__":
     print(f"class_names   : {exp.class_names}")
     print(f"EVM tensors   : {exp.tensor_dir_for(True)}")
     print(f"RAW tensors   : {exp.tensor_dir_for(False)}")
+
+    print(f"\n--- MPI Label Maps ---")
+    from collections import Counter
+    c3 = Counter(MPI_EMOTION_MAP_3CLASS.values())
+    print(f"MPI 3-class distribution: {dict(c3)}")
+    print(f"MPI full-class count:     {len(MPI_EMOTION_MAP_FULL)} expressions")
+
+    mpi_exp = build_mpi_experiment_config("3class")
+    print(f"\nMPI 3-class config:")
+    print(f"  num_classes : {mpi_exp.num_classes}")
+    print(f"  class_names : {mpi_exp.class_names}")
+    print(f"  csv_path    : {mpi_exp.csv_path}")
+    print(f"  tensor_raw  : {mpi_exp.tensor_dir_for(False)}")
+
+    mpi_full = build_mpi_experiment_config("full")
+    print(f"\nMPI full config:")
+    print(f"  num_classes : {mpi_full.num_classes}")
+

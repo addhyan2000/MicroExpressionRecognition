@@ -3437,3 +3437,114 @@ Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
 05:26:10 | AblationOrchestrator | ==============================================================================
 05:26:10 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
 05:26:10 | AblationOrchestrator | ==============================================================================
+17:47:38 | AblationOrchestrator | ==============================================================================
+17:47:38 | AblationOrchestrator |   Ablation Orchestrator
+17:47:38 | AblationOrchestrator |   device=cuda | classes=['Negative', 'Positive', 'Surprise'] | dataset_filter=MPI | expr_filter=None
+17:47:38 | AblationOrchestrator |   protocol=holdout | epochs=1 | batch=2 | loss=focal
+17:47:38 | AblationOrchestrator | ==============================================================================
+17:47:38 | AblationOrchestrator | ------------------------------------------------------------------------------
+17:47:38 | AblationOrchestrator | CONFIG config_1_pure_base [phase I] | -EVM -SimAM -CNN3D -SLSTT
+17:47:38 | AblationOrchestrator | Loaded CSV: 510 rows
+17:47:38 | AblationOrchestrator | Dataset filter 'MPI' -> 510 rows
+17:47:38 | AblationOrchestrator | Tensor matching: matched=0 missing=510 unknown_emotion=0
+17:47:38 | AblationOrchestrator | Dataset ready: 0 samples | 3 classes | 10 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\mpi_tensors
+17:47:38 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+17:47:38 | AblationOrchestrator | ==============================================================================
+17:47:38 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+17:47:38 | AblationOrchestrator | ==============================================================================
+17:48:45 | AblationOrchestrator | ==============================================================================
+17:48:45 | AblationOrchestrator |   Ablation Orchestrator
+17:48:45 | AblationOrchestrator |   device=cuda | classes=['I_did_not_hear', 'I_dont_care', 'I_dont_know', 'I_dont_understand', 'agree_considered', 'agree_continue', 'agree_pure', 'agree_reluctant', 'aha-light_bulb_moment', 'annoyed_bothered', 'annoyed_rolling-eyes', 'arrogant', 'bored', 'compassion', 'confused', 'contempt', 'disagree_considered', 'disagree_pure', 'disagree_reluctant', 'disbelief', 'disgust', 'embarrassment', 'fear_oops', 'fear_terror', 'happy_achievement', 'happy_laughing', 'happy_satiated', 'happy_schadenfreude', 'imagine_negative', 'imagine_positive', 'impressed', 'insecurity', 'not_convinced', 'pain_felt', 'pain_seen', 'remember_negative', 'remember_positive', 'sad', 'smiling_encouraging', 'smiling_endearment', 'smiling_flirting', 'smiling_sad-nostalgia', 'smiling_sardonic', 'smiling_triumphant', 'smiling_uncertain', 'smiling_winning', 'smiling_yeah-right', 'thinking_considering', 'thinking_problem-solving', 'tired', 'treudoof_bambi-eyes'] | dataset_filter=MPI | expr_filter=None
+17:48:45 | AblationOrchestrator |   protocol=holdout | epochs=1 | batch=2 | loss=focal
+17:48:45 | AblationOrchestrator | ==============================================================================
+17:48:45 | AblationOrchestrator | ------------------------------------------------------------------------------
+17:48:45 | AblationOrchestrator | CONFIG config_1_pure_base [phase I] | -EVM -SimAM -CNN3D -SLSTT
+17:48:45 | AblationOrchestrator | Loaded CSV: 5 rows
+17:48:45 | AblationOrchestrator | Dataset filter 'MPI' -> 5 rows
+17:48:45 | AblationOrchestrator | Tensor matching: matched=0 missing=0 unknown_emotion=5
+17:48:45 | AblationOrchestrator | Dataset ready: 0 samples | 51 classes | 1 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\mpi_tensors
+17:48:45 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+17:48:45 | AblationOrchestrator | ==============================================================================
+17:48:45 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+17:48:45 | AblationOrchestrator | ==============================================================================
+17:49:16 | AblationOrchestrator | ==============================================================================
+17:49:16 | AblationOrchestrator |   Ablation Orchestrator
+17:49:16 | AblationOrchestrator |   device=cuda | classes=['I_did_not_hear', 'I_dont_care', 'I_dont_know', 'I_dont_understand', 'agree_considered', 'agree_continue', 'agree_pure', 'agree_reluctant', 'aha-light_bulb_moment', 'annoyed_bothered', 'annoyed_rolling-eyes', 'arrogant', 'bored', 'compassion', 'confused', 'contempt', 'disagree_considered', 'disagree_pure', 'disagree_reluctant', 'disbelief', 'disgust', 'embarrassment', 'fear_oops', 'fear_terror', 'happy_achievement', 'happy_laughing', 'happy_satiated', 'happy_schadenfreude', 'imagine_negative', 'imagine_positive', 'impressed', 'insecurity', 'not_convinced', 'pain_felt', 'pain_seen', 'remember_negative', 'remember_positive', 'sad', 'smiling_encouraging', 'smiling_endearment', 'smiling_flirting', 'smiling_sad-nostalgia', 'smiling_sardonic', 'smiling_triumphant', 'smiling_uncertain', 'smiling_winning', 'smiling_yeah-right', 'thinking_considering', 'thinking_problem-solving', 'tired', 'treudoof_bambi-eyes'] | dataset_filter=MPI | expr_filter=None
+17:49:16 | AblationOrchestrator |   protocol=holdout | epochs=1 | batch=2 | loss=focal
+17:49:16 | AblationOrchestrator | ==============================================================================
+17:49:16 | AblationOrchestrator | ------------------------------------------------------------------------------
+17:49:16 | AblationOrchestrator | CONFIG config_1_pure_base [phase I] | -EVM -SimAM -CNN3D -SLSTT
+17:49:16 | AblationOrchestrator | Loaded CSV: 5 rows
+17:49:16 | AblationOrchestrator | Dataset filter 'MPI' -> 5 rows
+17:49:16 | AblationOrchestrator | Tensor matching: matched=0 missing=0 unknown_emotion=5
+17:49:16 | AblationOrchestrator | Dataset ready: 0 samples | 51 classes | 1 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\mpi_tensors
+17:49:16 | AblationOrchestrator |   Skipping — dataset unavailable/empty for use_evm=False.
+17:49:16 | AblationOrchestrator | ==============================================================================
+17:49:16 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+17:49:16 | AblationOrchestrator | ==============================================================================
+17:49:52 | AblationOrchestrator | ==============================================================================
+17:49:52 | AblationOrchestrator |   Ablation Orchestrator
+17:49:52 | AblationOrchestrator |   device=cuda | classes=['I_did_not_hear', 'I_dont_care', 'I_dont_know', 'I_dont_understand', 'agree_considered', 'agree_continue', 'agree_pure', 'agree_reluctant', 'aha-light_bulb_moment', 'annoyed_bothered', 'annoyed_rolling-eyes', 'arrogant', 'bored', 'compassion', 'confused', 'contempt', 'disagree_considered', 'disagree_pure', 'disagree_reluctant', 'disbelief', 'disgust', 'embarrassment', 'fear_oops', 'fear_terror', 'happy_achievement', 'happy_laughing', 'happy_satiated', 'happy_schadenfreude', 'imagine_negative', 'imagine_positive', 'impressed', 'insecurity', 'not_convinced', 'pain_felt', 'pain_seen', 'remember_negative', 'remember_positive', 'sad', 'smiling_encouraging', 'smiling_endearment', 'smiling_flirting', 'smiling_sad-nostalgia', 'smiling_sardonic', 'smiling_triumphant', 'smiling_uncertain', 'smiling_winning', 'smiling_yeah-right', 'thinking_considering', 'thinking_problem-solving', 'tired', 'treudoof_bambi-eyes'] | dataset_filter=MPI | expr_filter=None
+17:49:52 | AblationOrchestrator |   protocol=holdout | epochs=1 | batch=2 | loss=focal
+17:49:52 | AblationOrchestrator | ==============================================================================
+17:49:52 | AblationOrchestrator | ------------------------------------------------------------------------------
+17:49:52 | AblationOrchestrator | CONFIG config_1_pure_base [phase I] | -EVM -SimAM -CNN3D -SLSTT
+17:49:52 | AblationOrchestrator | Loaded CSV: 5 rows
+17:49:52 | AblationOrchestrator | Dataset filter 'MPI' -> 5 rows
+17:49:52 | AblationOrchestrator | Tensor matching: matched=5 missing=0 unknown_emotion=0
+17:49:52 | AblationOrchestrator | Dataset ready: 5 samples | 51 classes | 1 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\mpi_tensors
+17:49:52 | AblationOrchestrator | Subject-disjoint split (seed=42): train=0 subj/0 samp | val=1 subj/5 samp | val_subjects=['cawm']
+17:49:52 | AblationOrchestrator | Loaded CSV: 5 rows
+17:49:52 | AblationOrchestrator | Dataset filter 'MPI' -> 5 rows
+17:49:52 | AblationOrchestrator | Tensor matching: matched=5 missing=0 unknown_emotion=0
+17:49:52 | AblationOrchestrator | Dataset ready: 5 samples | 51 classes | 1 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\mpi_tensors
+17:49:52 | AblationOrchestrator |   CONFIG config_1_pure_base failed: num_samples should be a positive integer value, but got num_samples=0
+Traceback (most recent call last):
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 303, in run_matrix
+    self.run_config(ablation)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 269, in run_config
+    result, train_state_final, data_flow_final = self._train_eval_split(ablation, dataset, train_idx, val_idx)
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 207, in _train_eval_split
+    train_loader, val_loader = self._make_loaders(dataset, train_idx, val_idx)
+                               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\run_ablation_experiments.py", line 188, in _make_loaders
+    train_loader = DataLoader(
+        Subset(train_ds, train_idx), batch_size=self.exp.batch_size,
+        shuffle=True, num_workers=0, drop_last=False,
+    )
+  File "C:\Users\Addhyan\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\dataloader.py", line 383, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+  File "C:\Users\Addhyan\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\sampler.py", line 165, in __init__
+    raise ValueError(
+        f"num_samples should be a positive integer value, but got num_samples={self.num_samples}"
+    )
+ValueError: num_samples should be a positive integer value, but got num_samples=0
+17:49:52 | AblationOrchestrator | ==============================================================================
+17:49:52 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+17:49:52 | AblationOrchestrator | ==============================================================================
+17:51:04 | AblationOrchestrator | ==============================================================================
+17:51:04 | AblationOrchestrator |   Ablation Orchestrator
+17:51:04 | AblationOrchestrator |   device=cuda | classes=['I_did_not_hear', 'I_dont_care', 'I_dont_know', 'I_dont_understand', 'agree_considered', 'agree_continue', 'agree_pure', 'agree_reluctant', 'aha-light_bulb_moment', 'annoyed_bothered', 'annoyed_rolling-eyes', 'arrogant', 'bored', 'compassion', 'confused', 'contempt', 'disagree_considered', 'disagree_pure', 'disagree_reluctant', 'disbelief', 'disgust', 'embarrassment', 'fear_oops', 'fear_terror', 'happy_achievement', 'happy_laughing', 'happy_satiated', 'happy_schadenfreude', 'imagine_negative', 'imagine_positive', 'impressed', 'insecurity', 'not_convinced', 'pain_felt', 'pain_seen', 'remember_negative', 'remember_positive', 'sad', 'smiling_encouraging', 'smiling_endearment', 'smiling_flirting', 'smiling_sad-nostalgia', 'smiling_sardonic', 'smiling_triumphant', 'smiling_uncertain', 'smiling_winning', 'smiling_yeah-right', 'thinking_considering', 'thinking_problem-solving', 'tired', 'treudoof_bambi-eyes'] | dataset_filter=MPI | expr_filter=None
+17:51:04 | AblationOrchestrator |   protocol=holdout | epochs=1 | batch=2 | loss=focal
+17:51:04 | AblationOrchestrator | ==============================================================================
+17:51:04 | AblationOrchestrator | ------------------------------------------------------------------------------
+17:51:04 | AblationOrchestrator | CONFIG config_1_pure_base [phase I] | -EVM -SimAM -CNN3D -SLSTT
+17:51:04 | AblationOrchestrator | Loaded CSV: 100 rows
+17:51:04 | AblationOrchestrator | Dataset filter 'MPI' -> 100 rows
+17:51:04 | AblationOrchestrator | Tensor matching: matched=100 missing=0 unknown_emotion=0
+17:51:04 | AblationOrchestrator | Dataset ready: 100 samples | 51 classes | 2 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\mpi_tensors
+17:51:04 | AblationOrchestrator | Subject-disjoint split (seed=42): train=1 subj/51 samp | val=1 subj/49 samp | val_subjects=['chsm']
+17:51:04 | AblationOrchestrator | Loaded CSV: 100 rows
+17:51:04 | AblationOrchestrator | Dataset filter 'MPI' -> 100 rows
+17:51:04 | AblationOrchestrator | Tensor matching: matched=100 missing=0 unknown_emotion=0
+17:51:04 | AblationOrchestrator | Dataset ready: 100 samples | 51 classes | 2 subjects | tensors=C:\Users\Addhyan\Desktop\Thesis\Thesis3\Processed_Data\mpi_tensors
+17:51:04 | AblationOrchestrator |   components={'cnn_backbone': False, 'simam_attention': False, 'transformer': False} | trainable_params=9843
+17:51:07 | AblationOrchestrator | NaN gradient detected! Skipping optimizer step.
+17:51:07 | AblationOrchestrator | epoch   1/1 | train_loss=3.9883 | val_loss=4.2983 | val_acc=0.0000 | val_macroF1=0.0000 | time=1.3s
+17:51:07 | AblationOrchestrator | Best epoch 1 -> val_acc=0.0000 | val_macroF1=0.0000 | Peak VRAM: 54.2 MB
+17:51:07 | AblationOrchestrator |   RESULT config_1_pure_base -> acc=0.0000 | macroF1=0.0000
+17:51:11 | AblationOrchestrator | ==============================================================================
+17:51:11 | AblationOrchestrator |   Ablation sweep complete. Summary CSV: C:\Users\Addhyan\Desktop\Thesis\Thesis3\Ablation_Study\results\summary.csv
+17:51:11 | AblationOrchestrator | ==============================================================================
