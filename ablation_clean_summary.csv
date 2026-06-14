@@ -1,0 +1,13 @@
+name,phase,EVM,SimAM,CNN3D,SLSTT,accuracy,macro_f1,Negative_F1,Positive_F1,Surprise_F1
+config_1_pure_base__no_evm__no_simam__no_3dcnn__no_transformer,I,False,False,False,False,0.7435897435897436,0.28431372549019607,0.8529411764705882,0.0,0.0
+config_2_temporal_only__no_evm__no_simam__no_3dcnn__WITH_transformer,I,False,False,False,True,0.7435897435897436,0.28431372549019607,0.8529411764705882,0.0,0.0
+config_3_spatial_only__no_evm__no_simam__WITH_3dcnn__no_transformer,I,False,False,True,False,0.717948717948718,0.435672514619883,0.8070175438596491,0.5,0.0
+config_4_motion_amp_base__WITH_evm__no_simam__no_3dcnn__no_transformer,II,True,False,False,False,0.7435897435897436,0.28431372549019607,0.8529411764705882,0.0,0.0
+config_5_attention_base__no_evm__WITH_simam__WITH_3dcnn__no_transformer,II,False,True,True,False,0.5897435897435898,0.40520556048506357,0.6938775510204082,0.5217391304347826,0.0
+config_6_full_stage2_noevm__no_evm__WITH_simam__WITH_3dcnn__WITH_transformer,III,False,True,True,True,0.48717948717948717,0.30938697318007663,0.5833333333333334,0.3448275862068966,0.0
+config_7_full_no_attention__WITH_evm__no_simam__WITH_3dcnn__WITH_transformer,III,True,False,True,True,0.6923076923076923,0.3577060931899641,0.8064516129032258,0.26666666666666666,0.0
+config_8_proposed_unified__WITH_evm__WITH_simam__WITH_3dcnn__WITH_transformer,IV,True,True,True,True,0.48717948717948717,0.30938697318007663,0.5833333333333334,0.3448275862068966,0.0
+config_9_permutation__no_evm__no_simam__WITH_3dcnn__WITH_transformer,Other,False,False,True,True,0.6923076923076923,0.3577060931899641,0.8064516129032258,0.26666666666666666,0.0
+config_12_permutation__WITH_evm__no_simam__no_3dcnn__WITH_transformer,Other,True,False,False,True,0.7435897435897436,0.28431372549019607,0.8529411764705882,0.0,0.0
+config_13_permutation__WITH_evm__no_simam__WITH_3dcnn__no_transformer,Other,True,False,True,False,0.717948717948718,0.435672514619883,0.8070175438596491,0.5,0.0
+config_16_permutation__WITH_evm__WITH_simam__WITH_3dcnn__no_transformer,Other,True,True,True,False,0.5897435897435898,0.40520556048506357,0.6938775510204082,0.5217391304347826,0.0
